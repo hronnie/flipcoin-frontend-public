@@ -1,0 +1,31 @@
+<ng-container *ngIf="(user$ | async)?.email">
+    <li class="c-header-nav-item dropdown" dropdown placement="bottom">
+        <a (click)="false" [routerLink] aria-expanded="false" aria-haspopup="true" class="c-header-nav-link"
+           data-toggle="dropdown" dropdownToggle role="button">
+            <c-icon name="cil-user" class="mfe-2"></c-icon>
+        </a>
+        <div *dropdownMenu aria-labelledby="account-dropdown" class="dropdown-menu dropdown-menu-right pt-0">
+            <a [routerLink] class="dropdown-item">
+                <c-icon class="mfe-2" name="cil-user"></c-icon>
+                Profile
+            </a>
+            <a [routerLink]="['/settings']" class="dropdown-item">
+                <c-icon class="mfe-2" name="cil-settings"></c-icon>
+                Settings
+            </a>
+            <a (click)="onLogout()" [routerLink] class="dropdown-item">
+                <c-icon class="mfe-2" name="cil-lock-locked"></c-icon>
+                Logout
+            </a>
+        </div>
+    </li>
+</ng-container>
+
+<ng-container *ngIf="!(user$ | async) || !(user$ | async)?.email">
+    <li class="c-header-nav-item dropdown" dropdown placement="bottom">
+        <a (click)="goToLogin()" [routerLink] aria-expanded="false" aria-haspopup="true" class="c-header-nav-link"
+           data-toggle="dropdown" dropdownToggle role="button">
+            <c-icon name="cil-arrow-thick-to-right" size="3xl" title="Login"></c-icon>
+        </a>
+    </li>
+</ng-container>

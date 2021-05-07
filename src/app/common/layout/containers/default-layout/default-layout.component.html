@@ -1,0 +1,78 @@
+<!--sidebar-->
+<c-sidebar #sidebar="cSidebar" id="sidebar" unfoldable="unfoldable">
+    <c-sidebar-brand
+            [brandFull]="{
+      src: 'assets/img/brand/crypto-robi-white.png',
+      width: 190,
+      height: 46,
+      alt: 'CoreUI Logo'
+    }"
+            [brandMinimized]="{
+      src: 'assets/img/brand/coreui-signet-white.svg',
+      width: 46,
+      height: 46,
+      alt: 'CoreUI Logo'
+    }"
+            [routerLink]="null"
+    >
+    </c-sidebar-brand>
+    <c-sidebar-nav
+            [disabled]="sidebar?.minimized"
+            [navItems]="navItems"
+            [perfectScrollbar]="perfectScrollbarConfig"
+            dropdownMode="closeInactive"
+    ></c-sidebar-nav>
+    <c-sidebar-minimizer cSidebarMinimize="sidebar"></c-sidebar-minimizer>
+</c-sidebar>
+
+<!--aside-->
+<c-sidebar
+        #aside="cSidebar"
+        [aside]="true"
+        [breakpoint]="false"
+        [mobile]="'xl'"
+        [overlaid]="true"
+        [show]="false"
+        colorScheme="light"
+        id="aside"
+        size="lg"
+>
+    <!--  cOutClick-->
+    <!--aside internal toggler-->
+    <c-toggler cSidebarToggle="aside">
+        <button [class]="'c-sidebar-close'" type="button">
+            <c-icon name="cil-x"></c-icon>
+        </button>
+    </c-toggler>
+    <!--aside content-->
+    <app-default-aside></app-default-aside>
+</c-sidebar>
+
+<!--main-->
+<c-wrapper>
+    <!--header-->
+    <app-default-header [fixed]="true"></app-default-header>
+    <!--app body-->
+    <c-body>
+        <main class="c-main">
+            <c-container [fluid]="true">
+                <router-outlet></router-outlet>
+            </c-container>
+        </main>
+        <!--app footer-->
+    </c-body>
+    <c-footer>
+        <div>
+            <a href="https://coreui.io/pro/angular/" target="_blank">
+                Crypto Robi
+            </a>
+            <span> &copy; 2021 by Aron Harsfalvi</span>
+        </div>
+        <div class="mfs-auto">
+            Powered by
+            <a href="http://aronharsfalvi.com" target="_blank">
+                <span> Aron Harsfalvi</span>
+            </a>
+        </div>
+    </c-footer>
+</c-wrapper>

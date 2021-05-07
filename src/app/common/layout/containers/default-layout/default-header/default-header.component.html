@@ -1,0 +1,58 @@
+<!--<c-header [fixed]="true">-->
+<ng-container>
+    <c-toggler
+            cSidebarToggle="sidebar"
+            class="d-md-none"
+            inHeader="true"
+    ></c-toggler>
+    <c-toggler
+            cSidebarToggle="sidebar"
+            class="d-sm-down-none mfs-3"
+            id="sidebar-toggler"
+            inHeader="true"
+    ></c-toggler>
+    <c-header-brand [routerLink]="'/dashboard'" class="d-lg-none">
+        <c-icon
+                [use]="'assets/img/brand/coreui-pro.svg#signet'"
+                alt="CoreUI Logo"
+                height="46"
+                width="46"
+        ></c-icon>
+    </c-header-brand>
+    <!-- header links-->
+    <ul class="c-header-nav d-md-down-none">
+        <li class="c-header-nav-item px-3">
+            <a [routerLink]="'/dashboard'" class="c-header-nav-link">Dashboard</a>
+        </li>
+        <li class="c-header-nav-item px-3">
+            <a class="c-header-nav-link" [routerLink]="['/settings']">Settings</a>
+        </li>
+    </ul>
+    <!--theme toggler-->
+    <c-toggler class="ml-auto" id="theme-toggler" title="Toggle Light/Dark Mode">
+        <button (click)="toggleTheme()" [class]="'c-header-toggler'" type="button">
+            <c-icon class="c-d-dark-none" name="cilMoon" size="lg"></c-icon>
+            <c-icon class="c-d-default-none" name="cilSun" size="lg"></c-icon>
+        </button>
+    </c-toggler>
+    <!--header dropdowns-->
+    <ul class="c-header-nav">
+
+        <app-default-header-dropdown-account></app-default-header-dropdown-account>
+    </ul>
+    <!--aside toggler-->
+    <c-toggler cSidebarToggle="aside" id="aside-toggler">
+        <button class="c-header-toggler c-header-nav-link" type="button">
+            <c-icon name="cilApplicationsSettings" size="lg"></c-icon>
+        </button>
+    </c-toggler>
+    <!--subheader-->
+    <c-subheader class="justify-content-between px-3">
+        <!--breadcrumbs-->
+        <c-breadcrumb
+                cBreadcrumbRouter
+                class="border-0 m-0 px-0 px-md-3 c-subheader-nav"
+        ></c-breadcrumb>
+    </c-subheader>
+    <!--</c-header>-->
+</ng-container>

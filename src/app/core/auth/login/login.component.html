@@ -1,0 +1,58 @@
+<div class="row justify-content-center">
+    <div class="col-lg-3 col-md-12">
+
+        <!-- Material form contact -->
+        <div class="card">
+
+            <h5 class="card-header info-color white-text text-center py-4">
+                <strong>Bejelentkezés</strong>
+            </h5>
+
+            <!--Card content-->
+            <div class="card-body px-lg-5 pt-0">
+
+                <!-- Form -->
+                <form (ngSubmit)="loginUserWithPasswordAndEmail($event)" [formGroup]="loginForm" class="text-center"
+                      style="color: #757575;">
+
+                    <!-- E-mail -->
+                    <div class="md-form">
+                        <input class="form-control" formControlName="email" id="materialContactFormEmail" mdbInput
+                               mdbValidate type="email">
+                        <label for="materialContactFormEmail">Email</label>
+                        <mdb-error *ngIf="emailFormatInvalid">Email megadása kötelező</mdb-error>
+                        <mdb-success *ngIf="emailFormatValid"><i class="fas fa-check"></i></mdb-success>
+                    </div>
+
+                    <div class="md-form mt-3">
+                        <input class="form-control" formControlName="password" id="materialContactFormPassword"
+                               mdbInput mdbValidate type="password">
+                        <label for="materialContactFormPassword">Jelszó</label>
+                        <mdb-error *ngIf="passwordInput.invalid && (passwordInput.dirty || passwordInput.touched)">
+                            Jelszó megadása kötelező és tartalmaznia kell legalább egy kis betűt, egy nagy betűt és egy
+                            számot©
+                        </mdb-error>
+                        <mdb-success *ngIf="passwordInput.valid && (passwordInput.dirty || passwordInput.touched)"><i
+                                class="fas fa-check"></i></mdb-success>
+                    </div>
+
+                    <div class="md-form mt-3">
+                        <mdb-error *ngIf="error">{{error}}</mdb-error>
+                    </div>
+
+                    <!-- Send button -->
+                    <button [disabled]="!loginForm.valid"
+                            class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect"
+                            type="submit">
+                        Bejelentkezés
+                    </button>
+
+                </form>
+                <!-- Form -->
+
+            </div>
+
+        </div>
+        <!-- Material form contact -->
+    </div>
+</div>
