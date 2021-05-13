@@ -1,11 +1,11 @@
 import {FirebaseAppConfig} from '@angular/fire';
 
 export const firebaseConfig: FirebaseAppConfig = {
-    apiKey: "AIzaSyDjgSU_9AhSMRJtQxeGhKlEhAY8VQqXX-g",
-    authDomain: "morecoin-ui.firebaseapp.com",
-    projectId: "morecoin-ui",
-    storageBucket: "morecoin-ui.appspot.com",
-    messagingSenderId: "370111927588",
-    appId: "1:370111927588:web:86426d3bcff3cfd6254fb1",
-    measurementId: "G-84NF54VR0M"
+    apiKey: "AIzaSyBKnD5Zt53RhQqeTqlMZmVHjLgCQt7aGUA",
+    authDomain: "flipcoin-cryptobot.firebaseapp.com",
+    projectId: "flipcoin-cryptobot",
+    storageBucket: "flipcoin-cryptobot.appspot.com",
+    messagingSenderId: "237935701690",
+    appId: "1:237935701690:web:1e8aa9d7bdb7a8ff6f1c83",
+    measurementId: "G-B0RXEY4YR7"
 };
