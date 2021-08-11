@@ -8,11 +8,26 @@ Firebase is used for the real time database, hosting and for user authentication
 
 - Create a gmail/google account which can be used
 - Create and setup a new project at firebase console: https://console.firebase.google.com/u/1/
-- Go to Realtime Database link and create a Realtime Database
 - Update the Spark plan to Blaze (the free Spark plan cannot connect to external APIs and possibly other restrictions are in place)
 - Angular uses @angular/fire library to connect with firebase. Here is how it was setup: https://fireship.io/snippets/install-angularfire/
-
-
+    - From your Firebase project click the gear icon next to “Project Overview” to bring you to your project settings. On the general tab, in the *Your apps” section, click the </> button. This opens a popup called Add Firebase to your web app. Click on hosting as well. You only need to copy the config object from this page.
+    - When project was created click on Config radio button
+    - Add this const firebaseConfig.ts in app/config/.. (it's on gitignore) and also use export before const :
+```
+export const firebaseConfig = {
+    apiKey: "xxxx",
+    authDomain: "xxxx",
+    databaseURL: "xxxx",
+    projectId: "xxxx",
+    storageBucket: "xxxx",
+    messagingSenderId: "xxxx",
+    appId: "xxxx",
+    measurementId: "xxxx"
+};
+```
+- Add your own user: Go to firebase console and go to Authentication. 
+  - Go to Sign-in method and enable only the Email/password
+  - Go to Users and add your email/password.
 
 ## Development server
 
