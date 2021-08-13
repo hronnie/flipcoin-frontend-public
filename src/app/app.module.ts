@@ -61,6 +61,8 @@ import {DefaultHeaderDropdownAccountComponent} from "./common/layout/containers/
 import {DefaultAsideComponent} from "./common/layout/containers/default-layout/default-aside/default-aside.component";
 import {P404Component} from "./scenes/error/404.component";
 import {P500Component} from "./scenes/error/500.component";
+import {AuthTokenHttpInterceptorProvider} from "./core/http-interceptors/auth-token.interceptor";
+import {HttpClientModule} from "@angular/common/http";
 
 
 
@@ -75,15 +77,13 @@ import {P500Component} from "./scenes/error/500.component";
     ],
     imports: [
         BrowserModule,
+        HttpClientModule,
         AppRoutingModule,
         MDBBootstrapModulesPro.forRoot(),
         AuthModule,
         BrowserAnimationsModule,
         AlertModule,
         BadgeModule,
-        BrowserModule,
-        BrowserAnimationsModule,
-        AppRoutingModule,
         ButtonModule,
         BreadcrumbModule,
         CardModule,
@@ -116,7 +116,8 @@ import {P500Component} from "./scenes/error/500.component";
             provide: LocationStrategy,
             useClass: HashLocationStrategy,
         },
-        IconSetService
+        IconSetService,
+        AuthTokenHttpInterceptorProvider
     ],
     bootstrap: [AppComponent]
 })
