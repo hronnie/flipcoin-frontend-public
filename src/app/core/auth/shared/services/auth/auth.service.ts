@@ -28,7 +28,6 @@ export class AuthService {
                     uid: next.uid,
                     authenticated: true
                 };
-                console.table(user);
                 this.store.set('user', user);
             })
         );

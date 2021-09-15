@@ -223,7 +223,6 @@ export class DashboardChartsData {
         const brandInfoBg = hexToRgba('#20a8d8', 10);
         const brandDanger = getStyle('--danger') || '#f86c6b';
 
-        // console.log(brandInfo, brandInfoBg);
 
         // mainChart
         this.mainChart.elements = 27;

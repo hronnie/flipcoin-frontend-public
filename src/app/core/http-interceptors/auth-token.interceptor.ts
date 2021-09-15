@@ -19,7 +19,6 @@ export class AuthTokenHttpInterceptor implements HttpInterceptor {
             switchMap(idToken => {
                 // let clone = req.clone()
                 if (idToken) {
-                    console.log(JSON.stringify(req.headers));
                     req = req.clone({
                         setHeaders: {
                             Authorization: `Bearer ${idToken}`,

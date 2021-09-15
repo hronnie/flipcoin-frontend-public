@@ -7,13 +7,13 @@ export const navItems: INavData[] = [
         icon: 'cil-speedometer',
     },
     {
-        name: 'Settings',
-        url: '/settings',
-        icon: 'cil-settings',
-    },
-    {
         name: 'Entries',
         url: '/entries',
         icon: 'cil-arrow-thick-to-right',
+    },
+    {
+        name: 'Settings',
+        url: '/settings',
+        icon: 'cil-settings',
     },
 ];

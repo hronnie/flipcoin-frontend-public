@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {EntryService} from "../../common/service/entry.service";
+import {Entry} from "../../model/entry/entry.model";
+import {Observable} from "rxjs";
 
 @Component({
     selector: 'app-entries',
@@ -8,23 +10,25 @@ import {EntryService} from "../../common/service/entry.service";
 })
 export class EntriesComponent implements OnInit {
     columnDefs = [
-        {field: 'make'},
-        {field: 'model'},
-        {field: 'price'}
+        {field: 'exchange', headerName: 'Exchange'},
+        {field: 'strategyId', headerName: 'Strategy Id'},
+        {field: 'symbol', headerName: 'Symbol'},
+        {field: 'side', headerName: 'Side'},
+        {field: 'isActive', headerName: 'Is Active'},
+        {field: 'startDate', headerName: 'Start Date'},
+        {field: 'endDate', headerName: 'End Date'},
+        {field: 'exitPrice', headerName: 'Exit Price'},
+        {field: 'entryInProgress', headerName: 'Locked'},
     ];
 
-    rowData = [
-        {make: 'Toyota', model: 'Celica', price: 35000},
-        {make: 'Ford', model: 'Mondeo', price: 32000},
-        {make: 'Porsche', model: 'Boxter', price: 72000}
-    ];
+    rowData: Observable<Entry[]>;
 
 
     constructor(private entryService: EntryService) {
     }
 
     ngOnInit(): void {
-        this.entryService.getAllEntries();
+        this.rowData = this.entryService.getAllEntries();
     }
 
 }

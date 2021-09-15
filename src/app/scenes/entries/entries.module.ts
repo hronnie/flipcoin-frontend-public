@@ -20,6 +20,7 @@ import {IconModule} from '@coreui/icons-angular';
 import {AgGridModule} from "ag-grid-angular";
 import {EntriesRoutingModule} from "./entries-routing.module";
 import {EntriesComponent} from "./entries.component";
+import {CommonModule} from "@angular/common";
 
 @NgModule({
     imports: [
@@ -38,6 +39,7 @@ import {EntriesComponent} from "./entries.component";
         ChartModule,
         SharedModule,
         AgGridModule,
+        CommonModule,
     ],
     declarations: [
         EntriesComponent

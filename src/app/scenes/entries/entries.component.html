@@ -2,9 +2,9 @@
     <c-card>
         <c-card-body>
             <ag-grid-angular
-                    style="width: 500px; height: 500px;"
+                    style="max-width: 2000px; height: 500px;"
                     class="ag-theme-alpine"
-                    [rowData]="rowData"
+                    [rowData]="rowData | async"
                     [columnDefs]="columnDefs"
             >
             </ag-grid-angular>
