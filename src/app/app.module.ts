@@ -63,6 +63,7 @@ import {P404Component} from "./scenes/error/404.component";
 import {P500Component} from "./scenes/error/500.component";
 import {AuthTokenHttpInterceptorProvider} from "./core/http-interceptors/auth-token.interceptor";
 import {HttpClientModule} from "@angular/common/http";
+import {AgGridModule} from "ag-grid-angular";
 
 
 
@@ -107,6 +108,7 @@ import {HttpClientModule} from "@angular/common/http";
         // ToastrModule.forRoot(),
         // ToastContainerModule,
         FormModule,
+        AgGridModule.withComponents([])
     ],
     exports: [SharedModule],
     providers: [

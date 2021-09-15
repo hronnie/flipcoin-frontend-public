@@ -41,6 +41,8 @@
     "@ng-select/ng-select": "^5.0.9",
     "@pascalhonegger/ng-datatable": "^10.0.0",
     "@types/chart.js": "^2.9.24",
+    "ag-grid-angular": "^26.0.0",
+    "ag-grid-community": "^26.0.0",
     "angular2-ladda": "^3.1.1",
     "angular2-text-mask": "^9.0.0",
     "animate.css": "^4.1.0",
