@@ -11,4 +11,9 @@ export const navItems: INavData[] = [
         url: '/settings',
         icon: 'cil-settings',
     },
+    {
+        name: 'Entries',
+        url: '/entries',
+        icon: 'cil-arrow-thick-to-right',
+    },
 ];

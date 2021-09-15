@@ -42,6 +42,13 @@ const routes: Routes = [
                     ), canActivate: [AuthGuard]
             },
             {
+                path: 'entries',
+                loadChildren: () =>
+                    import('./scenes/entries/entries.module').then(
+                        (m) => m.EntriesModule,
+                    ), canActivate: [AuthGuard]
+            },
+            {
                 path: 'settings',
                 loadChildren: () =>
                     import('./scenes/settings/settings.module').then(
