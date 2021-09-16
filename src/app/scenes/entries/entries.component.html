@@ -4,6 +4,9 @@
             <ag-grid-angular
                     style="max-width: 2000px; height: 500px;"
                     class="ag-theme-alpine"
+                    [pagination]="true"
+                    [defaultColDef]="defaultColDef"
+                    [rowClassRules]="rowClassRules"
                     [rowData]="rowData | async"
                     [columnDefs]="columnDefs"
             >

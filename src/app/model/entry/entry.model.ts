@@ -27,22 +27,42 @@ export class Entry {
         this.strategyId = obj && obj?.strategyId || '';
         this.symbol = obj && obj?.symbol || '';
         this.side = obj && obj?.side || '';
-        this.isActive = obj && obj.isActive || true;
-        this.position = obj && obj.position || new FuturesRespPositionModel();
+        if (obj && obj.isActive !== undefined) {
+            this.isActive = obj.isActive;
+        } else {
+            this.isActive = true;
+        }
+        if (obj && obj.position) {
+            this.position = obj.position;
+        } else {
+            this.position = new FuturesRespPositionModel();
+        }
         if (obj && obj.startDate) {
             this.startDate = new Date(obj.startDate);
         } else {
             this.startDate = new Date();
         }
         if (obj && obj.endDate) {
-            this.startDate = new Date(obj.endDate);
+            this.endDate = new Date(obj.endDate);
         } else {
             this.endDate = null;
         }
-        this.incomeHistory = obj && obj?.feesInUsd || new IncomeHistory();
-        this.webhookInput = obj && obj.webhookInput || new TradingviewWebhookInput();
+        if (obj && obj?.incomeHistory) {
+            this.incomeHistory = obj?.incomeHistory;
+        } else {
+            this.incomeHistory = new IncomeHistory();
+        }
+        if (obj && obj.webhookInput) {
+            this.webhookInput = obj && obj.webhookInput;
+        } else {
+            this.webhookInput = new TradingviewWebhookInput();
+        }
         this.exitPrice = obj && obj?.exitPrice || '';
-        this.entryInProgress = obj && obj.entryInProgress || false;
+        if (obj && obj.entryInProgress) {
+            this.entryInProgress = obj.entryInProgress;
+        } else {
+            this.entryInProgress = false;
+        }
     }
 
     toString() {

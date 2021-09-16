@@ -21,6 +21,23 @@ export class EntriesComponent implements OnInit {
         {field: 'entryInProgress', headerName: 'Locked'},
     ];
 
+    rowClassRules = {
+        'sell-row': function(params) { return params.data.side === 'BUY'; },
+
+        'buy-row': function(params) { return params.data.side === 'SELL'; },
+    };
+
+    defaultColDef = {
+        editable: false,
+        enablePivot: true,
+        enableValue: true,
+        sortable: true,
+        resizable: true,
+        filter: true,
+        flex: 1,
+        minWidth: 30,
+    };
+
     rowData: Observable<Entry[]>;
 
 
