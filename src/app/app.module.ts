@@ -72,6 +72,9 @@ import { PriceRendererComponent } from './common/renderer/price-renderer/price-r
 import {FullLocalDatePipe} from "./pipes/full-local-date.pipe";
 import {OnlyDatePipe} from "./pipes/only-date.pipe";
 import {PricePipe} from "./pipes/price.pipe";
+import { DurationRendererComponent } from './common/renderer/duration-renderer/duration-renderer.component';
+import { ProfitRendererComponent } from './common/renderer/profit-renderer/profit-renderer.component';
+import { FeesRendererComponent } from './common/renderer/fees-renderer/fees-renderer.component';
 
 
 @NgModule({
@@ -89,6 +92,9 @@ import {PricePipe} from "./pipes/price.pipe";
         PriceRendererComponent,
         FullLocalDatePipe,
         PricePipe,
+        DurationRendererComponent,
+        ProfitRendererComponent,
+        FeesRendererComponent,
     ],
     imports: [
         BrowserModule,

@@ -7,6 +7,9 @@ import {DateRendererComponent} from "../../common/renderer/date-renderer/date-re
 import {SideRendererComponent} from "../../common/renderer/side-renderer/side-renderer.component";
 import {YesNoRendererComponent} from "../../common/renderer/yes-no-renderer/yes-no-renderer.component";
 import {PriceRendererComponent} from "../../common/renderer/price-renderer/price-renderer.component";
+import {ProfitRendererComponent} from "../../common/renderer/profit-renderer/profit-renderer.component";
+import {DurationRendererComponent} from "../../common/renderer/duration-renderer/duration-renderer.component";
+import {FeesRendererComponent} from "../../common/renderer/fees-renderer/fees-renderer.component";
 
 
 
@@ -20,12 +23,15 @@ export class EntriesComponent implements OnInit {
         {field: 'exchange', headerName: 'Exchange', cellRenderer: 'exchangeRenderer'},
         {field: 'strategyId', headerName: 'Strategy Id'},
         {field: 'symbol', headerName: 'Symbol'},
-        {field: 'side', headerName: 'Side', cellRenderer: 'sideRenderer'},
-        {field: 'isActive', headerName: 'Is Active', cellRenderer: 'yesNoRenderer'},
+        {field: 'side', headerName: 'Side', cellRenderer: 'sideRenderer', width: 90},
+        {field: 'isActive', headerName: 'Is Active', cellRenderer: 'yesNoRenderer', width: 90},
         {field: 'startDate', headerName: 'Start Date', cellRenderer: 'dateRenderer', minWidth: 200},
         {field: 'endDate', headerName: 'End Date', cellRenderer: 'dateRenderer', minWidth: 200},
+        {field: 'startDate', headerName: 'Duration', cellRenderer: 'durationRenderer'},
+        {field: 'enterPrice', headerName: 'Enter Price', cellRenderer: 'priceRenderer'},
         {field: 'exitPrice', headerName: 'Exit Price', cellRenderer: 'priceRenderer'},
-        {field: 'entryInProgress', headerName: 'Locked', cellRenderer: 'yesNoRenderer'},
+        {field: 'profit', headerName: 'Profit', cellRenderer: 'profitRenderer'},
+        {field: 'fees', headerName: 'Fees', cellRenderer: 'feesRenderer'},
     ];
 
     defaultColDef = {
@@ -57,7 +63,10 @@ export class EntriesComponent implements OnInit {
             dateRenderer: DateRendererComponent,
             sideRenderer: SideRendererComponent,
             yesNoRenderer: YesNoRendererComponent,
-            priceRenderer: PriceRendererComponent
+            priceRenderer: PriceRendererComponent,
+            profitRenderer: ProfitRendererComponent,
+            durationRenderer: DurationRendererComponent,
+            feesRenderer: FeesRendererComponent
         }
     }
 

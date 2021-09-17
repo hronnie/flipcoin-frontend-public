@@ -1,4 +1,6 @@
 // TODO make it recursive
+import {IncomeHistory} from "../model/entry/incomeHistory.model";
+
 /**
  * General toString method for objects
  */
@@ -50,4 +52,12 @@ export function toHumanReadablePercentFormat(percFrom: any, percBase: any): stri
 export function convertAnyDateFormatToLong(dateValue: any) {
     const dateValueToDate = new Date((dateValue));
     return dateValueToDate.getTime();
+}
+
+export function calculateFees(incomeHistory: IncomeHistory) {
+    return toHumanReadableFormat(incomeHistory. transfer
+        + incomeHistory.welcomeBonus
+        + incomeHistory.fundingFee
+        + incomeHistory.commission
+        + incomeHistory.insuranceClear)
 }
