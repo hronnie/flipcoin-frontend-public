@@ -35,6 +35,7 @@ export const firebaseConfig = {
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ### Firebase deploy
+(This description is based on https://dzone.com/articles/how-to-deploy-angular-app-on-firebase)
 The first 2 steps needed only for the first time. 
 
 - Sign in to firebase: ``
@@ -44,31 +45,62 @@ The first 2 steps needed only for the first time.
 - Initiate project: ``
   firebase init
   ``
-  After starting init, it will ask which CLI features do you want to set. Select Database, Hosting and Emulators. In the next step: select that 
-  you want to use an existing project (it was setup in the 'Create and setup firebase' section) and use flipcoin-cryptobot
-- Deploy project: ``
-  firebase deploy
-  ``
+  - After starting init, it will ask which CLI features do you want to set. Select 'Hosting: Configure and deploy Firebase Hosting sites'. In the next step: select that 
+    you want to use an existing project (it was setup in the 'Create and setup firebase' section) and use the same as for flipcoin-service-main.
+  - Type “No” to the "Configure as a single-page app" option since we will configure it by updating firebase.json file later on
+  - Delete the newly created index.html file since we already have an index.html in our app project folder.
+  - Overwrite your firebase.json: 
+```
+{
+  "database": {
+    "rules": "database.rules.json"
+  },
+  "hosting": {
+    "public": "dist",
+    "rewrites": [
+      {
+        "source": "*",
+        "destination": "/index.html"
+      }
+    ],
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  },
+  "emulators": {
+    "database": {
+      "port": 9000
+    },
+    "hosting": {
+      "port": 5000
+    },
+    "ui": {
+      "enabled": true
+    }
+  }
+}
 
+```
+  - Your .firebaserc file should look like this
+```
+{ 
+  "projects": {
+    "default": "[your firebase project name]"
+  }
+}
 
+```
+  - Add new environment.prod.ts under src/environments with the following content: 
+```
+export const environment = {
+  production: true,
+  apiUrl: 'https://[your server path from flipcoin-service-main]/application/api'
+};
+```
+- Build and deploy project to the cloud: 
+```
+npm run deploy
+```
 
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
