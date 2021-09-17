@@ -20,10 +20,12 @@ export class Entry {
     incomeHistory: IncomeHistory;
     webhookInput: TradingviewWebhookInput;
     exitPrice: string;
+    startPrice: string;
     entryInProgress: boolean;
 
     constructor(obj?: any) {
         this.exchange = obj && obj?.exchange || '';
+        this.startPrice = obj && obj?.startPrice || '';
         this.strategyId = obj && obj?.strategyId || '';
         this.symbol = obj && obj?.symbol || '';
         this.side = obj && obj?.side || '';

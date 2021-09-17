@@ -3,6 +3,10 @@ import {EntryService} from "../../common/service/entry.service";
 import {Entry} from "../../model/entry/entry.model";
 import {Observable} from "rxjs";
 import {ExchangeRendererComponent} from "../../common/renderer/exchange-renderer/exchange-renderer.component";
+import {DateRendererComponent} from "../../common/renderer/date-renderer/date-renderer.component";
+import {SideRendererComponent} from "../../common/renderer/side-renderer/side-renderer.component";
+import {YesNoRendererComponent} from "../../common/renderer/yes-no-renderer/yes-no-renderer.component";
+import {PriceRendererComponent} from "../../common/renderer/price-renderer/price-renderer.component";
 
 
 
@@ -16,12 +20,12 @@ export class EntriesComponent implements OnInit {
         {field: 'exchange', headerName: 'Exchange', cellRenderer: 'exchangeRenderer'},
         {field: 'strategyId', headerName: 'Strategy Id'},
         {field: 'symbol', headerName: 'Symbol'},
-        {field: 'side', headerName: 'Side'},
-        {field: 'isActive', headerName: 'Is Active'},
-        {field: 'startDate', headerName: 'Start Date'},
-        {field: 'endDate', headerName: 'End Date'},
-        {field: 'exitPrice', headerName: 'Exit Price'},
-        {field: 'entryInProgress', headerName: 'Locked'},
+        {field: 'side', headerName: 'Side', cellRenderer: 'sideRenderer'},
+        {field: 'isActive', headerName: 'Is Active', cellRenderer: 'yesNoRenderer'},
+        {field: 'startDate', headerName: 'Start Date', cellRenderer: 'dateRenderer', minWidth: 200},
+        {field: 'endDate', headerName: 'End Date', cellRenderer: 'dateRenderer', minWidth: 200},
+        {field: 'exitPrice', headerName: 'Exit Price', cellRenderer: 'priceRenderer'},
+        {field: 'entryInProgress', headerName: 'Locked', cellRenderer: 'yesNoRenderer'},
     ];
 
     defaultColDef = {
@@ -39,7 +43,6 @@ export class EntriesComponent implements OnInit {
     rowClassRules;
     frameworkComponents: {};
 
-
     constructor(private entryService: EntryService) {
         // this.rowClassRules = {
         //     'sell-row': function(params) {
@@ -48,8 +51,13 @@ export class EntriesComponent implements OnInit {
         //
         //     'buy-row': function(params) { return params.data.side === 'SELL'; },
         // };
+
         this.frameworkComponents = {
             exchangeRenderer: ExchangeRendererComponent,
+            dateRenderer: DateRendererComponent,
+            sideRenderer: SideRendererComponent,
+            yesNoRenderer: YesNoRendererComponent,
+            priceRenderer: PriceRendererComponent
         }
     }
 

@@ -65,6 +65,13 @@ import {AuthTokenHttpInterceptorProvider} from "./core/http-interceptors/auth-to
 import {HttpClientModule} from "@angular/common/http";
 import {AgGridModule} from "ag-grid-angular";
 import { ExchangeRendererComponent } from './common/renderer/exchange-renderer/exchange-renderer.component';
+import { YesNoRendererComponent } from './common/renderer/yes-no-renderer/yes-no-renderer.component';
+import { SideRendererComponent } from './common/renderer/side-renderer/side-renderer.component';
+import { DateRendererComponent } from './common/renderer/date-renderer/date-renderer.component';
+import { PriceRendererComponent } from './common/renderer/price-renderer/price-renderer.component';
+import {FullLocalDatePipe} from "./pipes/full-local-date.pipe";
+import {OnlyDatePipe} from "./pipes/only-date.pipe";
+import {PricePipe} from "./pipes/price.pipe";
 
 
 @NgModule({
@@ -76,6 +83,12 @@ import { ExchangeRendererComponent } from './common/renderer/exchange-renderer/e
         P404Component,
         P500Component,
         ExchangeRendererComponent,
+        YesNoRendererComponent,
+        SideRendererComponent,
+        DateRendererComponent,
+        PriceRendererComponent,
+        FullLocalDatePipe,
+        PricePipe,
     ],
     imports: [
         BrowserModule,
@@ -120,7 +133,10 @@ import { ExchangeRendererComponent } from './common/renderer/exchange-renderer/e
             useClass: HashLocationStrategy,
         },
         IconSetService,
-        AuthTokenHttpInterceptorProvider
+        AuthTokenHttpInterceptorProvider,
+        FullLocalDatePipe,
+        OnlyDatePipe,
+        PricePipe
     ],
     bootstrap: [AppComponent]
 })
