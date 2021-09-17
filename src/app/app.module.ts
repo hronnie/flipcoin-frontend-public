@@ -64,6 +64,7 @@ import {P500Component} from "./scenes/error/500.component";
 import {AuthTokenHttpInterceptorProvider} from "./core/http-interceptors/auth-token.interceptor";
 import {HttpClientModule} from "@angular/common/http";
 import {AgGridModule} from "ag-grid-angular";
+import { ExchangeRendererComponent } from './common/renderer/exchange-renderer/exchange-renderer.component';
 
 
 @NgModule({
@@ -74,6 +75,7 @@ import {AgGridModule} from "ag-grid-angular";
         ...APP_CONTAINERS,
         P404Component,
         P500Component,
+        ExchangeRendererComponent,
     ],
     imports: [
         BrowserModule,
@@ -107,7 +109,7 @@ import {AgGridModule} from "ag-grid-angular";
         // ToastrModule.forRoot(),
         // ToastContainerModule,
         FormModule,
-        AgGridModule.withComponents([])
+        AgGridModule.withComponents([]),
     ],
     exports: [SharedModule],
     providers: [

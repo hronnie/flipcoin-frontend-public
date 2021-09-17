@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {EntryService} from "../../common/service/entry.service";
 import {Entry} from "../../model/entry/entry.model";
 import {Observable} from "rxjs";
+import {ExchangeRendererComponent} from "../../common/renderer/exchange-renderer/exchange-renderer.component";
 
 
 
@@ -12,7 +13,7 @@ import {Observable} from "rxjs";
 })
 export class EntriesComponent implements OnInit {
     columnDefs = [
-        {field: 'exchange', headerName: 'Exchange'},
+        {field: 'exchange', headerName: 'Exchange', cellRenderer: 'exchangeRenderer'},
         {field: 'strategyId', headerName: 'Strategy Id'},
         {field: 'symbol', headerName: 'Symbol'},
         {field: 'side', headerName: 'Side'},
@@ -36,18 +37,20 @@ export class EntriesComponent implements OnInit {
 
     rowData: Observable<Entry[]>;
     rowClassRules;
-
+    frameworkComponents: {};
 
 
     constructor(private entryService: EntryService) {
-        this.rowClassRules = {
-            'sell-row': function(params) {
-                console.log(params.data.side === 'BUY');
-                return params.data.side === 'BUY';
-            },
-
-            'buy-row': function(params) { return params.data.side === 'SELL'; },
-        };
+        // this.rowClassRules = {
+        //     'sell-row': function(params) {
+        //         return params.data.side === 'BUY';
+        //     },
+        //
+        //     'buy-row': function(params) { return params.data.side === 'SELL'; },
+        // };
+        this.frameworkComponents = {
+            exchangeRenderer: ExchangeRendererComponent,
+        }
     }
 
     ngOnInit(): void {
