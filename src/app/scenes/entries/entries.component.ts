@@ -3,6 +3,8 @@ import {EntryService} from "../../common/service/entry.service";
 import {Entry} from "../../model/entry/entry.model";
 import {Observable} from "rxjs";
 
+
+
 @Component({
     selector: 'app-entries',
     templateUrl: './entries.component.html',
@@ -21,12 +23,6 @@ export class EntriesComponent implements OnInit {
         {field: 'entryInProgress', headerName: 'Locked'},
     ];
 
-    rowClassRules = {
-        'sell-row': function(params) { return params.data.side === 'BUY'; },
-
-        'buy-row': function(params) { return params.data.side === 'SELL'; },
-    };
-
     defaultColDef = {
         editable: false,
         enablePivot: true,
@@ -39,9 +35,19 @@ export class EntriesComponent implements OnInit {
     };
 
     rowData: Observable<Entry[]>;
+    rowClassRules;
+
 
 
     constructor(private entryService: EntryService) {
+        this.rowClassRules = {
+            'sell-row': function(params) {
+                console.log(params.data.side === 'BUY');
+                return params.data.side === 'BUY';
+            },
+
+            'buy-row': function(params) { return params.data.side === 'SELL'; },
+        };
     }
 
     ngOnInit(): void {
