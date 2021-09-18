@@ -20,7 +20,7 @@ import {FeesRendererComponent} from "../../common/renderer/fees-renderer/fees-re
 })
 export class EntriesComponent implements OnInit {
     columnDefs = [
-        {field: 'exchange', headerName: 'Exchange', cellRenderer: 'exchangeRenderer'},
+        {field: 'exchange', headerName: 'Exchange', cellRenderer: 'exchangeRenderer', minWidth: 150},
         {field: 'strategyId', headerName: 'Strategy Id', cellStyle: params => {
                 if (params?.data?.isActive === true) {
                     return {backgroundColor: '#b9ff47'}
@@ -38,6 +38,7 @@ export class EntriesComponent implements OnInit {
         {field: 'startDate', headerName: 'Duration', cellRenderer: 'durationRenderer'},
         {field: 'enterPrice', headerName: 'Enter Price', cellRenderer: 'priceRenderer'},
         {field: 'exitPrice', headerName: 'Exit Price', cellRenderer: 'priceRenderer'},
+        {field: 'realCost', headerName: 'Used', cellRenderer: 'priceRenderer'},
         {field: 'profit', headerName: 'Profit', cellRenderer: 'profitRenderer'},
         {field: 'fees', headerName: 'Fees', cellRenderer: 'feesRenderer'},
     ];
@@ -50,7 +51,7 @@ export class EntriesComponent implements OnInit {
         resizable: true,
         filter: true,
         flex: 1,
-        minWidth: 30,
+        minWidth: 120,
     };
 
     rowData: Observable<Entry[]>;

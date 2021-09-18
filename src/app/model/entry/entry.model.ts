@@ -24,12 +24,14 @@ export class Entry {
     entryInProgress: boolean;
     profit: number;
     fees: number;
+    realCost: string;
 
     constructor(obj?: any) {
         this.exchange = obj && obj?.exchange || '';
         this.profit = obj && obj?.profit || 0;
         this.fees = obj && obj?.fees || 0;
         this.enterPrice = obj && obj?.startPrice || '';
+        this.realCost = obj && obj?.realCost || '';
         this.strategyId = obj && obj?.strategyId || '';
         this.symbol = obj && obj?.symbol || '';
         this.side = obj && obj?.side || '';
