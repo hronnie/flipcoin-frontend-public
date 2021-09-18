@@ -21,8 +21,16 @@ import {FeesRendererComponent} from "../../common/renderer/fees-renderer/fees-re
 export class EntriesComponent implements OnInit {
     columnDefs = [
         {field: 'exchange', headerName: 'Exchange', cellRenderer: 'exchangeRenderer'},
-        {field: 'strategyId', headerName: 'Strategy Id'},
-        {field: 'symbol', headerName: 'Symbol', unSortIcon: true},
+        {field: 'strategyId', headerName: 'Strategy Id', cellStyle: params => {
+                if (params?.data?.isActive === true) {
+                    return {backgroundColor: '#b9ff47'}
+                }
+            }},
+        {field: 'symbol', headerName: 'Symbol', unSortIcon: true, cellStyle: params => {
+                if (params?.data?.isActive === true) {
+                    return {backgroundColor: '#b9ff47'}
+                }
+            }},
         {field: 'side', headerName: 'Side', cellRenderer: 'sideRenderer', width: 90},
         {field: 'isActive', headerName: 'Is Active', cellRenderer: 'yesNoRenderer', width: 90},
         {field: 'startDate', headerName: 'Start Date', cellRenderer: 'dateRenderer', minWidth: 200, sort: 'desc'},

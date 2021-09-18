@@ -1,3 +1,8 @@
-<span>{{duration.humanize()}}</span>
+<span *ngIf="isValid">
+    {{duration.humanize()}}
+</span>
+<span *ngIf="!isValid">
+    -
+</span>
 
 

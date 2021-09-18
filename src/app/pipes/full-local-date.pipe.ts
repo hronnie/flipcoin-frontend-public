@@ -8,9 +8,10 @@ export class FullLocalDatePipe implements PipeTransform {
 
     transform(value: any, ...args: any[]): any {
         if (!value || value === 0) {
-            return '';
+            return '-';
         }
-        return moment(value).format('L LTS');
+        const date = moment(value);
+        return date.isValid() ? moment(value).format('L LTS') : '-';
     }
 
 }

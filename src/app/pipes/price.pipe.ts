@@ -1,5 +1,4 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import * as moment from 'moment';
 
 @Pipe({
     name: 'price'
@@ -8,7 +7,7 @@ export class PricePipe implements PipeTransform {
 
     transform(value: any, ...args: any[]): any {
         if (!value) {
-            return '';
+            return '-';
         }
         const inputNum = parseFloat(value);
         const power = Math.pow(10, 4 || 0);
