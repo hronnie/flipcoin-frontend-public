@@ -41,3 +41,5 @@ package-lock.json
 package-lock.json
 .firebaserc
 .runtimeconfig.json
+firebase.json
+src/environments/environment.prod.ts

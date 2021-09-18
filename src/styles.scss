@@ -1,1 +1,25 @@
-/* You can add global styles to this file, and also import other style files */
+@import "../node_modules/ag-grid-community/dist/styles/ag-grid.css";
+@import "../node_modules/ag-grid-community/dist/styles/ag-theme-alpine.css";/* You can add global styles to this file, and also import other style files */
+
+
+.sell-row {
+  background-color: #ff966c !important;
+  min-width: 100px;
+}
+
+.buy-row {
+  background-color: #a9ff9f !important;
+}
+
+.custom-label {
+  display: inline;
+  padding: .2em .6em .3em;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
+}
