@@ -19,7 +19,7 @@ import {FeesRendererComponent} from "../../common/renderer/fees-renderer/fees-re
 })
 export class EntriesComponent implements OnInit {
     columnDefs = [
-        {field: 'exchange', headerName: 'Exchange', cellRenderer: 'exchangeRenderer', minWidth: 120},
+        {field: 'exchange', headerName: 'Exchange', cellRenderer: 'exchangeRenderer', minWidth: 140},
         {field: 'strategyId', headerName: 'Strategy Id', cellStyle: params => {
                 if (params?.data?.isActive === true) {
                     return {backgroundColor: '#b9ff47'}
