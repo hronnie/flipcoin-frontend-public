@@ -22,10 +22,10 @@ export class EntriesComponent implements OnInit {
     columnDefs = [
         {field: 'exchange', headerName: 'Exchange', cellRenderer: 'exchangeRenderer'},
         {field: 'strategyId', headerName: 'Strategy Id'},
-        {field: 'symbol', headerName: 'Symbol'},
+        {field: 'symbol', headerName: 'Symbol', unSortIcon: true},
         {field: 'side', headerName: 'Side', cellRenderer: 'sideRenderer', width: 90},
         {field: 'isActive', headerName: 'Is Active', cellRenderer: 'yesNoRenderer', width: 90},
-        {field: 'startDate', headerName: 'Start Date', cellRenderer: 'dateRenderer', minWidth: 200},
+        {field: 'startDate', headerName: 'Start Date', cellRenderer: 'dateRenderer', minWidth: 200, sort: 'desc'},
         {field: 'endDate', headerName: 'End Date', cellRenderer: 'dateRenderer', minWidth: 200},
         {field: 'startDate', headerName: 'Duration', cellRenderer: 'durationRenderer'},
         {field: 'enterPrice', headerName: 'Enter Price', cellRenderer: 'priceRenderer'},
