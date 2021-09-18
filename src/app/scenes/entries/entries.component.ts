@@ -12,7 +12,6 @@ import {DurationRendererComponent} from "../../common/renderer/duration-renderer
 import {FeesRendererComponent} from "../../common/renderer/fees-renderer/fees-renderer.component";
 
 
-
 @Component({
     selector: 'app-entries',
     templateUrl: './entries.component.html',
@@ -20,7 +19,7 @@ import {FeesRendererComponent} from "../../common/renderer/fees-renderer/fees-re
 })
 export class EntriesComponent implements OnInit {
     columnDefs = [
-        {field: 'exchange', headerName: 'Exchange', cellRenderer: 'exchangeRenderer', minWidth: 150},
+        {field: 'exchange', headerName: 'Exchange', cellRenderer: 'exchangeRenderer', minWidth: 120},
         {field: 'strategyId', headerName: 'Strategy Id', cellStyle: params => {
                 if (params?.data?.isActive === true) {
                     return {backgroundColor: '#b9ff47'}
@@ -57,16 +56,9 @@ export class EntriesComponent implements OnInit {
     rowData: Observable<Entry[]>;
     rowClassRules;
     frameworkComponents: {};
+    gridApi
 
     constructor(private entryService: EntryService) {
-        // this.rowClassRules = {
-        //     'sell-row': function(params) {
-        //         return params.data.side === 'BUY';
-        //     },
-        //
-        //     'buy-row': function(params) { return params.data.side === 'SELL'; },
-        // };
-
         this.frameworkComponents = {
             exchangeRenderer: ExchangeRendererComponent,
             dateRenderer: DateRendererComponent,
@@ -79,8 +71,19 @@ export class EntriesComponent implements OnInit {
         }
     }
 
+    onGridReady(params) {
+        this.gridApi = params.api;
+        this.gridApi.paginationSetPageSize(20);
+    }
+
     ngOnInit(): void {
         this.rowData = this.entryService.getAllEntries();
+    }
+
+    onPageSizeChanged(newPageSize = 20) {
+        // const value = document.getElementById('page-size')?.value;
+        const value = (document.getElementById('page-size') as HTMLInputElement).value;
+        this.gridApi.paginationSetPageSize(Number(value));
     }
 
 }
