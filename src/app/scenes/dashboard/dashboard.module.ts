@@ -20,6 +20,8 @@ import {
 
 import {IconModule} from '@coreui/icons-angular';
 import {AgGridModule} from "ag-grid-angular";
+import {AgChartsAngularModule} from "ag-charts-angular";
+import {CommonModule} from "@angular/common";
 
 @NgModule({
     imports: [
@@ -38,6 +40,8 @@ import {AgGridModule} from "ag-grid-angular";
         ChartModule,
         SharedModule,
         AgGridModule,
+        AgChartsAngularModule,
+        CommonModule,
     ],
     declarations: [
         DashboardComponent

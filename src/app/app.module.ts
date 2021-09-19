@@ -75,6 +75,7 @@ import {PricePipe} from "./pipes/price.pipe";
 import { DurationRendererComponent } from './common/renderer/duration-renderer/duration-renderer.component';
 import { ProfitRendererComponent } from './common/renderer/profit-renderer/profit-renderer.component';
 import { FeesRendererComponent } from './common/renderer/fees-renderer/fees-renderer.component';
+import {AgChartsAngularModule} from "ag-charts-angular";
 
 
 @NgModule({
@@ -129,6 +130,7 @@ import { FeesRendererComponent } from './common/renderer/fees-renderer/fees-rend
         // ToastContainerModule,
         FormModule,
         AgGridModule.withComponents([]),
+        AgChartsAngularModule
     ],
     exports: [SharedModule],
     providers: [
