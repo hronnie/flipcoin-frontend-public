@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {AuthGuard} from './core/auth/shared/guards/auth.guard';
-import {MainContainerComponent} from './common/layout/main-container/main-container.component';
 import {AuthContainerComponent} from './common/layout/auth-container/auth-container.component';
 import {DefaultLayoutComponent} from "./common/layout/containers/default-layout/default-layout.component";
 import {P404Component} from "./scenes/error/404.component";

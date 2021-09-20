@@ -7,7 +7,6 @@ import {MDBBootstrapModulesPro, MDBSpinningPreloader} from 'ng-uikit-pro-standar
 import {Store} from '../store';
 import {AuthModule} from './core/auth/auth.module';
 import {AuthContainerComponent} from './common/layout/auth-container/auth-container.component';
-import {MainContainerComponent} from './common/layout/main-container/main-container.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
@@ -82,7 +81,6 @@ import {AgChartsAngularModule} from "ag-charts-angular";
     declarations: [
         AppComponent,
         AuthContainerComponent,
-        MainContainerComponent,
         ...APP_CONTAINERS,
         P404Component,
         P500Component,
@@ -101,7 +99,6 @@ import {AgChartsAngularModule} from "ag-charts-angular";
         BrowserModule,
         HttpClientModule,
         AppRoutingModule,
-        MDBBootstrapModulesPro.forRoot(),
         AuthModule,
         BrowserAnimationsModule,
         AlertModule,
