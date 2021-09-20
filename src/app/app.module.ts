@@ -3,7 +3,6 @@ import {NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {MDBBootstrapModulesPro, MDBSpinningPreloader} from 'ng-uikit-pro-standard';
 import {Store} from '../store';
 import {AuthModule} from './core/auth/auth.module';
 import {AuthContainerComponent} from './common/layout/auth-container/auth-container.component';
@@ -131,7 +130,6 @@ import {AgChartsAngularModule} from "ag-charts-angular";
     ],
     exports: [SharedModule],
     providers: [
-        MDBSpinningPreloader,
         Store,
         {
             provide: LocationStrategy,
