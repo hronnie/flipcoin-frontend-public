@@ -44,3 +44,4 @@ package-lock.json
 firebase.json
 src/environments/environment.prod.ts
 src/app/config/firebaseConfig.ts
+src/environments/environment.ts
