@@ -6,6 +6,7 @@ import {FuturesRespPositionModel} from "../../../../model/response/positionResp.
 import {Entry} from "../../../../model/entry/entry.model";
 import {SIDE} from "../../../../model/binance/binance.enums";
 import {PricePipe} from "../../../../pipes/price.pipe";
+import {isPositionEmpty} from "../../../../utils/helperMethods";
 
 @Component({
     selector: 'app-entries-detail',
@@ -19,6 +20,7 @@ export class EntriesDetailComponent implements OnInit {
     entryId: string;
     entry: Entry;
     sideColor = '';
+    isPositionEmpty = true;
 
     constructor(private entryService: EntryService,
                 private route: ActivatedRoute) {
@@ -35,6 +37,7 @@ export class EntriesDetailComponent implements OnInit {
 
         this.entryService.getEntryPosition(this.entryId).subscribe(position => {
             this.position = position;
+            this.isPositionEmpty = isPositionEmpty(this.position);
         });
 
         this.entryService.getEntry(this.entryId).subscribe(entry => {

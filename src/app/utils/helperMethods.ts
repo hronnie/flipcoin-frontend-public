@@ -1,5 +1,6 @@
 // TODO make it recursive
 import {IncomeHistory} from "../model/entry/incomeHistory.model";
+import {FuturesRespPositionModel} from "../model/response/positionResp.model";
 
 /**
  * General toString method for objects
@@ -60,4 +61,16 @@ export function calculateFees(incomeHistory: IncomeHistory) {
         + incomeHistory.fundingFee
         + incomeHistory.commission
         + incomeHistory.insuranceClear)
+}
+
+/**
+ * Check if position is empty
+ * @return true if position is empty
+ */
+export function isPositionEmpty(position: FuturesRespPositionModel): boolean {
+    if (!position) {
+        return true;
+    }
+    const positionAmount = parseFloat(position.positionAmt);
+    return positionAmount === 0;
 }

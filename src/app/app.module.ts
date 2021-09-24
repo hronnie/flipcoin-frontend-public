@@ -42,7 +42,6 @@ import {
     LayoutModule,
     ListGroupModule,
     ProgressModule,
-    SharedModule,
     SidebarModule,
     SwitchModule,
     TabsetModule,
@@ -75,6 +74,7 @@ import { DurationRendererComponent } from './common/renderer/duration-renderer/d
 import { ProfitRendererComponent } from './common/renderer/profit-renderer/profit-renderer.component';
 import { FeesRendererComponent } from './common/renderer/fees-renderer/fees-renderer.component';
 import {AgChartsAngularModule} from "ag-charts-angular";
+import {SharedModule} from "./core/auth/shared/shared.module";
 
 
 @NgModule({
@@ -126,7 +126,8 @@ import {AgChartsAngularModule} from "ag-charts-angular";
         // ToastContainerModule,
         FormModule,
         AgGridModule.withComponents([]),
-        AgChartsAngularModule
+        AgChartsAngularModule,
+        SharedModule
     ],
     exports: [SharedModule],
     providers: [
