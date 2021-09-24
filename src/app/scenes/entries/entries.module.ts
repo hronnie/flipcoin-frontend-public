@@ -21,6 +21,7 @@ import {AgGridModule} from "ag-grid-angular";
 import {EntriesRoutingModule} from "./entries-routing.module";
 import {EntriesComponent} from "./entries.component";
 import {CommonModule} from "@angular/common";
+import { EntriesDetailComponent } from './entries-details/entries-detail/entries-detail.component';
 
 @NgModule({
     imports: [
@@ -42,7 +43,8 @@ import {CommonModule} from "@angular/common";
         CommonModule,
     ],
     declarations: [
-        EntriesComponent
+        EntriesComponent,
+        EntriesDetailComponent
     ]
 })
 export class EntriesModule {

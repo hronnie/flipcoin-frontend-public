@@ -11,6 +11,13 @@ const routes: Routes = [
             title: 'Entries',
         },
     },
+    {
+        path: 'details',
+        component: EntriesComponent,
+        data: {
+            title: 'Entries',
+        },
+    },
 ];
 
 @NgModule({
