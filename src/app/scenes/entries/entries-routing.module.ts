@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
 import {EntriesComponent} from "./entries.component";
+import {EntriesDetailComponent} from "./entries-details/entries-detail/entries-detail.component";
 
 const routes: Routes = [
     {
@@ -12,11 +13,8 @@ const routes: Routes = [
         },
     },
     {
-        path: 'details',
-        component: EntriesComponent,
-        data: {
-            title: 'Entries',
-        },
+        path: 'details/:entryId',
+        component: EntriesDetailComponent,
     },
 ];
 

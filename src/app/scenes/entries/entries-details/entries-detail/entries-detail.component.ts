@@ -1,4 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import {EntryService} from "../../../../common/service/entry.service";
+import {EntryOrders} from "../../../../model/entry/entryOrders.model";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
     selector: 'app-entries-detail',
@@ -7,10 +10,20 @@ import {Component, OnInit} from '@angular/core';
 })
 export class EntriesDetailComponent implements OnInit {
 
-    constructor() {
+
+    entryOrders: EntryOrders;
+    entryId: string;
+
+    constructor(private entryService: EntryService,
+                private route: ActivatedRoute) {
     }
 
     ngOnInit(): void {
+        this.route.params.subscribe(
+            (params) => {
+                this.entryId = params.entryId;
+            });
+        this.entryOrders = this.entryService.getEntryOrders(this.entryId);
     }
 
 }
