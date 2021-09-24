@@ -10,6 +10,7 @@ import {PriceRendererComponent} from "../../common/renderer/price-renderer/price
 import {ProfitRendererComponent} from "../../common/renderer/profit-renderer/profit-renderer.component";
 import {DurationRendererComponent} from "../../common/renderer/duration-renderer/duration-renderer.component";
 import {FeesRendererComponent} from "../../common/renderer/fees-renderer/fees-renderer.component";
+import {EntryDetailsRendererComponent} from "../../common/renderer/entry-details-renderer/entry-details-renderer.component";
 
 
 @Component({
@@ -40,6 +41,7 @@ export class EntriesComponent implements OnInit {
         {field: 'realCost', headerName: 'Used', cellRenderer: 'priceRenderer'},
         {field: 'profit', headerName: 'Profit', cellRenderer: 'profitRenderer'},
         {field: 'fees', headerName: 'Fees', cellRenderer: 'feesRenderer'},
+        {field: 'fees', headerName: 'Details', cellRenderer: 'entryDetailsRenderer'},
     ];
 
     defaultColDef = {
@@ -67,7 +69,8 @@ export class EntriesComponent implements OnInit {
             priceRenderer: PriceRendererComponent,
             profitRenderer: ProfitRendererComponent,
             durationRenderer: DurationRendererComponent,
-            feesRenderer: FeesRendererComponent
+            feesRenderer: FeesRendererComponent,
+            entryDetailsRenderer: EntryDetailsRendererComponent
         }
     }
 

@@ -75,6 +75,7 @@ import { ProfitRendererComponent } from './common/renderer/profit-renderer/profi
 import { FeesRendererComponent } from './common/renderer/fees-renderer/fees-renderer.component';
 import {AgChartsAngularModule} from "ag-charts-angular";
 import {SharedModule} from "./core/auth/shared/shared.module";
+import { EntryDetailsRendererComponent } from './common/renderer/entry-details-renderer/entry-details-renderer.component';
 
 
 @NgModule({
@@ -93,6 +94,7 @@ import {SharedModule} from "./core/auth/shared/shared.module";
         DurationRendererComponent,
         ProfitRendererComponent,
         FeesRendererComponent,
+        EntryDetailsRendererComponent,
     ],
     imports: [
         BrowserModule,
