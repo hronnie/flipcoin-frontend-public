@@ -3,6 +3,9 @@ import {EntryService} from "../../../../common/service/entry.service";
 import {EntryOrders} from "../../../../model/entry/entryOrders.model";
 import {ActivatedRoute} from "@angular/router";
 import {FuturesRespPositionModel} from "../../../../model/response/positionResp.model";
+import {Entry} from "../../../../model/entry/entry.model";
+import {SIDE} from "../../../../model/binance/binance.enums";
+import {PricePipe} from "../../../../pipes/price.pipe";
 
 @Component({
     selector: 'app-entries-detail',
@@ -14,6 +17,8 @@ export class EntriesDetailComponent implements OnInit {
     position: FuturesRespPositionModel;
     entryOrders: EntryOrders;
     entryId: string;
+    entry: Entry;
+    sideColor = '';
 
     constructor(private entryService: EntryService,
                 private route: ActivatedRoute) {
@@ -26,14 +31,23 @@ export class EntriesDetailComponent implements OnInit {
             });
         this.entryService.getEntryOrders(this.entryId).subscribe(entryOrders => {
             this.entryOrders = entryOrders;
-            console.log(this.entryOrders);
         });
 
         this.entryService.getEntryPosition(this.entryId).subscribe(position => {
             this.position = position;
-            console.log(this.position);
         });
 
+        this.entryService.getEntry(this.entryId).subscribe(entry => {
+            this.entry = entry;
+            this.sideColor = this.entry.side === SIDE.SELL ? 'danger' : 'success';
+        });
     }
 
+    getPositionSize() {
+        return parseFloat(this.position?.isolatedMargin) * this.position?.leverage;
+    }
+
+    getRoe() {
+        return (this.position?.unRealizedProfit / parseFloat(this.position?.isolatedMargin));
+    }
 }

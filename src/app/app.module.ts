@@ -9,7 +9,7 @@ import {AuthContainerComponent} from './common/layout/auth-container/auth-contai
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
@@ -70,6 +70,7 @@ import { PriceRendererComponent } from './common/renderer/price-renderer/price-r
 import {FullLocalDatePipe} from "./pipes/full-local-date.pipe";
 import {OnlyDatePipe} from "./pipes/only-date.pipe";
 import {PricePipe} from "./pipes/price.pipe";
+import {PercentPipe} from "./pipes/percent.pipe";
 import { DurationRendererComponent } from './common/renderer/duration-renderer/duration-renderer.component';
 import { ProfitRendererComponent } from './common/renderer/profit-renderer/profit-renderer.component';
 import { FeesRendererComponent } from './common/renderer/fees-renderer/fees-renderer.component';
@@ -89,7 +90,6 @@ import {AgChartsAngularModule} from "ag-charts-angular";
         DateRendererComponent,
         PriceRendererComponent,
         FullLocalDatePipe,
-        PricePipe,
         DurationRendererComponent,
         ProfitRendererComponent,
         FeesRendererComponent,
@@ -139,7 +139,8 @@ import {AgChartsAngularModule} from "ag-charts-angular";
         AuthTokenHttpInterceptorProvider,
         FullLocalDatePipe,
         OnlyDatePipe,
-        PricePipe
+        PricePipe,
+        PercentPipe
     ],
     bootstrap: [AppComponent]
 })

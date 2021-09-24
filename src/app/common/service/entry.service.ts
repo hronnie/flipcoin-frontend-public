@@ -19,6 +19,11 @@ export class EntryService {
         return this.http.get<any>(`${baseUrl}/binance/frontendapi/entry/all`);
     }
 
+    getEntry(entryId: string): Observable<Entry> {
+        const baseUrl = environment.apiUrl;
+        return this.http.get<any>(`${baseUrl}/binance/frontendapi/entry/${entryId}`);
+    }
+
     getEntryOrders(entryId: string): Observable<EntryOrders> {
         const baseUrl = environment.apiUrl;
         return this.http.get<any>(`${baseUrl}/binance/frontendapi/entry/orders/${entryId}`);

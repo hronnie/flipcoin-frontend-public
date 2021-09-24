@@ -15,6 +15,9 @@ const routes: Routes = [
     {
         path: 'details/:entryId',
         component: EntriesDetailComponent,
+        data: {
+            title: 'Entry detail',
+        },
     },
 ];
 
