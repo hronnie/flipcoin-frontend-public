@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {EntryService} from "../../../../common/service/entry.service";
 import {EntryOrders} from "../../../../model/entry/entryOrders.model";
 import {ActivatedRoute} from "@angular/router";
+import {FuturesRespPositionModel} from "../../../../model/response/positionResp.model";
 
 @Component({
     selector: 'app-entries-detail',
@@ -10,7 +11,7 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class EntriesDetailComponent implements OnInit {
 
-
+    position: FuturesRespPositionModel;
     entryOrders: EntryOrders;
     entryId: string;
 
@@ -23,7 +24,16 @@ export class EntriesDetailComponent implements OnInit {
             (params) => {
                 this.entryId = params.entryId;
             });
-        this.entryOrders = this.entryService.getEntryOrders(this.entryId);
+        this.entryService.getEntryOrders(this.entryId).subscribe(entryOrders => {
+            this.entryOrders = entryOrders;
+            console.log(this.entryOrders);
+        });
+
+        this.entryService.getEntryPosition(this.entryId).subscribe(position => {
+            this.position = position;
+            console.log(this.position);
+        });
+
     }
 
 }

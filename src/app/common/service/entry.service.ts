@@ -4,6 +4,7 @@ import {Entry} from "../../model/entry/entry.model";
 import {Observable} from "rxjs";
 import {environment} from "../../../environments/environment";
 import {EntryOrders} from "../../model/entry/entryOrders.model";
+import {FuturesRespPositionModel} from "../../model/response/positionResp.model";
 
 @Injectable({
     providedIn: 'root'
@@ -20,6 +21,11 @@ export class EntryService {
 
     getEntryOrders(entryId: string): Observable<EntryOrders> {
         const baseUrl = environment.apiUrl;
-        return this.http.get<EntryOrders>(`${baseUrl}/binance/frontendapi/entry/orders/${entryId}`);
+        return this.http.get<any>(`${baseUrl}/binance/frontendapi/entry/orders/${entryId}`);
+    }
+
+    getEntryPosition(entryId: string): Observable<FuturesRespPositionModel> {
+        const baseUrl = environment.apiUrl;
+        return this.http.get<any>(`${baseUrl}/binance/frontendapi/entry/position/${entryId}`);
     }
 }
