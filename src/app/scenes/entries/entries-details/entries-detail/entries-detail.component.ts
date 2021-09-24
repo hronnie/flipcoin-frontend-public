@@ -37,6 +37,7 @@ export class EntriesDetailComponent implements OnInit {
 
         this.entryService.getEntryPosition(this.entryId).subscribe(position => {
             this.position = position;
+            debugger;
             this.isPositionEmpty = isPositionEmpty(this.position);
         });
 
