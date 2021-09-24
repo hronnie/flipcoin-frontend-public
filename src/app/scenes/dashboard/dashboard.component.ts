@@ -57,7 +57,7 @@ export class DashboardComponent implements OnInit {
                 const realizedPnl = entryItem.incomeHistory?.realizedPnl;
                 const fees = calculateFees(entryItem.incomeHistory);
                 const itemProfit = realizedPnl + parseFloat(fees);
-                if (entryItem.profit > 0 && entryItem.isActive === false) {
+                if (itemProfit > 0 && entryItem.isActive === false) {
                     profit += itemProfit;
                     continue;
                 }
