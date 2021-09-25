@@ -9,6 +9,7 @@ import {TradingviewWebhookInput} from "../tradingview/tradingviewWebhookInput.mo
  * An entry represents a cycle of orders and positions.
  */
 export class Entry {
+    id: string;
     exchange: string;
     strategyId: string;
     symbol: string;
@@ -27,6 +28,7 @@ export class Entry {
     realCost: string;
 
     constructor(obj?: any) {
+        this.id = obj && obj?.id || '';
         this.exchange = obj && obj?.exchange || '';
         this.profit = obj && obj?.profit || 0;
         this.fees = obj && obj?.fees || 0;
