@@ -31,18 +31,17 @@ export class EntriesDetailComponent implements OnInit {
             (params) => {
                 this.entryId = params.entryId;
             });
-        this.entryService.getEntryOrders(this.entryId).subscribe(entryOrders => {
-            this.entryOrders = entryOrders;
-        });
-
-        this.entryService.getEntryPosition(this.entryId).subscribe(position => {
-            this.position = position;
-            debugger;
-            this.isPositionEmpty = isPositionEmpty(this.position);
-        });
 
         this.entryService.getEntry(this.entryId).subscribe(entry => {
             this.entry = entry;
+            this.entryService.getEntryOrders(this.entryId, entry.exchange).subscribe(entryOrders => {
+                this.entryOrders = entryOrders;
+            });
+
+            this.entryService.getEntryPosition(this.entryId, entry.exchange).subscribe(position => {
+                this.position = position;
+                this.isPositionEmpty = isPositionEmpty(this.position);
+            });
             this.sideColor = this.entry.side === SIDE.SELL ? 'danger' : 'success';
         });
     }

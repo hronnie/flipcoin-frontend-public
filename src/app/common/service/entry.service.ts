@@ -24,13 +24,13 @@ export class EntryService {
         return this.http.get<any>(`${baseUrl}/binance/frontendapi/entry/${entryId}`);
     }
 
-    getEntryOrders(entryId: string): Observable<EntryOrders> {
+    getEntryOrders(entryId: string, exchange: string): Observable<EntryOrders> {
         const baseUrl = environment.apiUrl;
-        return this.http.get<any>(`${baseUrl}/binance/frontendapi/entry/orders/${entryId}`);
+        return this.http.get<any>(`${baseUrl}/${exchange}/frontendapi/entry/orders/${entryId}`);
     }
 
-    getEntryPosition(entryId: string): Observable<FuturesRespPositionModel> {
+    getEntryPosition(entryId: string, exchange: string): Observable<FuturesRespPositionModel> {
         const baseUrl = environment.apiUrl;
-        return this.http.get<any>(`${baseUrl}/binance/frontendapi/entry/position/${entryId}`);
+        return this.http.get<any>(`${baseUrl}/${exchange}/frontendapi/entry/position/${entryId}`);
     }
 }

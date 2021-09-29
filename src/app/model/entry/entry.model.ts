@@ -22,7 +22,6 @@ export class Entry {
     webhookInput: TradingviewWebhookInput;
     exitPrice: string;
     enterPrice: string;
-    entryInProgress: boolean;
     profit: number;
     fees: number;
     realCost: string;
@@ -68,11 +67,6 @@ export class Entry {
             this.webhookInput = new TradingviewWebhookInput();
         }
         this.exitPrice = obj && obj?.exitPrice || '';
-        if (obj && obj.entryInProgress) {
-            this.entryInProgress = obj.entryInProgress;
-        } else {
-            this.entryInProgress = false;
-        }
     }
 
     toString() {
