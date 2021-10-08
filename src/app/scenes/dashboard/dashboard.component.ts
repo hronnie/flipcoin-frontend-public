@@ -4,7 +4,7 @@ import { DashboardChartsData, IChartProps } from './dashboard-charts-data';
 import {EntryService} from "../../common/service/entry.service";
 import {Observable} from "rxjs";
 import {Entry} from "../../model/entry/entry.model";
-import {calculateFees, toHumanReadableFormat} from "../../utils/helperMethods";
+import {calculateFees, calculateProfit, toHumanReadableFormat} from "../../utils/helperMethods";
 
 @Component({
     templateUrl: 'dashboard.component.html',
@@ -52,11 +52,9 @@ export class DashboardComponent implements OnInit {
         };
         let profit = 0;
         let loss = 0;
-        this.entryService.getAllEntries().subscribe(entryArray => {
+        this.entryService.getAllEntriesWithReports().subscribe(entryArray => {
             for (const entryItem of entryArray) {
-                const realizedPnl = entryItem.incomeHistory?.realizedPnl;
-                const fees = calculateFees(entryItem.incomeHistory);
-                const itemProfit = realizedPnl + parseFloat(fees);
+                const itemProfit = calculateProfit(entryItem?.entryReport.incomeHistory);
                 if (itemProfit > 0 && entryItem.isActive === false) {
                     profit += itemProfit;
                     continue;

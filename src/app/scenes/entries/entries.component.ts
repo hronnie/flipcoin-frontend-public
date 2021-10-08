@@ -36,9 +36,9 @@ export class EntriesComponent implements OnInit {
         {field: 'startDate', headerName: 'Start Date', cellRenderer: 'dateRenderer', minWidth: 200, sort: 'desc'},
         {field: 'endDate', headerName: 'End Date', cellRenderer: 'dateRenderer', minWidth: 200},
         {field: 'startDate', headerName: 'Duration', cellRenderer: 'durationRenderer'},
-        {field: 'enterPrice', headerName: 'Enter Price', cellRenderer: 'priceRenderer'},
-        {field: 'exitPrice', headerName: 'Exit Price', cellRenderer: 'priceRenderer'},
-        {field: 'realCost', headerName: 'Used', cellRenderer: 'priceRenderer'},
+        {field: 'entryReport.enterPrice', headerName: 'Enter Price', cellRenderer: 'priceRenderer'},
+        {field: 'entryReport.exitPrice', headerName: 'Exit Price', cellRenderer: 'priceRenderer'},
+        {field: 'entryReport.realCost', headerName: 'Used', cellRenderer: 'priceRenderer'},
         {field: 'profit', headerName: 'Profit', cellRenderer: 'profitRenderer'},
         {field: 'fees', headerName: 'Fees', cellRenderer: 'feesRenderer'},
         {field: 'fees', headerName: 'Details', cellRenderer: 'entryDetailsRenderer'},
@@ -80,11 +80,13 @@ export class EntriesComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.rowData = this.entryService.getAllEntries();
+        this.rowData = this.entryService.getAllEntriesWithReports();
+        this.entryService.getAllEntriesWithReports().subscribe(result => {
+            console.log(result);
+        })
     }
 
     onPageSizeChanged(newPageSize = 20) {
-        // const value = document.getElementById('page-size')?.value;
         const value = (document.getElementById('page-size') as HTMLInputElement).value;
         this.gridApi.paginationSetPageSize(Number(value));
     }

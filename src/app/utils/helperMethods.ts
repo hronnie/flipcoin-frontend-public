@@ -55,12 +55,21 @@ export function convertAnyDateFormatToLong(dateValue: any) {
     return dateValueToDate.getTime();
 }
 
-export function calculateFees(incomeHistory: IncomeHistory) {
-    return toHumanReadableFormat(incomeHistory. transfer
+export function calculateFees(incomeHistory: IncomeHistory): number {
+    return incomeHistory.transfer
         + incomeHistory.welcomeBonus
         + incomeHistory.fundingFee
         + incomeHistory.commission
-        + incomeHistory.insuranceClear)
+        + incomeHistory.insuranceClear
+}
+
+export function calculateProfit(incomeHistory: IncomeHistory): number {
+    const fees = incomeHistory.transfer
+        + incomeHistory.welcomeBonus
+        + incomeHistory.fundingFee
+        + incomeHistory.commission
+        + incomeHistory.insuranceClear;
+    return incomeHistory.realizedPnl + fees;
 }
 
 /**

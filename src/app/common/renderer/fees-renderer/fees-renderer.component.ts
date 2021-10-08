@@ -15,8 +15,8 @@ export class FeesRendererComponent {
 
     agInit(params: ICellRendererParams): void {
         this.params = params;
-        this.fees = calculateFees(this.params?.data?.incomeHistory);
-        const feesNum = parseFloat(this.fees);
+        const feesNum = calculateFees(this.params?.data?.entryReport?.incomeHistory);
+        this.fees = toHumanReadableFormat(feesNum);
         this.isWin = feesNum > 0;
     }
 
