@@ -6,17 +6,23 @@ import {AuthFormComponent} from './components/auth-form/auth-form.component';
 import {AuthGuard} from './guards/auth.guard';
 import {AuthService} from './services/auth/auth.service';
 import {UserProfileService} from './services/auth/userProfile.service';
+import {PricePipe} from "../../../pipes/price.pipe";
+import {PercentPipe} from "../../../pipes/percent.pipe";
 
 @NgModule({
     declarations: [
-        AuthFormComponent
+        AuthFormComponent,
+        PricePipe,
+        PercentPipe
     ],
     imports: [
         CommonModule,
         ReactiveFormsModule
     ],
     exports: [
-        AuthFormComponent
+        AuthFormComponent,
+        PricePipe,
+        PercentPipe
     ]
 })
 export class SharedModule {

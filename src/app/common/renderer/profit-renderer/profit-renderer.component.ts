@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {ICellRendererParams} from "ag-grid-community";
-import {calculateFees, toHumanReadableFormat} from "../../../utils/helperMethods";
+import {calculateFees, calculateProfit, toHumanReadableFormat} from "../../../utils/helperMethods";
 
 @Component({
     selector: 'app-profit-renderer',
@@ -15,10 +15,8 @@ export class ProfitRendererComponent {
 
     agInit(params: ICellRendererParams): void {
         this.params = params;
-        const realizedPnl = this.params?.data?.incomeHistory?.realizedPnl;
-        const fees = calculateFees(this.params?.data?.incomeHistory);
-        this.profit = toHumanReadableFormat(realizedPnl + fees);
-        const profitNum = parseFloat(this.profit);
+        const profitNum = calculateProfit(this.params?.data?.entryReport?.incomeHistory);
+        this.profit = toHumanReadableFormat(profitNum);
         this.isWin = profitNum > 0;
     }
 

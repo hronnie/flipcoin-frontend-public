@@ -1,5 +1,6 @@
 // TODO make it recursive
 import {IncomeHistory} from "../model/entry/incomeHistory.model";
+import {FuturesRespPositionModel} from "../model/response/positionResp.model";
 
 /**
  * General toString method for objects
@@ -54,10 +55,31 @@ export function convertAnyDateFormatToLong(dateValue: any) {
     return dateValueToDate.getTime();
 }
 
-export function calculateFees(incomeHistory: IncomeHistory) {
-    return toHumanReadableFormat(incomeHistory. transfer
+export function calculateFees(incomeHistory: IncomeHistory): number {
+    return incomeHistory.transfer
         + incomeHistory.welcomeBonus
         + incomeHistory.fundingFee
         + incomeHistory.commission
-        + incomeHistory.insuranceClear)
+        + incomeHistory.insuranceClear
+}
+
+export function calculateProfit(incomeHistory: IncomeHistory): number {
+    const fees = incomeHistory.transfer
+        + incomeHistory.welcomeBonus
+        + incomeHistory.fundingFee
+        + incomeHistory.commission
+        + incomeHistory.insuranceClear;
+    return incomeHistory.realizedPnl + fees;
+}
+
+/**
+ * Check if position is empty
+ * @return true if position is empty
+ */
+export function isPositionEmpty(position: FuturesRespPositionModel): boolean {
+    if (!position) {
+        return true;
+    }
+    const positionAmount = parseFloat(position.positionAmt);
+    return positionAmount === 0;
 }

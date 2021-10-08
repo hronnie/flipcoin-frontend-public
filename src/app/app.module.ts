@@ -9,7 +9,7 @@ import {AuthContainerComponent} from './common/layout/auth-container/auth-contai
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
@@ -42,7 +42,6 @@ import {
     LayoutModule,
     ListGroupModule,
     ProgressModule,
-    SharedModule,
     SidebarModule,
     SwitchModule,
     TabsetModule,
@@ -70,10 +69,13 @@ import { PriceRendererComponent } from './common/renderer/price-renderer/price-r
 import {FullLocalDatePipe} from "./pipes/full-local-date.pipe";
 import {OnlyDatePipe} from "./pipes/only-date.pipe";
 import {PricePipe} from "./pipes/price.pipe";
+import {PercentPipe} from "./pipes/percent.pipe";
 import { DurationRendererComponent } from './common/renderer/duration-renderer/duration-renderer.component';
 import { ProfitRendererComponent } from './common/renderer/profit-renderer/profit-renderer.component';
 import { FeesRendererComponent } from './common/renderer/fees-renderer/fees-renderer.component';
 import {AgChartsAngularModule} from "ag-charts-angular";
+import {SharedModule} from "./core/auth/shared/shared.module";
+import { EntryDetailsRendererComponent } from './common/renderer/entry-details-renderer/entry-details-renderer.component';
 
 
 @NgModule({
@@ -89,10 +91,10 @@ import {AgChartsAngularModule} from "ag-charts-angular";
         DateRendererComponent,
         PriceRendererComponent,
         FullLocalDatePipe,
-        PricePipe,
         DurationRendererComponent,
         ProfitRendererComponent,
         FeesRendererComponent,
+        EntryDetailsRendererComponent,
     ],
     imports: [
         BrowserModule,
@@ -126,7 +128,8 @@ import {AgChartsAngularModule} from "ag-charts-angular";
         // ToastContainerModule,
         FormModule,
         AgGridModule.withComponents([]),
-        AgChartsAngularModule
+        AgChartsAngularModule,
+        SharedModule
     ],
     exports: [SharedModule],
     providers: [
@@ -139,7 +142,8 @@ import {AgChartsAngularModule} from "ag-charts-angular";
         AuthTokenHttpInterceptorProvider,
         FullLocalDatePipe,
         OnlyDatePipe,
-        PricePipe
+        PricePipe,
+        PercentPipe
     ],
     bootstrap: [AppComponent]
 })

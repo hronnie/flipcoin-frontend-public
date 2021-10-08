@@ -13,7 +13,6 @@ import {
     DropdownModule,
     GridModule,
     ProgressModule,
-    SharedModule,
 } from '@coreui/angular';
 
 import {IconModule} from '@coreui/icons-angular';
@@ -21,6 +20,9 @@ import {AgGridModule} from "ag-grid-angular";
 import {EntriesRoutingModule} from "./entries-routing.module";
 import {EntriesComponent} from "./entries.component";
 import {CommonModule} from "@angular/common";
+import { EntriesDetailComponent } from './entries-details/entries-detail/entries-detail.component';
+import {PricePipe} from "../../pipes/price.pipe";
+import {SharedModule} from "../../core/auth/shared/shared.module";
 
 @NgModule({
     imports: [
@@ -42,7 +44,11 @@ import {CommonModule} from "@angular/common";
         CommonModule,
     ],
     declarations: [
-        EntriesComponent
+        EntriesComponent,
+        EntriesDetailComponent
+    ],
+    providers: [
+        PricePipe
     ]
 })
 export class EntriesModule {

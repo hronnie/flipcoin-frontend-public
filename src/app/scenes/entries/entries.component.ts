@@ -10,6 +10,7 @@ import {PriceRendererComponent} from "../../common/renderer/price-renderer/price
 import {ProfitRendererComponent} from "../../common/renderer/profit-renderer/profit-renderer.component";
 import {DurationRendererComponent} from "../../common/renderer/duration-renderer/duration-renderer.component";
 import {FeesRendererComponent} from "../../common/renderer/fees-renderer/fees-renderer.component";
+import {EntryDetailsRendererComponent} from "../../common/renderer/entry-details-renderer/entry-details-renderer.component";
 
 
 @Component({
@@ -35,11 +36,12 @@ export class EntriesComponent implements OnInit {
         {field: 'startDate', headerName: 'Start Date', cellRenderer: 'dateRenderer', minWidth: 200, sort: 'desc'},
         {field: 'endDate', headerName: 'End Date', cellRenderer: 'dateRenderer', minWidth: 200},
         {field: 'startDate', headerName: 'Duration', cellRenderer: 'durationRenderer'},
-        {field: 'enterPrice', headerName: 'Enter Price', cellRenderer: 'priceRenderer'},
-        {field: 'exitPrice', headerName: 'Exit Price', cellRenderer: 'priceRenderer'},
-        {field: 'realCost', headerName: 'Used', cellRenderer: 'priceRenderer'},
+        {field: 'entryReport.enterPrice', headerName: 'Enter Price', cellRenderer: 'priceRenderer'},
+        {field: 'entryReport.exitPrice', headerName: 'Exit Price', cellRenderer: 'priceRenderer'},
+        {field: 'entryReport.realCost', headerName: 'Used', cellRenderer: 'priceRenderer'},
         {field: 'profit', headerName: 'Profit', cellRenderer: 'profitRenderer'},
         {field: 'fees', headerName: 'Fees', cellRenderer: 'feesRenderer'},
+        {field: 'fees', headerName: 'Details', cellRenderer: 'entryDetailsRenderer'},
     ];
 
     defaultColDef = {
@@ -53,10 +55,11 @@ export class EntriesComponent implements OnInit {
         minWidth: 120,
     };
 
-    rowData: Observable<Entry[]>;
+    rowData: Entry[];
     rowClassRules;
     frameworkComponents: {};
-    gridApi
+    gridApi;
+    isLoading = false;
 
     constructor(private entryService: EntryService) {
         this.frameworkComponents = {
@@ -67,7 +70,8 @@ export class EntriesComponent implements OnInit {
             priceRenderer: PriceRendererComponent,
             profitRenderer: ProfitRendererComponent,
             durationRenderer: DurationRendererComponent,
-            feesRenderer: FeesRendererComponent
+            feesRenderer: FeesRendererComponent,
+            entryDetailsRenderer: EntryDetailsRendererComponent
         }
     }
 
@@ -77,11 +81,14 @@ export class EntriesComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.rowData = this.entryService.getAllEntries();
+        this.isLoading = true
+        this.entryService.getAllEntriesWithReports().subscribe(result => {
+            this.rowData = result;
+            this.isLoading = false;
+        })
     }
 
     onPageSizeChanged(newPageSize = 20) {
-        // const value = document.getElementById('page-size')?.value;
         const value = (document.getElementById('page-size') as HTMLInputElement).value;
         this.gridApi.paginationSetPageSize(Number(value));
     }
