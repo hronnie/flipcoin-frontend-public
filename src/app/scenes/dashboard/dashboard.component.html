@@ -9,12 +9,21 @@
                 </c-col>
 
             </c-row>
-            <div class="c-chart-wrapper" style="height:300px;margin-top:40px;margin-bottom: 50px"  [@.disabled]="true" *ngIf="profitLossArray.length > 0">
-                <ag-charts-angular
-                        style="height: 100px"
-                        [options]="options"
-                ></ag-charts-angular>
-            </div>
+            <ng-container>
+                <div class="c-chart-wrapper" style="height:300px;margin-top:40px;margin-bottom: 50px"  [@.disabled]="true" *ngIf="!isLoading">
+                    <ag-charts-angular
+                            style="height: 100px"
+                            [options]="options"
+                    ></ag-charts-angular>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="isLoading">
+                <div class="text-center">
+                    <div class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+            </ng-container>
         </c-card-body>
     </c-card>
 </div>

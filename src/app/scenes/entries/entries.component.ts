@@ -55,10 +55,11 @@ export class EntriesComponent implements OnInit {
         minWidth: 120,
     };
 
-    rowData: Observable<Entry[]>;
+    rowData: Entry[];
     rowClassRules;
     frameworkComponents: {};
-    gridApi
+    gridApi;
+    isLoading = false;
 
     constructor(private entryService: EntryService) {
         this.frameworkComponents = {
@@ -80,9 +81,10 @@ export class EntriesComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.rowData = this.entryService.getAllEntriesWithReports();
+        this.isLoading = true
         this.entryService.getAllEntriesWithReports().subscribe(result => {
-            console.log(result);
+            this.rowData = result;
+            this.isLoading = false;
         })
     }
 

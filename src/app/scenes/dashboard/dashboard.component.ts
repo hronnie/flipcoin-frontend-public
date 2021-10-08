@@ -18,6 +18,7 @@ export class DashboardComponent implements OnInit {
     options: any;
     entries: Observable<Entry[]>;
     profitLossArray = [];
+    isLoading = false;
 
     constructor(private chartsData: DashboardChartsData,
                 private entryService: EntryService) {}
@@ -52,6 +53,7 @@ export class DashboardComponent implements OnInit {
         };
         let profit = 0;
         let loss = 0;
+        this.isLoading = true;
         this.entryService.getAllEntriesWithReports().subscribe(entryArray => {
             for (const entryItem of entryArray) {
                 const itemProfit = calculateProfit(entryItem?.entryReport.incomeHistory);
@@ -63,6 +65,7 @@ export class DashboardComponent implements OnInit {
             }
             this.profitLossArray.push({type: "Profit", amount: profit});
             this.profitLossArray.push({type: "Loss", amount: loss});
+            this.isLoading = false;
             this.initCharts();
         });
     }
