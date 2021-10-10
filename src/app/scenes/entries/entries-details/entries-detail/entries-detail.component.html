@@ -8,83 +8,85 @@
                 <c-card-header>
                     Position
                 </c-card-header>
-                <c-card-body>
-                    <ng-container *ngIf="!isPositionEmpty">
-                        <c-row>
-                            <c-col sm="6">
-                                <c-row>
-                                    <c-col sm="3">
-                                        <c-callout [color]="sideColor">
-                                            <small class="text-muted">Symbol</small>
-                                            <br>
-                                            <strong class="h4">{{position?.symbol}}</strong>
-                                        </c-callout>
-                                    </c-col>
-                                    <c-col sm="3">
-                                        <c-callout [color]="sideColor">
-                                            <small class="text-muted">Size</small>
-                                            <br>
-                                            <strong class="h4">{{getPositionSize() | price}}</strong>
-                                        </c-callout>
-                                    </c-col>
-                                    <c-col sm="3">
-                                        <c-callout [color]="sideColor">
-                                            <small class="text-muted">Entry Price</small>
-                                            <br>
-                                            <strong class="h4">{{position?.entryPrice | price}}</strong>
-                                        </c-callout>
-                                    </c-col>
-                                    <c-col sm="3">
-                                        <c-callout [color]="sideColor">
-                                            <small class="text-muted">Mark Price</small>
-                                            <br>
-                                            <strong class="h4">{{position?.markPrice | price}}</strong>
-                                        </c-callout>
-                                    </c-col>
-                                </c-row>
+                <ng-container *ngIf="isLoading">
+                    <div class="text-center">
+                        <div class="spinner-border" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="!isLoading">
+                    <c-card-body>
+                        <ng-container *ngIf="!isPositionEmpty">
+                            <c-row>
+                                <c-col sm="6">
+                                    <c-row>
+                                        <c-col sm="3">
+                                            <c-callout [color]="sideColor">
+                                                <small class="text-muted">Symbol</small>
+                                                <br>
+                                                <strong class="h4">{{position?.symbol}}</strong>
+                                            </c-callout>
+                                        </c-col>
+                                        <c-col sm="3">
+                                            <c-callout [color]="sideColor">
+                                                <small class="text-muted">Size</small>
+                                                <br>
+                                                <strong class="h4">{{getPositionSize() | price}}</strong>
+                                            </c-callout>
+                                        </c-col>
+                                        <c-col sm="3">
+                                            <c-callout [color]="sideColor">
+                                                <small class="text-muted">Entry Price</small>
+                                                <br>
+                                                <strong class="h4">{{position?.entryPrice | price}}</strong>
+                                            </c-callout>
+                                        </c-col>
+                                        <c-col sm="3">
+                                            <c-callout [color]="sideColor">
+                                                <small class="text-muted">Mark Price</small>
+                                                <br>
+                                                <strong class="h4">{{position?.markPrice | price}}</strong>
+                                            </c-callout>
+                                        </c-col>
+                                    </c-row>
 
-                            </c-col>
-                            <c-col sm="6">
-                                <c-row>
-                                    <c-col sm="3">
-                                        <c-callout [color]="sideColor">
-                                            <small class="text-muted">Liq. Price</small>
-                                            <br>
-                                            <strong class="h4">{{position?.markPrice | price}}</strong>
-                                        </c-callout>
-                                    </c-col>
-                                    <c-col sm="3">
-                                        <c-callout [color]="sideColor">
-                                            <small class="text-muted">Margin</small>
-                                            <br>
-                                            <strong class="h4">{{position?.isolatedMargin}}</strong>
-                                        </c-callout>
-                                    </c-col>
-                                    <c-col sm="3">
-                                        <c-callout [color]="sideColor">
-                                            <small class="text-muted">PNL (ROE %)</small>
-                                            <br>
-                                            <strong class="h4">{{position?.unRealizedProfit | price}} ({{getRoe() | percent}})</strong>
-                                        </c-callout>
-                                    </c-col>
-                                    <c-col sm="3">
-                                        <c-callout [color]="sideColor">
-                                            <small class="text-muted">Margin</small>
-                                            <br>
-                                            <strong class="h4">{{position?.isolatedMargin | price}}</strong>
-                                        </c-callout>
-                                    </c-col>
-                                </c-row>
+                                </c-col>
+                                <c-col sm="6">
+                                    <c-row>
+                                        <c-col sm="3">
+                                            <c-callout [color]="sideColor">
+                                                <small class="text-muted">Liq. Price</small>
+                                                <br>
+                                                <strong class="h4">{{position?.liquidationPrice | price}}</strong>
+                                            </c-callout>
+                                        </c-col>
+                                        <c-col sm="3">
+                                            <c-callout [color]="sideColor">
+                                                <small class="text-muted">Margin</small>
+                                                <br>
+                                                <strong class="h4">{{position?.isolatedMargin}}</strong>
+                                            </c-callout>
+                                        </c-col>
+                                        <c-col sm="3">
+                                            <c-callout [color]="sideColor">
+                                                <small class="text-muted">PNL (ROE %)</small>
+                                                <br>
+                                                <strong class="h4">{{position?.unRealizedProfit | price}} ({{getRoe() | percent}})</strong>
+                                            </c-callout>
+                                        </c-col>
+                                    </c-row>
 
-                            </c-col>
-                        </c-row>
-                    </ng-container>
-                    <ng-container *ngIf="isPositionEmpty">
-                        There is no current position
-                    </ng-container>
+                                </c-col>
+                            </c-row>
+                        </ng-container>
+                        <ng-container *ngIf="isPositionEmpty">
+                            There is no current position
+                        </ng-container>
 
-                    <br>
-                </c-card-body>
+                        <br>
+                    </c-card-body>
+                </ng-container>
             </c-card>
         </c-col>
     </c-row>

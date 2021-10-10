@@ -21,6 +21,7 @@ export class EntriesDetailComponent implements OnInit {
     entry: Entry;
     sideColor = '';
     isPositionEmpty = true;
+    isLoading = false;
 
     constructor(private entryService: EntryService,
                 private route: ActivatedRoute) {
@@ -31,7 +32,7 @@ export class EntriesDetailComponent implements OnInit {
             (params) => {
                 this.entryId = params.entryId;
             });
-
+        this.isLoading = true;
         this.entryService.getEntry(this.entryId).subscribe(entry => {
             this.entry = entry;
             this.entryService.getEntryOrders(this.entryId, entry.exchange).subscribe(entryOrders => {
@@ -41,6 +42,8 @@ export class EntriesDetailComponent implements OnInit {
             this.entryService.getEntryPosition(this.entryId, entry.exchange).subscribe(position => {
                 this.position = position;
                 this.isPositionEmpty = isPositionEmpty(this.position);
+                this.isLoading = false;
+                console.log(position);
             });
             this.sideColor = this.entry.side === SIDE.SELL ? 'danger' : 'success';
         });
