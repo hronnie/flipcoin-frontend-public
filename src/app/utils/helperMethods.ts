@@ -33,7 +33,7 @@ export function isNumMandatoryParamValid(param: number): boolean {
  */
 export function toHumanReadableFormat(num: any): string {
     const inputNum = parseFloat(num);
-    const power = Math.pow(10, 4 || 0);
+    const power = Math.pow(10, 2 || 0);
     const converted =  Math.floor(inputNum * power) / power;
     return converted.toString();
 }
