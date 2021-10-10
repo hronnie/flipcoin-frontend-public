@@ -39,8 +39,8 @@ export class EntriesComponent implements OnInit {
         {field: 'entryReport.enterPrice', headerName: 'Enter Price', cellRenderer: 'priceRenderer'},
         {field: 'entryReport.exitPrice', headerName: 'Exit Price', cellRenderer: 'priceRenderer'},
         {field: 'entryReport.realCost', headerName: 'Used', cellRenderer: 'priceRenderer'},
-        {field: 'profit', headerName: 'Profit', cellRenderer: 'profitRenderer'},
-        {field: 'fees', headerName: 'Fees', cellRenderer: 'feesRenderer'},
+        {field: 'profit', headerName: 'Profit', cellRenderer: 'profitRenderer', width: 120},
+        {field: 'fees', headerName: 'Fees', cellRenderer: 'feesRenderer', width: 120},
         {field: 'fees', headerName: 'Details', cellRenderer: 'entryDetailsRenderer'},
     ];
 

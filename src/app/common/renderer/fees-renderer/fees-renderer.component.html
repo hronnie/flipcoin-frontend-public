@@ -1,2 +1,2 @@
-<span *ngIf="isWin === true" class="custom-label" style="background-color: #4CAF50; color: white">${{fees}}</span>
-<span *ngIf="isWin === false" class="custom-label" style="background-color: #F44336; color: white">${{fees}}</span>
+<span *ngIf="isWin === true" class="custom-label" style="background-color: #4CAF50; color: white">${{fees}} ({{calculateFeesPercent()}})</span>
+<span *ngIf="isWin === false" class="custom-label" style="background-color: #F44336; color: white">${{fees}} ({{calculateFeesPercent()}})</span>

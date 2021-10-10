@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ICellRendererParams} from "ag-grid-community";
-import {calculateFees, toHumanReadableFormat} from "../../../utils/helperMethods";
+import {calculateFees, toHumanReadableFormat, toHumanReadablePercentFormat} from "../../../utils/helperMethods";
 
 @Component({
     selector: 'app-fees-renderer',
@@ -20,4 +20,7 @@ export class FeesRendererComponent {
         this.isWin = feesNum > 0;
     }
 
+    calculateFeesPercent() {
+        return toHumanReadablePercentFormat(parseFloat(this.fees), this.params?.data?.entryReport?.realCost)
+    }
 }
