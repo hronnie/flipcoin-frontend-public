@@ -55,7 +55,8 @@ export function convertAnyDateFormatToLong(dateValue: any) {
     return dateValueToDate.getTime();
 }
 
-export function calculateFees(incomeHistory: IncomeHistory): number {
+export function calculateFees(incomeHistoryInput: IncomeHistory): number {
+    const incomeHistory = new IncomeHistory(incomeHistoryInput);
     return incomeHistory.transfer
         + incomeHistory.welcomeBonus
         + incomeHistory.fundingFee
@@ -63,7 +64,8 @@ export function calculateFees(incomeHistory: IncomeHistory): number {
         + incomeHistory.insuranceClear
 }
 
-export function calculateProfit(incomeHistory: IncomeHistory): number {
+export function calculateProfit(incomeHistoryInput: IncomeHistory): number {
+    const incomeHistory = new IncomeHistory(incomeHistoryInput);
     const fees = incomeHistory.transfer
         + incomeHistory.welcomeBonus
         + incomeHistory.fundingFee

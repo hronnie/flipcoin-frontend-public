@@ -56,7 +56,10 @@ export class DashboardComponent implements OnInit {
         this.isLoading = true;
         this.entryService.getAllEntriesWithReports().subscribe(entryArray => {
             for (const entryItem of entryArray) {
-                const itemProfit = calculateProfit(entryItem?.entryReport.incomeHistory);
+                if (!entryItem?.entryReport?.incomeHistory) {
+                    continue;
+                }
+                const itemProfit = calculateProfit(entryItem?.entryReport?.incomeHistory);
                 if (itemProfit > 0 && entryItem.isActive === false) {
                     profit += itemProfit;
                     continue;
