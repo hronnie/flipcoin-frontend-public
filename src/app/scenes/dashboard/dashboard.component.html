@@ -129,6 +129,7 @@
                     <c-row>
                         <c-col sm="5">
                             <h4 class="card-title mb-0">Profit statistic in percents</h4>
+                            <h5 class="card-title mb-0">(ordered by profit percent success)</h5>
                             <div class="small text-muted"></div>
                         </c-col>
                     </c-row>
@@ -162,6 +163,27 @@
                                         </c-progress>
                                     </div>
                                 </div>
+                                <c-row class="text-center">
+                                    <c-col sm="12" [md]="true" class="mb-sm-2 mb-0">
+                                        <div class="text-muted">Number of cycles</div>
+                                        <strong>{{calculateNoOfCycles(strategyData.strategy)}}</strong>
+                                    </c-col>
+                                    <c-col sm="12" [md]="true" class="mb-sm-2 mb-0">
+                                        <div class="text-muted">Duration</div>
+                                        <strong>{{calculateStrategyDurationTime(strategyData.strategy)}}</strong>
+                                    </c-col>
+                                    <c-col sm="12" [md]="true" class="mb-sm-2 mb-0">
+                                        <div class="text-muted">From - Till</div>
+                                        <strong>{{calculateStrategyStartTime(strategyData.strategy) | date: 'medium'}}
+                                            - {{calculateStrategyEndTime(strategyData.strategy) | date: 'medium'}}</strong>
+
+                                    </c-col>
+                                    <c-col sm="12" [md]="true" class="mb-sm-2 mb-0">
+                                        <div class="text-muted">Used Dollar</div>
+                                        <strong>{{calculateAllUsedDollar(strategyData.strategy)}}</strong>
+                                    </c-col>
+                                </c-row>
+
                                 <hr class="strat-line" />
                             </ng-container>
                         </div>

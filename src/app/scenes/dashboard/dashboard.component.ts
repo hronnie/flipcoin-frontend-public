@@ -5,6 +5,7 @@ import {EntryService} from "../../common/service/entry.service";
 import {Observable} from "rxjs";
 import {Entry} from "../../model/entry/entry.model";
 import {calculateFees, calculateProfit, toHumanReadableFormat, toHumanReadablePercentFormat} from "../../utils/helperMethods";
+import * as moment from "moment";
 
 @Component({
     templateUrl: 'dashboard.component.html',
@@ -22,6 +23,7 @@ export class DashboardComponent implements OnInit {
     isLoading = false;
 
     strategyProfitData: {strategy: string, profit: number, loss: number}[] = [];
+    private allEntries: Entry[];
 
     constructor(private chartsData: DashboardChartsData,
                 private entryService: EntryService) {}
@@ -29,7 +31,7 @@ export class DashboardComponent implements OnInit {
     ngOnInit(): void {
         this.strategyOptions = {
             title: { text: "Strategy performance" },
-            subtitle: { text: 'for profit and loss' },
+            subtitle: { text: 'for profit and loss (ordered by profit percent success)' },
             data: this.strategyProfitData,
             series: [
                 {
@@ -159,6 +161,7 @@ export class DashboardComponent implements OnInit {
 
         this.isLoading = true;
         this.entryService.getAllEntriesWithReports().subscribe(entryArray => {
+            this.allEntries = entryArray;
             const {profit, loss} = this.calculateEntryArrayProfitAndLoss(entryArray);
             this.profitLossArray.push({type: "Profit", amount: profit});
             this.profitLossArray.push({type: "Loss", amount: loss});
@@ -175,6 +178,7 @@ export class DashboardComponent implements OnInit {
                     loss: strategyStat.loss
                 })
             })
+            this.strategyProfitData = this.strategyProfitData.sort((a, b) => this.calculateStrategyPercentFromProfitLoss(b.profit, b) - this.calculateStrategyPercentFromProfitLoss(a.profit, a));
             this.isLoading = false;
             this.initCharts();
         });
@@ -233,4 +237,34 @@ export class DashboardComponent implements OnInit {
     formatDollarAmount(amount: number): string {
         return `${toHumanReadableFormat(amount)}$`;
     }
+
+    calculateNoOfCycles(strategy: string): number {
+        return this.allEntries.filter(item => item.strategyId === strategy).length;
+    }
+
+    calculateAllUsedDollar(strategy: string): string {
+        const stratEntries = this.allEntries.filter(item => item.strategyId === strategy);
+        const sumDollar = stratEntries.reduce((acc, item) => acc + item.entryReport.realCost, 0);
+        return `${toHumanReadableFormat(sumDollar)}$`
+    }
+
+    calculateStrategyStartTime(strategy: string): Date {
+        const stratEntries = this.allEntries.filter(item => item.strategyId === strategy);
+        const sortedEntries = stratEntries.sort((a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime());
+        return sortedEntries[0].startDate;
+    }
+
+    calculateStrategyEndTime(strategy: string): Date {
+        const stratEntries = this.allEntries.filter(item => item.strategyId === strategy);
+        const sortedEntries = stratEntries.sort((a, b) => new Date(b.endDate).getTime() - new Date(a.endDate).getTime());
+        return sortedEntries[0].startDate;
+    }
+
+    calculateStrategyDurationTime(strategy: string): string {
+        const startDate = moment(this.calculateStrategyStartTime(strategy));
+        const endDate = moment(this.calculateStrategyEndTime(strategy));
+        const duration = moment.duration(startDate.diff(endDate));
+        return duration.humanize();
+    }
+
 }
