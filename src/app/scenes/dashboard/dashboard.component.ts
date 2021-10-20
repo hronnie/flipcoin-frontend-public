@@ -244,7 +244,11 @@ export class DashboardComponent implements OnInit {
 
     calculateAllUsedDollar(strategy: string): string {
         const stratEntries = this.allEntries.filter(item => item.strategyId === strategy);
-        const sumDollar = stratEntries.reduce((acc, item) => acc + item.entryReport.realCost, 0);
+        let sumDollar = 0;
+        stratEntries.forEach(item => {
+            const realCost: string = item.entryReport.realCost.toString();
+            sumDollar = sumDollar + parseFloat(realCost);
+        })
         return `${toHumanReadableFormat(sumDollar)}$`
     }
 
