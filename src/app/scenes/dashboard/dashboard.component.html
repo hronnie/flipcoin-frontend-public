@@ -1,5 +1,118 @@
 <div class="fade-in">
 
+<!--    General info windows START -->
+
+    <c-row>
+        <c-col sm="6" lg="3">
+            <c-widget-dropdown
+                    color="gradient-info"
+                    header="9.823"
+                    text="FTX balance"
+            >
+                <div slot="footer">
+                    <div
+                            class="c-chart-wrapper mt-3 mx-3"
+                            style="height: 70px;"
+                            [@.disabled]="true"
+                    >
+                        <img src="assets/img/app/ftx-log.jpg">
+                    </div>
+                </div>
+            </c-widget-dropdown>
+        </c-col>
+        <c-col sm="6" lg="3">
+            <c-widget-dropdown
+                    color="gradient-warning"
+                    header="9.823"
+                    text="Binance balance"
+            >
+                <div slot="footer">
+                    <div
+                            class="c-chart-wrapper mt-3"
+                            style="height: 70px; padding-left: 20px;"
+                            [@.disabled]="true"
+                    >
+                        <img src="assets/img/app/binance-logo.jpg">
+                    </div>
+                </div>
+            </c-widget-dropdown>
+        </c-col>
+        <c-col sm="6" lg="3">
+            <c-widget-dropdown
+                    color="gradient-primary"
+                    header="9.823"
+                    text="Number of Used Strategies"
+            >
+                <div slot="footer">
+                    <div
+                            class="c-chart-wrapper mt-3 mx-3"
+                            style="height: 70px;"
+                            [@.disabled]="true"
+                    >
+                        <canvas
+                                cNoZoneBaseChart
+                                class="chart"
+                                height="70"
+                                [datasets]="chart[0].data"
+                                [labels]="chart[0].labels"
+                                [options]="chart[0].options"
+                                [colors]="chart[0].colors"
+                                [chartType]="chart[0].type"
+                        >
+                        </canvas>
+                    </div>
+                </div>
+            </c-widget-dropdown>
+        </c-col>
+        <c-col sm="6" lg="3">
+            <c-widget-dropdown
+                    color="gradient-danger"
+                    header="9.823"
+                    text="Number of Used Cryptos"
+            >
+
+                <div slot="footer">
+                    <div
+                            class="c-chart-wrapper mt-3 mx-3"
+                            style="height: 70px;"
+                            [@.disabled]="true"
+                    >
+                        <canvas
+                                cNoZoneBaseChart
+                                class="chart"
+                                height="70"
+                                [datasets]="chart[3].data"
+                                [labels]="chart[3].labels"
+                                [options]="chart[3].options"
+                                [colors]="chart[3].colors"
+                                [chartType]="chart[3].type"
+                        >
+                        </canvas>
+                    </div>
+                </div>
+            </c-widget-dropdown>
+        </c-col>
+    </c-row>
+<!--    General info windows END -->
+
+<!--  Used Symbol Prices  START -->
+    <c-row>
+        <c-col md="3" sm="6">
+            <c-widget-brand
+                    color="facebook"
+                    rightHeader="ADA-Perp"
+                    rightFooter="Symbol"
+                    leftHeader="2.47 $"
+                    leftFooter="Price"
+            >
+
+            </c-widget-brand>
+        </c-col>
+    </c-row>
+
+
+<!--  Used Symbol Prices  END -->
+
     <c-row>
         <c-col col="6">
             <c-card>
