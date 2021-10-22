@@ -15,7 +15,7 @@ import {
     DropdownModule,
     GridModule,
     ProgressModule,
-    SharedModule,
+    SharedModule, WidgetModule,
 } from '@coreui/angular';
 
 import {IconModule} from '@coreui/icons-angular';
@@ -42,6 +42,7 @@ import {CommonModule} from "@angular/common";
         AgGridModule,
         AgChartsAngularModule,
         CommonModule,
+        WidgetModule,
     ],
     declarations: [
         DashboardComponent

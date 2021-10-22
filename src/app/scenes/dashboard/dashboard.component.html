@@ -1,5 +1,152 @@
 <div class="fade-in">
 
+<!--    General info windows START -->
+
+    <c-row>
+        <c-col sm="6" lg="3">
+            <c-widget-dropdown *ngIf="!isDashboardInfoFtxLoading"
+                    color="gradient-info"
+                    header="{{getDollarValue(dashboardInfo.ftxBalance)}}"
+                    text="FTX balance"
+            >
+                <div slot="footer">
+                    <div
+                            class="c-chart-wrapper mt-3 mx-3"
+                            style="height: 70px;"
+                            [@.disabled]="true"
+                    >
+                        <img src="assets/img/app/ftx-log.jpg">
+                    </div>
+                </div>
+            </c-widget-dropdown>
+            <ng-container *ngIf="isDashboardInfoFtxLoading">
+                <div class="text-center">
+                    <div class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+            </ng-container>
+        </c-col>
+        <c-col sm="6" lg="3">
+            <c-widget-dropdown *ngIf="!isDashboardInfoBinanceLoading"
+                    color="gradient-warning"
+                    header="{{getDollarValue(dashboardInfo.binanceBalance)}}"
+                    text="Binance balance"
+            >
+                <div slot="footer">
+                    <div
+                            class="c-chart-wrapper mt-3"
+                            style="height: 70px; padding-left: 20px;"
+                            [@.disabled]="true"
+                    >
+                        <img src="assets/img/app/binance-logo.jpg">
+                    </div>
+                </div>
+            </c-widget-dropdown>
+            <ng-container *ngIf="isDashboardInfoBinanceLoading">
+                <div class="text-center">
+                    <div class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+            </ng-container>
+        </c-col>
+        <c-col sm="6" lg="3">
+            <c-widget-dropdown  *ngIf="!isAllEntriesLoading"
+                    color="gradient-primary"
+                    header="{{calculateNoOfUsedStrategy()}}"
+                    text="Number of Used Strategies"
+            >
+                <div slot="footer">
+                    <div
+                            class="c-chart-wrapper mt-3 mx-3"
+                            style="height: 70px;"
+                            [@.disabled]="true"
+                    >
+                        <canvas
+                                cNoZoneBaseChart
+                                class="chart"
+                                height="70"
+                                [datasets]="chart[0].data"
+                                [labels]="chart[0].labels"
+                                [options]="chart[0].options"
+                                [colors]="chart[0].colors"
+                                [chartType]="chart[0].type"
+                        >
+                        </canvas>
+                    </div>
+                </div>
+            </c-widget-dropdown>
+            <ng-container *ngIf="isAllEntriesLoading">
+                <div class="text-center">
+                    <div class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+            </ng-container>
+        </c-col>
+        <c-col sm="6" lg="3">
+            <c-widget-dropdown  *ngIf="!isAllEntriesLoading"
+                    color="gradient-danger"
+                    header="{{calculateNoOfUsedCryptos()}}"
+                    text="Number of Used Cryptos"
+            >
+
+                <div slot="footer">
+                    <div
+                            class="c-chart-wrapper mt-3 mx-3"
+                            style="height: 70px;"
+                            [@.disabled]="true"
+                    >
+                        <canvas
+                                cNoZoneBaseChart
+                                class="chart"
+                                height="70"
+                                [datasets]="chart[3].data"
+                                [labels]="chart[3].labels"
+                                [options]="chart[3].options"
+                                [colors]="chart[3].colors"
+                                [chartType]="chart[3].type"
+                        >
+                        </canvas>
+                    </div>
+                </div>
+            </c-widget-dropdown>
+            <ng-container *ngIf="isAllEntriesLoading">
+                <div class="text-center">
+                    <div class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+            </ng-container>
+        </c-col>
+    </c-row>
+<!--    General info windows END -->
+
+<!--  Used Symbol Prices  START -->
+    <c-row *ngIf="!isDashboardInfoBinanceLoading && !isDashboardInfoFtxLoading">
+        <c-col md="3" sm="6" *ngFor="let priceItem of dashboardInfo.currentSymbolPrices">
+            <c-widget-brand
+                    color="facebook"
+                    rightHeader="{{priceItem.symbol}}"
+                    rightFooter="Symbol"
+                    leftHeader="{{getDollarValue(priceItem.price)}}"
+                    leftFooter="Current Price"
+            >
+            </c-widget-brand>
+        </c-col>
+    </c-row>
+    <ng-container *ngIf="isDashboardInfoBinanceLoading || isDashboardInfoFtxLoading">
+        <div class="text-center">
+            <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+    </ng-container>
+
+
+<!--  Used Symbol Prices  END -->
+
     <c-row>
         <c-col col="6">
             <c-card>
@@ -15,14 +162,14 @@
 
                     </c-row>
                     <ng-container>
-                        <div class="c-chart-wrapper" style="height:300px;margin-top:40px;margin-bottom: 50px"  [@.disabled]="true" *ngIf="!isLoading">
+                        <div class="c-chart-wrapper" style="height:300px;margin-top:40px;margin-bottom: 50px"  [@.disabled]="true" *ngIf="!isAllEntriesLoading">
                             <ag-charts-angular
                                     style="height: 100px"
                                     [options]="sumProfitOptions"
                             ></ag-charts-angular>
                         </div>
                     </ng-container>
-                    <ng-container *ngIf="isLoading">
+                    <ng-container *ngIf="isAllEntriesLoading">
                         <div class="text-center">
                             <div class="spinner-border" role="status">
                                 <span class="sr-only">Loading...</span>
@@ -46,7 +193,7 @@
 
                     </c-row>
                     <ng-container>
-                        <div class="c-chart-wrapper" style="height:300px;margin-top:40px;margin-bottom: 50px"  [@.disabled]="true" *ngIf="!isLoading">
+                        <div class="c-chart-wrapper" style="height:300px;margin-top:40px;margin-bottom: 50px"  [@.disabled]="true" *ngIf="!isAllEntriesLoading">
                             <div class="progress-group">
                                 <div class="progress-group-header align-items-end">
                                     <c-icon name="cil-hand-point-up" customClasses="c-icon progress-group-icon" ></c-icon>
@@ -75,7 +222,7 @@
                             </div>
                         </div>
                     </ng-container>
-                    <ng-container *ngIf="isLoading">
+                    <ng-container *ngIf="isAllEntriesLoading">
                         <div class="text-center">
                             <div class="spinner-border" role="status">
                                 <span class="sr-only">Loading...</span>
@@ -101,14 +248,14 @@
 
                     </c-row>
                     <ng-container>
-                        <div class="c-chart-wrapper" style="height:300px;margin-top:40px;margin-bottom: 50px"  [@.disabled]="true" *ngIf="!isLoading">
+                        <div class="c-chart-wrapper" style="height:300px;margin-top:40px;margin-bottom: 50px"  [@.disabled]="true" *ngIf="!isAllEntriesLoading">
                             <ag-charts-angular
                                     style="height: 100%"
                                     [options]="strategyOptions"
                             ></ag-charts-angular>
                         </div>
                     </ng-container>
-                    <ng-container *ngIf="isLoading">
+                    <ng-container *ngIf="isAllEntriesLoading">
                         <div class="text-center">
                             <div class="spinner-border" role="status">
                                 <span class="sr-only">Loading...</span>
@@ -129,11 +276,12 @@
                     <c-row>
                         <c-col sm="5">
                             <h4 class="card-title mb-0">Profit statistic in percents</h4>
+                            <h5 class="card-title mb-0">(ordered by profit percent success)</h5>
                             <div class="small text-muted"></div>
                         </c-col>
                     </c-row>
                     <ng-container>
-                        <div class="c-chart-wrapper" style="height: auto;margin-top:40px;margin-bottom: 50px"  [@.disabled]="true" *ngIf="!isLoading">
+                        <div class="c-chart-wrapper" style="height: auto;margin-top:40px;margin-bottom: 50px"  [@.disabled]="true" *ngIf="!isAllEntriesLoading">
                             <ng-container *ngFor="let strategyData of strategyProfitData">
                                 <div class="progress-group">
                                     <h5 class="card-title mb-0 strat-title">Strategy: {{strategyData.strategy}}</h5>
@@ -162,11 +310,36 @@
                                         </c-progress>
                                     </div>
                                 </div>
+                                <c-row class="text-center">
+                                    <c-col sm="12" [md]="true" class="mb-sm-2 mb-0">
+                                        <div class="text-muted">Number of cycles</div>
+                                        <strong>{{calculateNoOfCycles(strategyData.strategy)}}</strong>
+                                    </c-col>
+                                    <c-col sm="12" [md]="true" class="mb-sm-2 mb-0">
+                                        <div class="text-muted">Number of win cycles</div>
+                                        <strong>{{calculateNoOfWinCycles(strategyData.strategy)}}</strong>
+                                    </c-col>
+                                    <c-col sm="12" [md]="true" class="mb-sm-2 mb-0">
+                                        <div class="text-muted">Duration</div>
+                                        <strong>{{calculateStrategyDurationTime(strategyData.strategy)}}</strong>
+                                    </c-col>
+                                    <c-col sm="12" [md]="true" class="mb-sm-2 mb-0">
+                                        <div class="text-muted">From - Till</div>
+                                        <strong>{{calculateStrategyStartTime(strategyData.strategy) | date: 'medium'}}
+                                            - {{calculateStrategyEndTime(strategyData.strategy) | date: 'medium'}}</strong>
+
+                                    </c-col>
+                                    <c-col sm="12" [md]="true" class="mb-sm-2 mb-0">
+                                        <div class="text-muted">Used Dollar</div>
+                                        <strong>{{calculateAllUsedDollar(strategyData.strategy)}}</strong>
+                                    </c-col>
+                                </c-row>
+
                                 <hr class="strat-line" />
                             </ng-container>
                         </div>
                     </ng-container>
-                    <ng-container *ngIf="isLoading">
+                    <ng-container *ngIf="isAllEntriesLoading">
                         <div class="text-center">
                             <div class="spinner-border" role="status">
                                 <span class="sr-only">Loading...</span>

@@ -5,6 +5,7 @@ import {Observable} from "rxjs";
 import {environment} from "../../../environments/environment";
 import {EntryOrders} from "../../model/entry/entryOrders.model";
 import {FuturesRespPositionModel} from "../../model/response/positionResp.model";
+import {DashboardInfo} from "../../model/frontend/dashboardInfo.model";
 
 @Injectable({
     providedIn: 'root'
@@ -22,6 +23,11 @@ export class EntryService {
     getAllEntriesWithReports(): Observable<Entry[]> {
         const baseUrl = environment.apiUrl;
         return this.http.get<any>(`${baseUrl}/binance/frontendapi/entry-with-reports/all`);
+    }
+
+    getDashboardInfo(exchange: string): Observable<DashboardInfo> {
+        const baseUrl = environment.apiUrl;
+        return this.http.get<any>(`${baseUrl}/${exchange}/frontendapi/dashboardinfo`);
     }
 
     getEntry(entryId: string): Observable<Entry> {
