@@ -6,6 +6,8 @@ import {Observable} from "rxjs";
 import {Entry} from "../../model/entry/entry.model";
 import {calculateFees, calculateProfit, toHumanReadableFormat, toHumanReadablePercentFormat} from "../../utils/helperMethods";
 import * as moment from "moment";
+import {DashboardInfo} from "../../model/frontend/dashboardInfo.model";
+import {Price} from "../../model/frontend/price.model";
 
 @Component({
     templateUrl: 'dashboard.component.html',
@@ -20,7 +22,10 @@ export class DashboardComponent implements OnInit {
     strategyOptions: any;
     entries: Observable<Entry[]>;
     profitLossArray = [];
-    isLoading = false;
+    isAllEntriesLoading = false;
+    isDashboardInfoFtxLoading = false;
+    isDashboardInfoBinanceLoading = false;
+    dashboardInfo: DashboardInfo;
 
     strategyProfitData: {strategy: string, profit: number, loss: number}[] = [];
     private allEntries: Entry[];
@@ -29,6 +34,7 @@ export class DashboardComponent implements OnInit {
                 private entryService: EntryService) {}
 
     ngOnInit(): void {
+        this.dashboardInfo = new DashboardInfo();
         this.strategyOptions = {
             title: { text: "Strategy performance" },
             subtitle: { text: 'for profit and loss (ordered by profit percent success)' },
@@ -159,7 +165,7 @@ export class DashboardComponent implements OnInit {
             legend: { enabled: true },
         };
 
-        this.isLoading = true;
+        this.isAllEntriesLoading = true;
         this.entryService.getAllEntriesWithReports().subscribe(entryArray => {
             this.allEntries = entryArray;
             const {profit, loss} = this.calculateEntryArrayProfitAndLoss(entryArray);
@@ -177,9 +183,23 @@ export class DashboardComponent implements OnInit {
                     profit: strategyStat.profit,
                     loss: strategyStat.loss
                 })
-            })
-            this.strategyProfitData = this.strategyProfitData.sort((a, b) => this.calculateStrategyPercentFromProfitLoss(b.profit, b) - this.calculateStrategyPercentFromProfitLoss(a.profit, a));
-            this.isLoading = false;
+            });
+            this.strategyProfitData = this.strategyProfitData
+                .sort((a, b) =>
+                    this.calculateStrategyPercentFromProfitLoss(b.profit, b) - this.calculateStrategyPercentFromProfitLoss(a.profit, a));
+            this.isAllEntriesLoading = false;
+            this.isDashboardInfoFtxLoading = true;
+            this.isDashboardInfoBinanceLoading = true;
+            this.entryService.getDashboardInfo("ftx").subscribe((dashboardInfo) => {
+                this.dashboardInfo.ftxBalance = dashboardInfo.ftxBalance;
+                this.appendPriceItemArray(dashboardInfo.currentSymbolPrices);
+                this.isDashboardInfoFtxLoading = false;
+            });
+            this.entryService.getDashboardInfo("binance").subscribe((dashboardInfo) => {
+                this.dashboardInfo.binanceBalance = dashboardInfo.binanceBalance;
+                this.appendPriceItemArray(dashboardInfo.currentSymbolPrices);
+                this.isDashboardInfoBinanceLoading = false;
+            });
             this.initCharts();
         });
     }
@@ -242,11 +262,15 @@ export class DashboardComponent implements OnInit {
         return this.allEntries.filter(item => item.strategyId === strategy).length;
     }
 
+    calculateNoOfWinCycles(strategy: string): number {
+        return this.allEntries.filter(item => item.strategyId === strategy && calculateProfit(item.entryReport?.incomeHistory) > 0).length;
+    }
+
     calculateAllUsedDollar(strategy: string): string {
         const stratEntries = this.allEntries.filter(item => item.strategyId === strategy);
         let sumDollar = 0;
         stratEntries.forEach(item => {
-            const realCost: string = item.entryReport.realCost.toString();
+            const realCost: string = item.entryReport?.realCost.toString();
             sumDollar = sumDollar + parseFloat(realCost);
         })
         return `${toHumanReadableFormat(sumDollar)}$`
@@ -271,4 +295,29 @@ export class DashboardComponent implements OnInit {
         return duration.humanize();
     }
 
+    private appendPriceItemArray(prices: Price[]) {
+        for (const priceItem of prices) {
+            this.dashboardInfo.currentSymbolPrices.push(priceItem);
+        }
+    }
+
+    getDollarValue(balance: number) {
+        return `${toHumanReadableFormat(balance)}$`
+    }
+
+    calculateNoOfUsedStrategy() {
+        const stratSet: Set<string> = new Set();
+        for (const entry of this.allEntries) {
+            stratSet.add(entry.strategyId);
+        }
+        return stratSet.size;
+    }
+
+    calculateNoOfUsedCryptos() {
+        const symbolSet: Set<string> = new Set();
+        for (const entry of this.allEntries) {
+            symbolSet.add(entry.symbol);
+        }
+        return symbolSet.size;
+    }
 }

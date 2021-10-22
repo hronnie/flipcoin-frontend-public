@@ -4,9 +4,9 @@
 
     <c-row>
         <c-col sm="6" lg="3">
-            <c-widget-dropdown
+            <c-widget-dropdown *ngIf="!isDashboardInfoFtxLoading"
                     color="gradient-info"
-                    header="9.823"
+                    header="{{getDollarValue(dashboardInfo.ftxBalance)}}"
                     text="FTX balance"
             >
                 <div slot="footer">
@@ -19,11 +19,18 @@
                     </div>
                 </div>
             </c-widget-dropdown>
+            <ng-container *ngIf="isDashboardInfoFtxLoading">
+                <div class="text-center">
+                    <div class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+            </ng-container>
         </c-col>
         <c-col sm="6" lg="3">
-            <c-widget-dropdown
+            <c-widget-dropdown *ngIf="!isDashboardInfoBinanceLoading"
                     color="gradient-warning"
-                    header="9.823"
+                    header="{{getDollarValue(dashboardInfo.binanceBalance)}}"
                     text="Binance balance"
             >
                 <div slot="footer">
@@ -36,11 +43,18 @@
                     </div>
                 </div>
             </c-widget-dropdown>
+            <ng-container *ngIf="isDashboardInfoBinanceLoading">
+                <div class="text-center">
+                    <div class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+            </ng-container>
         </c-col>
         <c-col sm="6" lg="3">
-            <c-widget-dropdown
+            <c-widget-dropdown  *ngIf="!isAllEntriesLoading"
                     color="gradient-primary"
-                    header="9.823"
+                    header="{{calculateNoOfUsedStrategy()}}"
                     text="Number of Used Strategies"
             >
                 <div slot="footer">
@@ -63,11 +77,18 @@
                     </div>
                 </div>
             </c-widget-dropdown>
+            <ng-container *ngIf="isAllEntriesLoading">
+                <div class="text-center">
+                    <div class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+            </ng-container>
         </c-col>
         <c-col sm="6" lg="3">
-            <c-widget-dropdown
+            <c-widget-dropdown  *ngIf="!isAllEntriesLoading"
                     color="gradient-danger"
-                    header="9.823"
+                    header="{{calculateNoOfUsedCryptos()}}"
                     text="Number of Used Cryptos"
             >
 
@@ -91,24 +112,37 @@
                     </div>
                 </div>
             </c-widget-dropdown>
+            <ng-container *ngIf="isAllEntriesLoading">
+                <div class="text-center">
+                    <div class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+            </ng-container>
         </c-col>
     </c-row>
 <!--    General info windows END -->
 
 <!--  Used Symbol Prices  START -->
-    <c-row>
-        <c-col md="3" sm="6">
+    <c-row *ngIf="!isDashboardInfoBinanceLoading && !isDashboardInfoFtxLoading">
+        <c-col md="3" sm="6" *ngFor="let priceItem of dashboardInfo.currentSymbolPrices">
             <c-widget-brand
                     color="facebook"
-                    rightHeader="ADA-Perp"
+                    rightHeader="{{priceItem.symbol}}"
                     rightFooter="Symbol"
-                    leftHeader="2.47 $"
-                    leftFooter="Price"
+                    leftHeader="{{getDollarValue(priceItem.price)}}"
+                    leftFooter="Current Price"
             >
-
             </c-widget-brand>
         </c-col>
     </c-row>
+    <ng-container *ngIf="isDashboardInfoBinanceLoading || isDashboardInfoFtxLoading">
+        <div class="text-center">
+            <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+    </ng-container>
 
 
 <!--  Used Symbol Prices  END -->
@@ -128,14 +162,14 @@
 
                     </c-row>
                     <ng-container>
-                        <div class="c-chart-wrapper" style="height:300px;margin-top:40px;margin-bottom: 50px"  [@.disabled]="true" *ngIf="!isLoading">
+                        <div class="c-chart-wrapper" style="height:300px;margin-top:40px;margin-bottom: 50px"  [@.disabled]="true" *ngIf="!isAllEntriesLoading">
                             <ag-charts-angular
                                     style="height: 100px"
                                     [options]="sumProfitOptions"
                             ></ag-charts-angular>
                         </div>
                     </ng-container>
-                    <ng-container *ngIf="isLoading">
+                    <ng-container *ngIf="isAllEntriesLoading">
                         <div class="text-center">
                             <div class="spinner-border" role="status">
                                 <span class="sr-only">Loading...</span>
@@ -159,7 +193,7 @@
 
                     </c-row>
                     <ng-container>
-                        <div class="c-chart-wrapper" style="height:300px;margin-top:40px;margin-bottom: 50px"  [@.disabled]="true" *ngIf="!isLoading">
+                        <div class="c-chart-wrapper" style="height:300px;margin-top:40px;margin-bottom: 50px"  [@.disabled]="true" *ngIf="!isAllEntriesLoading">
                             <div class="progress-group">
                                 <div class="progress-group-header align-items-end">
                                     <c-icon name="cil-hand-point-up" customClasses="c-icon progress-group-icon" ></c-icon>
@@ -188,7 +222,7 @@
                             </div>
                         </div>
                     </ng-container>
-                    <ng-container *ngIf="isLoading">
+                    <ng-container *ngIf="isAllEntriesLoading">
                         <div class="text-center">
                             <div class="spinner-border" role="status">
                                 <span class="sr-only">Loading...</span>
@@ -214,14 +248,14 @@
 
                     </c-row>
                     <ng-container>
-                        <div class="c-chart-wrapper" style="height:300px;margin-top:40px;margin-bottom: 50px"  [@.disabled]="true" *ngIf="!isLoading">
+                        <div class="c-chart-wrapper" style="height:300px;margin-top:40px;margin-bottom: 50px"  [@.disabled]="true" *ngIf="!isAllEntriesLoading">
                             <ag-charts-angular
                                     style="height: 100%"
                                     [options]="strategyOptions"
                             ></ag-charts-angular>
                         </div>
                     </ng-container>
-                    <ng-container *ngIf="isLoading">
+                    <ng-container *ngIf="isAllEntriesLoading">
                         <div class="text-center">
                             <div class="spinner-border" role="status">
                                 <span class="sr-only">Loading...</span>
@@ -247,7 +281,7 @@
                         </c-col>
                     </c-row>
                     <ng-container>
-                        <div class="c-chart-wrapper" style="height: auto;margin-top:40px;margin-bottom: 50px"  [@.disabled]="true" *ngIf="!isLoading">
+                        <div class="c-chart-wrapper" style="height: auto;margin-top:40px;margin-bottom: 50px"  [@.disabled]="true" *ngIf="!isAllEntriesLoading">
                             <ng-container *ngFor="let strategyData of strategyProfitData">
                                 <div class="progress-group">
                                     <h5 class="card-title mb-0 strat-title">Strategy: {{strategyData.strategy}}</h5>
@@ -282,6 +316,10 @@
                                         <strong>{{calculateNoOfCycles(strategyData.strategy)}}</strong>
                                     </c-col>
                                     <c-col sm="12" [md]="true" class="mb-sm-2 mb-0">
+                                        <div class="text-muted">Number of win cycles</div>
+                                        <strong>{{calculateNoOfWinCycles(strategyData.strategy)}}</strong>
+                                    </c-col>
+                                    <c-col sm="12" [md]="true" class="mb-sm-2 mb-0">
                                         <div class="text-muted">Duration</div>
                                         <strong>{{calculateStrategyDurationTime(strategyData.strategy)}}</strong>
                                     </c-col>
@@ -301,7 +339,7 @@
                             </ng-container>
                         </div>
                     </ng-container>
-                    <ng-container *ngIf="isLoading">
+                    <ng-container *ngIf="isAllEntriesLoading">
                         <div class="text-center">
                             <div class="spinner-border" role="status">
                                 <span class="sr-only">Loading...</span>

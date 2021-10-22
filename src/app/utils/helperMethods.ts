@@ -65,6 +65,9 @@ export function calculateFees(incomeHistoryInput: IncomeHistory): number {
 }
 
 export function calculateProfit(incomeHistoryInput: IncomeHistory): number {
+    if (!incomeHistoryInput) {
+        return 0;
+    }
     const incomeHistory = new IncomeHistory(incomeHistoryInput);
     const fees = incomeHistory.transfer
         + incomeHistory.welcomeBonus
