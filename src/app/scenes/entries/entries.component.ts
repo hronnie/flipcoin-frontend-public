@@ -77,7 +77,7 @@ export class EntriesComponent implements OnInit {
 
     onGridReady(params) {
         this.gridApi = params.api;
-        this.gridApi.paginationSetPageSize(20);
+        this.gridApi.paginationSetPageSize(100);
     }
 
     ngOnInit(): void {
@@ -88,7 +88,7 @@ export class EntriesComponent implements OnInit {
         })
     }
 
-    onPageSizeChanged(newPageSize = 20) {
+    onPageSizeChanged(newPageSize = 100) {
         const value = (document.getElementById('page-size') as HTMLInputElement).value;
         this.gridApi.paginationSetPageSize(Number(value));
     }

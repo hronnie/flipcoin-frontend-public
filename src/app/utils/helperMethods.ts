@@ -88,3 +88,15 @@ export function isPositionEmpty(position: FuturesRespPositionModel): boolean {
     const positionAmount = parseFloat(position.positionAmt);
     return positionAmount === 0;
 }
+
+export function distinctStringArray(array: string[]) {
+    const arraySet: Set<string> = new Set<string>();
+    array.forEach(item => {
+        arraySet.add(item);
+    });
+    const result: string[] = [];
+    arraySet.forEach(item => {
+        result.push(item);
+    })
+    return result;
+}

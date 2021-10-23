@@ -4,7 +4,13 @@ import { DashboardChartsData, IChartProps } from './dashboard-charts-data';
 import {EntryService} from "../../common/service/entry.service";
 import {Observable} from "rxjs";
 import {Entry} from "../../model/entry/entry.model";
-import {calculateFees, calculateProfit, toHumanReadableFormat, toHumanReadablePercentFormat} from "../../utils/helperMethods";
+import {
+    calculateFees,
+    calculateProfit,
+    distinctStringArray,
+    toHumanReadableFormat,
+    toHumanReadablePercentFormat
+} from "../../utils/helperMethods";
 import * as moment from "moment";
 import {DashboardInfo} from "../../model/frontend/dashboardInfo.model";
 import {Price} from "../../model/frontend/price.model";
@@ -319,5 +325,11 @@ export class DashboardComponent implements OnInit {
             symbolSet.add(entry.symbol);
         }
         return symbolSet.size;
+    }
+
+    populateStrategySymbolList(strategyId) {
+        const stratEntries = this.allEntries.filter(entry => entry.strategyId === strategyId);
+        const symbols = distinctStringArray(stratEntries.map(entry => entry.symbol));
+        return symbols.join(", ");
     }
 }
