@@ -37,6 +37,7 @@ export class EntriesDetailComponent implements OnInit {
         this.entryService.getEntry(this.entryId).subscribe(entry => {
             this.entry = entry;
             this.entryService.getEntryOrders(this.entryId, entry.exchange).subscribe(entryOrders => {
+                debugger;
                 this.entryOrders = entryOrders;
             });
 
@@ -58,7 +59,7 @@ export class EntriesDetailComponent implements OnInit {
         return (this.position?.unRealizedProfit / parseFloat(this.position?.isolatedMargin));
     }
 
-    caculateDuration(): string {
+    calculateDuration(): string {
         const startDate = moment(this.entry.startDate);
         const endDate = moment(this.entry.endDate);
         const duration = moment.duration(startDate.diff(endDate));
@@ -66,6 +67,11 @@ export class EntriesDetailComponent implements OnInit {
     }
 
     getDollarValue(value: number) {
+        return `${toHumanReadableFormat(value)}$`
+    }
+
+    getDollarValueStr(value: string) {
+        const numberValue = parseFloat(value);
         return `${toHumanReadableFormat(value)}$`
     }
 }

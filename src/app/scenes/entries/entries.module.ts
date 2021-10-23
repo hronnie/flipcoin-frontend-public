@@ -12,7 +12,7 @@ import {
     ChartModule,
     DropdownModule,
     GridModule,
-    ProgressModule,
+    ProgressModule, SwitchModule,
 } from '@coreui/angular';
 
 import {IconModule} from '@coreui/icons-angular';
@@ -42,6 +42,7 @@ import {SharedModule} from "../../core/auth/shared/shared.module";
         SharedModule,
         AgGridModule,
         CommonModule,
+        SwitchModule,
     ],
     declarations: [
         EntriesComponent,
