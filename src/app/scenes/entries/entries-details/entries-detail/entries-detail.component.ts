@@ -37,7 +37,6 @@ export class EntriesDetailComponent implements OnInit {
         this.entryService.getEntry(this.entryId).subscribe(entry => {
             this.entry = entry;
             this.entryService.getEntryOrders(this.entryId, entry.exchange).subscribe(entryOrders => {
-                debugger;
                 this.entryOrders = entryOrders;
             });
 
@@ -45,7 +44,6 @@ export class EntriesDetailComponent implements OnInit {
                 this.position = position;
                 this.isPositionEmpty = isPositionEmpty(this.position);
                 this.isLoading = false;
-                console.log(position);
             });
             this.sideColor = this.entry.side === SIDE.SELL ? 'danger' : 'success';
         });
@@ -60,8 +58,8 @@ export class EntriesDetailComponent implements OnInit {
     }
 
     calculateDuration(): string {
-        const startDate = moment(this.entry.startDate);
-        const endDate = moment(this.entry.endDate);
+        const startDate = moment(this.entry?.startDate);
+        const endDate = moment(this.entry?.endDate);
         const duration = moment.duration(startDate.diff(endDate));
         return duration.humanize();
     }
@@ -72,6 +70,6 @@ export class EntriesDetailComponent implements OnInit {
 
     getDollarValueStr(value: string) {
         const numberValue = parseFloat(value);
-        return `${toHumanReadableFormat(value)}$`
+        return `${toHumanReadableFormat(numberValue)}$`
     }
 }

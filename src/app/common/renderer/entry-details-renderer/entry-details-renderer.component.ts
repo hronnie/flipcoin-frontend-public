@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {ICellRendererParams} from "ag-grid-community";
 
 @Component({
@@ -10,11 +10,9 @@ export class EntryDetailsRendererComponent {
 
     params: ICellRendererParams;
 
+
     agInit(params: ICellRendererParams): void {
         this.params = params;
     }
 
-    entryDetails() {
-
-    }
 }
