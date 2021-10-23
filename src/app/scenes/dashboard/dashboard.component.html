@@ -283,8 +283,11 @@
                     <ng-container>
                         <div class="c-chart-wrapper" style="height: auto;margin-top:40px;margin-bottom: 50px"  [@.disabled]="true" *ngIf="!isAllEntriesLoading">
                             <ng-container *ngFor="let strategyData of strategyProfitData">
+                                <h5 class="card-title mb-0 strat-title">Strategy: {{strategyData.strategy}}</h5>
+                                <h6 class="card-title mb-0 strat-title">Symbols: {{populateStrategySymbolList(strategyData.strategy)}}</h6>
+
                                 <div class="progress-group">
-                                    <h5 class="card-title mb-0 strat-title">Strategy: {{strategyData.strategy}}</h5>
+
                                     <div class="progress-group-header align-items-end">
                                         <c-icon name="cil-hand-point-up" customClasses="c-icon progress-group-icon" ></c-icon>
                                         <div>Profit</div>
