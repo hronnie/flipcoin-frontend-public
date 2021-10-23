@@ -6,7 +6,8 @@ import {FuturesRespPositionModel} from "../../../../model/response/positionResp.
 import {Entry} from "../../../../model/entry/entry.model";
 import {SIDE} from "../../../../model/binance/binance.enums";
 import {PricePipe} from "../../../../pipes/price.pipe";
-import {isPositionEmpty} from "../../../../utils/helperMethods";
+import {isPositionEmpty, toHumanReadableFormat} from "../../../../utils/helperMethods";
+import * as moment from "moment";
 
 @Component({
     selector: 'app-entries-detail',
@@ -55,5 +56,16 @@ export class EntriesDetailComponent implements OnInit {
 
     getRoe() {
         return (this.position?.unRealizedProfit / parseFloat(this.position?.isolatedMargin));
+    }
+
+    caculateDuration(): string {
+        const startDate = moment(this.entry.startDate);
+        const endDate = moment(this.entry.endDate);
+        const duration = moment.duration(startDate.diff(endDate));
+        return duration.humanize();
+    }
+
+    getDollarValue(value: number) {
+        return `${toHumanReadableFormat(value)}$`
     }
 }

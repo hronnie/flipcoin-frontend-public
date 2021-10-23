@@ -2,6 +2,7 @@
     <c-row class="back-icon">
         <a [routerLink]="['/entries']"> <i class="cil-arrow-thick-to-left fa-2x"></i></a>
     </c-row>
+    <!--    POSITION DETAILS START-->
     <c-row>
         <c-col md="12">
             <c-card>
@@ -72,7 +73,8 @@
                                             <c-callout [color]="sideColor">
                                                 <small class="text-muted">PNL (ROE %)</small>
                                                 <br>
-                                                <strong class="h4">{{position?.unRealizedProfit | price}} ({{getRoe() | percent}})</strong>
+                                                <strong class="h4">{{position?.unRealizedProfit | price}}
+                                                    ({{getRoe() | percent}})</strong>
                                             </c-callout>
                                         </c-col>
                                     </c-row>
@@ -89,5 +91,199 @@
                 </ng-container>
             </c-card>
         </c-col>
+
     </c-row>
+    <!--    POSITION DETAILS END-->
+    <!--    ENTRY DETAILS START-->
+    <c-row>
+        <c-col md="12">
+            <c-card>
+                <c-card-header>
+                    Entry Details
+                </c-card-header>
+                <c-card-body>
+                    <c-row>
+                        <c-col sm="12">
+                            <c-row>
+                                <c-col sm="3">
+                                    <c-callout [color]="'info'">
+                                        <small class="text-muted">ID</small>
+                                        <br>
+                                        <strong class="h4">{{entry.id}}</strong>
+                                    </c-callout>
+                                </c-col>
+                            </c-row>
+                        </c-col>
+                    </c-row>
+                    <c-row>
+                        <c-col sm="12">
+                            <c-row>
+                                <c-col sm="3">
+                                    <c-callout [color]="'info'">
+                                        <small class="text-muted">Exchange</small>
+                                        <br>
+                                        <strong class="h4">{{entry.exchange}}</strong>
+                                    </c-callout>
+                                </c-col>
+                                <c-col sm="3">
+                                    <c-callout color="info">
+                                        <small class="text-muted">Strategy Id</small>
+                                        <br>
+                                        <strong class="h4">{{entry.strategyId}}</strong>
+                                    </c-callout>
+                                </c-col>
+                                <c-col sm="3">
+                                    <c-callout color="info">
+                                        <small class="text-muted">Symbol</small>
+                                        <br>
+                                        <strong class="h4">{{entry.symbol}}</strong>
+                                    </c-callout>
+                                </c-col>
+                                <c-col sm="3">
+                                    <c-callout color="info">
+                                        <small class="text-muted">Side</small>
+                                        <br>
+                                        <strong class="h4">{{entry.side}}</strong>
+                                    </c-callout>
+                                </c-col>
+                            </c-row>
+                        </c-col>
+                    </c-row>
+                    <c-row>
+                        <c-col sm="12">
+                            <c-row>
+                                <c-col sm="3">
+                                    <c-callout [color]="'info'">
+                                        <small class="text-muted">Is Active?</small>
+                                        <br>
+                                        <strong class="h4">{{entry.isActive}}</strong>
+                                    </c-callout>
+                                </c-col>
+                                <c-col sm="3">
+                                    <c-callout color="info">
+                                        <small class="text-muted">Start Date</small>
+                                        <br>
+                                        <strong class="h4">{{entry.startDate | date: "medium"}}</strong>
+                                    </c-callout>
+                                </c-col>
+                                <c-col sm="3">
+                                    <c-callout color="info">
+                                        <small class="text-muted">End Date</small>
+                                        <br>
+                                        <strong class="h4">{{entry.endDate | date: "medium"}}</strong>
+                                    </c-callout>
+                                </c-col>
+                                <c-col sm="3">
+                                    <c-callout color="info">
+                                        <small class="text-muted">Duration</small>
+                                        <br>
+                                        <strong class="h4">{{caculateDuration()}}</strong>
+                                    </c-callout>
+                                </c-col>
+                            </c-row>
+<!--                            <hr class="mt-0">-->
+                        </c-col>
+                    </c-row>
+                    <br>
+                </c-card-body>
+            </c-card>
+        </c-col>
+    </c-row>
+    <!--    ENTRY DETAILS END-->
+    <!--    ENTRY REPORT DETAILS START-->
+    <c-row>
+        <c-col md="12">
+            <c-card>
+                <c-card-header>
+                    Entry Report Details
+                </c-card-header>
+                <c-card-body>
+                    <c-row>
+                        <c-col sm="12">
+                            <c-row>
+                                <c-col sm="3">
+                                    <c-callout [color]="'info'">
+                                        <small class="text-muted">Enter price</small>
+                                        <br>
+                                        <strong class="h4">{{getDollarValue(entry.entryReport.enterPrice)}}</strong>
+                                    </c-callout>
+                                </c-col>
+                                <c-col sm="3">
+                                    <c-callout color="info">
+                                        <small class="text-muted">Exit price</small>
+                                        <br>
+                                        <strong class="h4">{{getDollarValue(entry.entryReport.exitPrice)}}</strong>
+                                    </c-callout>
+                                </c-col>
+                                <c-col sm="3">
+                                    <c-callout color="info">
+                                        <small class="text-muted">Leverage</small>
+                                        <br>
+                                        <strong class="h4">{{entry.entryReport.leverage}}X</strong>
+                                    </c-callout>
+                                </c-col>
+                                <c-col sm="3">
+                                    <c-callout color="info">
+                                        <small class="text-muted">Max Dollar Amount</small>
+                                        <br>
+                                        <strong class="h4">{{getDollarValue(entry.entryReport.maxDollarAmount)}}</strong>
+                                    </c-callout>
+                                </c-col>
+                            </c-row>
+                        </c-col>
+                    </c-row>
+                    <c-row>
+                        <c-col sm="12">
+                            <c-row>
+                                <c-col sm="3">
+                                    <c-callout [color]="'info'">
+                                        <small class="text-muted">Original quantity</small>
+                                        <br>
+                                        <strong class="h4">{{entry.entryReport.origQuantity}} {{entry.symbol}}</strong>
+                                    </c-callout>
+                                </c-col>
+                                <c-col sm="3">
+                                    <c-callout color="info">
+                                        <small class="text-muted">Real Cost</small>
+                                        <br>
+                                        <strong class="h4">{{getDollarValue(entry.entryReport.realCost)}}</strong>
+                                    </c-callout>
+                                </c-col>
+                            </c-row>
+                        </c-col>
+                    </c-row>
+                    <hr class="mt-0">
+                    <c-row>
+                        <c-col sm="12">
+                            <c-row>
+                                <c-col sm="3">
+                                    <c-callout color="info">
+                                        <small class="text-muted">Realized PNL</small>
+                                        <br>
+                                        <strong class="h4">{{getDollarValue(entry.entryReport?.incomeHistory.realizedPnl)}}</strong>
+                                    </c-callout>
+                                </c-col>
+                                <c-col sm="3">
+                                    <c-callout [color]="'info'">
+                                        <small class="text-muted">Commission</small>
+                                        <br>
+                                        <strong class="h4">{{getDollarValue(entry.entryReport?.incomeHistory.commission)}}</strong>
+                                    </c-callout>
+                                </c-col>
+                                <c-col sm="3">
+                                    <c-callout color="info">
+                                        <small class="text-muted">Funding Fee</small>
+                                        <br>
+                                        <strong class="h4">{{getDollarValue(entry.entryReport?.incomeHistory.fundingFee)}}</strong>
+                                    </c-callout>
+                                </c-col>
+                            </c-row>
+                        </c-col>
+                    </c-row>
+                    <br>
+                </c-card-body>
+            </c-card>
+        </c-col>
+    </c-row>
+    <!--    ENTRY REPORT DETAILS END-->
 </div>
