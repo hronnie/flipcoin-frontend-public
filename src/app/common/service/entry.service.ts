@@ -44,4 +44,9 @@ export class EntryService {
         const baseUrl = environment.apiUrl;
         return this.http.get<any>(`${baseUrl}/${exchange}/frontendapi/entry/position/${entryId}`);
     }
+
+    closePosition(entryId: string, exchange: string): Observable<FuturesRespPositionModel> {
+        const baseUrl = environment.apiUrl;
+        return this.http.delete<any>(`${baseUrl}/${exchange}/frontendapi/entry/close/${entryId}`);
+    }
 }

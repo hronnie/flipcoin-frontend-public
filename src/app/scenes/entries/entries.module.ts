@@ -11,7 +11,7 @@ import {
     CardModule,
     ChartModule,
     DropdownModule,
-    GridModule,
+    GridModule, ModalModule,
     ProgressModule, SwitchModule,
 } from '@coreui/angular';
 
@@ -43,6 +43,7 @@ import {SharedModule} from "../../core/auth/shared/shared.module";
         AgGridModule,
         CommonModule,
         SwitchModule,
+        ModalModule,
     ],
     declarations: [
         EntriesComponent,

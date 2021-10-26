@@ -2,6 +2,33 @@
     <c-row class="back-icon">
         <a [routerLink]="['/entries']"> <i class="cil-arrow-thick-to-left fa-2x"></i></a>
     </c-row>
+    <c-row class="back-icon">
+        <c-col md="12">
+            <c-card>
+                <c-card-header>
+                    Entry Actions
+                </c-card-header>
+                <ng-container *ngIf="isLoading">
+                    <div class="text-center">
+                        <div class="spinner-border" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="!isLoading">
+                    <c-card-body>
+                        <c-row class="align-items-center">
+                            <c-col xs="6" sm="4" md="2" col="xl" class="mb-3 mb-xl-0" *ngIf="entry.isActive">
+                                <button cButton color="danger" class="mr-1" (click)="dangerModal.show()">
+                                    Close Entry
+                                </button>
+                            </c-col>
+                        </c-row>
+                    </c-card-body>
+                </ng-container>
+            </c-card>
+        </c-col>
+    </c-row>
     <!--    POSITION DETAILS START-->
     <c-row>
         <c-col md="12">
@@ -388,3 +415,18 @@
     </c-row>
     <!--    ORDER DETAILS END-->
 </div>
+
+
+<c-modal #dangerModal color="danger">
+    <ng-template #modalHeader>
+        <h4 class="c-modal-title">Confirm Entry Close</h4>
+    </ng-template>
+    <ng-template #modalBody>
+        <h3>Are you sure that you want to close the entry?</h3>
+        <p>It will rollback the position if any and removes every order from the exchange.</p>
+    </ng-template>
+    <ng-template #modalFooter>
+        <button cButton color="secondary" (click)="dangerModal.hide()">Close</button>
+        <button cButton color="danger" (click)="closeEntry();dangerModal.hide()">Save changes</button>
+    </ng-template>
+</c-modal>

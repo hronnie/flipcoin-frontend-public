@@ -277,7 +277,8 @@ export class DashboardComponent implements OnInit {
         let sumDollar = 0;
         stratEntries.forEach(item => {
             const realCost: string = item.entryReport?.realCost.toString();
-            sumDollar = sumDollar + parseFloat(realCost);
+            const parsedRealCost = Number.isNaN(parseFloat(realCost)) ? 0 : parseFloat(realCost);
+            sumDollar = sumDollar + parsedRealCost;
         })
         return `${toHumanReadableFormat(sumDollar)}$`
     }
