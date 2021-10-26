@@ -5,7 +5,6 @@ import {ActivatedRoute} from "@angular/router";
 import {FuturesRespPositionModel} from "../../../../model/response/positionResp.model";
 import {Entry} from "../../../../model/entry/entry.model";
 import {SIDE} from "../../../../model/binance/binance.enums";
-import {PricePipe} from "../../../../pipes/price.pipe";
 import {isPositionEmpty, toHumanReadableFormat} from "../../../../utils/helperMethods";
 import * as moment from "moment";
 
@@ -33,6 +32,10 @@ export class EntriesDetailComponent implements OnInit {
             (params) => {
                 this.entryId = params.entryId;
             });
+        this.refreshPage();
+    }
+
+    private refreshPage() {
         this.isLoading = true;
         this.entryService.getEntry(this.entryId).subscribe(entry => {
             this.entry = entry;
@@ -71,5 +74,13 @@ export class EntriesDetailComponent implements OnInit {
     getDollarValueStr(value: string) {
         const numberValue = parseFloat(value);
         return `${toHumanReadableFormat(numberValue)}$`
+    }
+
+    closeEntry() {
+        this.isLoading = true;
+        this.entryService.closePosition(this.entry.id, this.entry.exchange).subscribe(result => {
+            debugger;
+            this.refreshPage();
+        })
     }
 }
