@@ -10,7 +10,7 @@ import {
     CalloutModule,
     CardModule,
     ChartModule,
-    DropdownModule,
+    DropdownModule, FormModule,
     GridModule,
     ModalModule,
     ProgressModule,
@@ -46,6 +46,7 @@ import {StrategiesComponent} from "./strategies.component";
         CommonModule,
         SwitchModule,
         ModalModule,
+        FormModule,
     ],
     declarations: [
         StrategiesComponent,
