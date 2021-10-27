@@ -12,6 +12,11 @@ export const navItems: INavData[] = [
         icon: 'cil-arrow-thick-to-right',
     },
     {
+        name: 'Strategies',
+        url: '/strategies',
+        icon: 'cil-lightbulb',
+    },
+    {
         name: 'Settings',
         url: '/settings',
         icon: 'cil-settings',
