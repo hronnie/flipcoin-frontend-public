@@ -32,8 +32,8 @@ export class EntriesComponent implements OnInit {
                 }
             }},
         {field: 'side', headerName: 'Side', cellRenderer: 'sideRenderer', width: 90},
-        {field: 'isActive', headerName: 'Is Active', cellRenderer: 'yesNoRenderer', width: 90},
-        {field: 'startDate', headerName: 'Start Date', cellRenderer: 'dateRenderer', minWidth: 200, sort: 'desc'},
+        {field: 'isActive', headerName: 'Is Active', cellRenderer: 'yesNoRenderer', width: 90, sort: 'desc'},
+        {field: 'startDate', headerName: 'Start Date', cellRenderer: 'dateRenderer', minWidth: 200},
         {field: 'endDate', headerName: 'End Date', cellRenderer: 'dateRenderer', minWidth: 200},
         {field: 'startDate', headerName: 'Duration', cellRenderer: 'durationRenderer'},
         {field: 'entryReport.enterPrice', headerName: 'Enter Price', cellRenderer: 'priceRenderer'},
