@@ -5,7 +5,7 @@
                 <strong>Create/Update Strategy</strong> <small></small>
             </c-card-header>
             <c-card-body>
-                <form action="" class="form-horizontal" method="post">
+                <form [formGroup]="strategyForm" #strategyFormRef (ngSubmit)="onSubmit(strategyForm.value)" class="form-horizontal" method="post">
 <!--                    STRATEGY ID-->
                     <c-form-group cRow>
                         <c-form-group cCol>
@@ -17,7 +17,7 @@
                                             <c-icon name="cil-lightbulb"></c-icon>
                                         </c-input-group-text>
                                     </c-input-group-prepend>
-                                    <input cInput id="input1-group1" name="input1-group1" placeholder="Strategy Id">
+                                    <input cInput id="input1-group1" name="input1-group1" placeholder="Strategy Id" formControlName="strategyId">
                                 </c-input-group>
                             </c-col>
                         </c-form-group>
@@ -26,7 +26,7 @@
                             <label cLabel="col" cCol md="3" for="input2-group1">Stop Loss Percent</label>
                             <c-col md="12">
                                 <c-input-group>
-                                    <input cInput id="input2-group1" name="input2-group1" placeholder="Stop Loss Percent">
+                                    <input cInput id="input2-group1" name="input2-group1" placeholder="Stop Loss Percent" formControlName="stopLossPerc">
                                     <c-input-group-append>
                                         <c-input-group-text>%</c-input-group-text>
                                     </c-input-group-append>
@@ -40,7 +40,7 @@
                             <label cLabel="col" cCol md="3" for="input3-group1">Trailing Stop Loss Percent</label>
                             <c-col md="12">
                                 <c-input-group>
-                                    <input cInput id="input3-group1" name="input3-group1" placeholder="Trailing Stop Loss Percent">
+                                    <input cInput id="input3-group1" name="input3-group1" placeholder="Trailing Stop Loss Percent" formControlName="trailingStopPerc">
                                     <c-input-group-append>
                                         <c-input-group-text>%</c-input-group-text>
                                     </c-input-group-append>
@@ -52,7 +52,7 @@
                             <label cLabel="col" cCol md="3" for="input4-group1">Take Profit Percent</label>
                             <c-col md="12">
                                 <c-input-group>
-                                    <input cInput id="input4-group1" name="input4-group1" placeholder="Take Profit Percent">
+                                    <input cInput id="input4-group1" name="input4-group1" placeholder="Take Profit Percent" formControlName="takeProfitPerc">
                                     <c-input-group-append>
                                         <c-input-group-text>%</c-input-group-text>
                                     </c-input-group-append>
@@ -71,7 +71,7 @@
                                             <c-icon name="cil-dollar"></c-icon>
                                         </c-input-group-text>
                                     </c-input-group-prepend>
-                                    <input cInput id="input5-group1" name="input5-group1" placeholder="Max Dollar Amount">
+                                    <input cInput id="input5-group1" name="input5-group1" placeholder="Max Dollar Amount" formControlName="maxDollarAmount">
                                 </c-input-group>
                             </c-col>
                         </c-form-group>
@@ -80,7 +80,7 @@
                             <label cLabel="col" cCol md="3">Is Active?</label>
                             <c-col md="9" col="form-label">
                                 <c-form-check variant="checkbox">
-                                    <input cInput type="checkbox" value="option1" id="isActive">
+                                    <input cInput type="checkbox" value="option1" id="isActive" formControlName="isActive">
                                 </c-form-check>
                             </c-col>
                         </c-form-group>
@@ -93,7 +93,7 @@
                             <label cLabel="col" cCol md="3">Is Only Bullish?</label>
                             <c-col md="9" col="form-label">
                                 <c-form-check variant="checkbox">
-                                    <input cInput type="checkbox" value="option1" id="isOnlyBullish">
+                                    <input cInput type="checkbox" value="option1" id="isOnlyBullish" formControlName="isOnlyBullish">
                                 </c-form-check>
                             </c-col>
                         </c-form-group>
@@ -102,7 +102,7 @@
                             <label cLabel="col" cCol md="3">Is Only Bearish?</label>
                             <c-col md="9" col="form-label">
                                 <c-form-check variant="checkbox">
-                                    <input cInput type="checkbox" value="option1" id="isOnlyBearish">
+                                    <input cInput type="checkbox" value="option1" id="isOnlyBearish" formControlName="isOnlyBearish">
                                 </c-form-check>
                             </c-col>
                         </c-form-group>
@@ -115,7 +115,7 @@
                         <c-form-group cCol sm="1">
                             <label for="condition1">Condition 1</label>
                             <c-form-check variant="checkbox" class="checkbox-condition">
-                                <input cInput type="checkbox" value="option1" id="condition1">
+                                <input cInput type="checkbox" value="option1" id="condition1" formControlName="condition1">
                             </c-form-check>
                         </c-form-group>
 <!--                        CONDITION 1 NOTE-->
@@ -127,14 +127,14 @@
                                         <c-icon name="cil-notes"></c-icon>
                                     </c-input-group-text>
                                 </c-input-group-prepend>
-                                <input cInput id="conditionNote1" name="conditionNote1" placeholder="Condition 1 Note">
+                                <input cInput id="conditionNote1" name="conditionNote1" placeholder="Condition 1 Note" formControlName="conditionLabel1">
                             </c-input-group>
                         </c-form-group>
 <!--                        CONDITION 2 CHECKBOX-->
                         <c-form-group cCol sm="1">
                             <label for="condition2">Condition 2</label>
                             <c-form-check variant="checkbox">
-                                <input cInput type="checkbox" value="option1" id="condition2">
+                                <input cInput type="checkbox" value="option1" id="condition2" formControlName="condition2">
                             </c-form-check>
                         </c-form-group>
 <!--                        CONDITION 2 NOTE-->
@@ -146,7 +146,7 @@
                                         <c-icon name="cil-notes"></c-icon>
                                     </c-input-group-text>
                                 </c-input-group-prepend>
-                                <input cInput id="conditionNote2" name="conditionNote2" placeholder="Condition 2 Note">
+                                <input cInput id="conditionNote2" name="conditionNote2" placeholder="Condition 2 Note" formControlName="conditionLabel2">
                             </c-input-group>
                         </c-form-group>
                     </c-row>
@@ -158,7 +158,7 @@
                         <c-form-group cCol sm="1">
                             <label for="condition1">Condition 3</label>
                             <c-form-check variant="checkbox">
-                                <input cInput type="checkbox" value="option1" id="condition3">
+                                <input cInput type="checkbox" value="option1" id="condition3" formControlName="condition3">
                             </c-form-check>
                         </c-form-group>
 <!--                        CONDITION 3 NOTE-->
@@ -170,14 +170,14 @@
                                         <c-icon name="cil-notes"></c-icon>
                                     </c-input-group-text>
                                 </c-input-group-prepend>
-                                <input cInput id="conditionNote3" name="conditionNote3" placeholder="Condition 3 Note">
+                                <input cInput id="conditionNote3" name="conditionNote3" placeholder="Condition 3 Note" formControlName="conditionLabel3">
                             </c-input-group>
                         </c-form-group>
 <!--                        CONDITION 4 CHECKBOX-->
                         <c-form-group cCol sm="1">
                             <label for="condition4">Condition 4</label>
                             <c-form-check variant="checkbox">
-                                <input cInput type="checkbox" value="option1" id="condition4">
+                                <input cInput type="checkbox" value="option1" id="condition4" formControlName="condition4">
                             </c-form-check>
                         </c-form-group>
 <!--                        CONDITION 4 NOTE-->
@@ -189,7 +189,7 @@
                                         <c-icon name="cil-notes"></c-icon>
                                     </c-input-group-text>
                                 </c-input-group-prepend>
-                                <input cInput id="conditionNote4" name="conditionNote4" placeholder="Condition 4 Note">
+                                <input cInput id="conditionNote4" name="conditionNote4" placeholder="Condition 4 Note" formControlName="conditionLabel4">
                             </c-input-group>
                         </c-form-group>
                     </c-row>
@@ -201,7 +201,7 @@
                         <c-form-group cCol sm="1">
                             <label for="condition5">Condition 5</label>
                             <c-form-check variant="checkbox">
-                                <input cInput type="checkbox" value="option5" id="condition5">
+                                <input cInput type="checkbox" value="option5" id="condition5" formControlName="condition5">
                             </c-form-check>
                         </c-form-group>
 <!--                        CONDITION 5 NOTE-->
@@ -213,13 +213,11 @@
                                         <c-icon name="cil-notes"></c-icon>
                                     </c-input-group-text>
                                 </c-input-group-prepend>
-                                <input cInput id="conditionNote5" name="conditionNote5" placeholder="Condition 5 Note">
+                                <input cInput id="conditionNote5" name="conditionNote5" placeholder="Condition 5 Note" formControlName="conditionLabel5">
                             </c-input-group>
                         </c-form-group>
                     </c-row>
 
-
-<!--                    <hr class="mt-0">-->
 
                 </form>
             </c-card-body>

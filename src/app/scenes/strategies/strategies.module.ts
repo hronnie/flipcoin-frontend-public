@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
 import {ButtonsModule} from 'ngx-bootstrap/buttons';
 
@@ -45,6 +45,7 @@ import {StrategiesComponent} from "./strategies.component";
         SwitchModule,
         ModalModule,
         FormModule,
+        ReactiveFormsModule,
     ],
     declarations: [
         StrategiesComponent,
