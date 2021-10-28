@@ -1,230 +1,226 @@
 <c-row>
-    <c-col sm="6">
+    <c-col sm="12">
         <c-card>
             <c-card-header>
                 <strong>Create/Update Strategy</strong> <small></small>
             </c-card-header>
             <c-card-body>
                 <form action="" class="form-horizontal" method="post">
+<!--                    STRATEGY ID-->
                     <c-form-group cRow>
-                        <label cLabel="col" cCol md="3" for="input1-group1">Strategy Id</label>
-                        <c-col md="12">
-                            <c-input-group>
-                                <c-input-group-prepend>
-                                    <c-input-group-text>
-                                        <c-icon name="cil-lightbulb"></c-icon>
-                                    </c-input-group-text>
-                                </c-input-group-prepend>
-                                <input cInput id="input1-group1" name="input1-group1" placeholder="Strategy Id">
-                            </c-input-group>
-                        </c-col>
+                        <c-form-group cCol>
+                            <label cLabel="col" cCol md="3" for="input1-group1">Strategy Id</label>
+                            <c-col md="12">
+                                <c-input-group>
+                                    <c-input-group-prepend>
+                                        <c-input-group-text>
+                                            <c-icon name="cil-lightbulb"></c-icon>
+                                        </c-input-group-text>
+                                    </c-input-group-prepend>
+                                    <input cInput id="input1-group1" name="input1-group1" placeholder="Strategy Id">
+                                </c-input-group>
+                            </c-col>
+                        </c-form-group>
+<!--                        STOP LOSS PERCENT-->
+                        <c-form-group cCol>
+                            <label cLabel="col" cCol md="3" for="input2-group1">Stop Loss Percent</label>
+                            <c-col md="12">
+                                <c-input-group>
+                                    <input cInput id="input2-group1" name="input2-group1" placeholder="Stop Loss Percent">
+                                    <c-input-group-append>
+                                        <c-input-group-text>%</c-input-group-text>
+                                    </c-input-group-append>
+                                </c-input-group>
+                            </c-col>
+                        </c-form-group>
+                    </c-form-group>
+<!--                    TRAILING STOP LOSS PERCENT-->
+                    <c-form-group cRow>
+                        <c-form-group cCol>
+                            <label cLabel="col" cCol md="3" for="input3-group1">Trailing Stop Loss Percent</label>
+                            <c-col md="12">
+                                <c-input-group>
+                                    <input cInput id="input3-group1" name="input3-group1" placeholder="Trailing Stop Loss Percent">
+                                    <c-input-group-append>
+                                        <c-input-group-text>%</c-input-group-text>
+                                    </c-input-group-append>
+                                </c-input-group>
+                            </c-col>
+                        </c-form-group>
+<!--                        TAKE PROFIT PERCENT-->
+                        <c-form-group cCol>
+                            <label cLabel="col" cCol md="3" for="input4-group1">Take Profit Percent</label>
+                            <c-col md="12">
+                                <c-input-group>
+                                    <input cInput id="input4-group1" name="input4-group1" placeholder="Take Profit Percent">
+                                    <c-input-group-append>
+                                        <c-input-group-text>%</c-input-group-text>
+                                    </c-input-group-append>
+                                </c-input-group>
+                            </c-col>
+                        </c-form-group>
+                    </c-form-group>
+<!--                    MAX DOLLAR AMOUNT -->
+                    <c-form-group cRow>
+                        <c-form-group cCol>
+                            <label cLabel="col" cCol md="3" for="input5-group1">Max Dollar Amount</label>
+                            <c-col md="12">
+                                <c-input-group>
+                                    <c-input-group-prepend>
+                                        <c-input-group-text>
+                                            <c-icon name="cil-dollar"></c-icon>
+                                        </c-input-group-text>
+                                    </c-input-group-prepend>
+                                    <input cInput id="input5-group1" name="input5-group1" placeholder="Max Dollar Amount">
+                                </c-input-group>
+                            </c-col>
+                        </c-form-group>
+<!--                        IS ACTIVE-->
+                        <c-form-group cCol>
+                            <label cLabel="col" cCol md="3">Is Active?</label>
+                            <c-col md="9" col="form-label">
+                                <c-form-check variant="checkbox">
+                                    <input cInput type="checkbox" value="option1" id="isActive">
+                                </c-form-check>
+                            </c-col>
+                        </c-form-group>
                     </c-form-group>
 
+                    <hr class="mt-0">
+<!--                    IS ONLY BULLISH-->
                     <c-form-group cRow>
-                        <label cLabel="col" cCol md="3" for="input2-group1">Stop Loss Percent</label>
-                        <c-col md="12">
-                            <c-input-group>
-                                <input cInput id="input2-group1" name="input2-group1" placeholder="Stop Loss Percent">
-                                <c-input-group-append>
-                                    <c-input-group-text>%</c-input-group-text>
-                                </c-input-group-append>
-                            </c-input-group>
-                        </c-col>
-                    </c-form-group>
-
-                    <c-form-group cRow>
-                        <label cLabel="col" cCol md="3" for="input3-group1">Trailing Stop Loss Percent</label>
-                        <c-col md="12">
-                            <c-input-group>
-                                <input cInput id="input3-group1" name="input3-group1" placeholder="Trailing Stop Loss Percent">
-                                <c-input-group-append>
-                                    <c-input-group-text>%</c-input-group-text>
-                                </c-input-group-append>
-                            </c-input-group>
-                        </c-col>
-                    </c-form-group>
-
-                    <c-form-group cRow>
-                        <label cLabel="col" cCol md="3" for="input4-group1">Take Profit Percent</label>
-                        <c-col md="12">
-                            <c-input-group>
-                                <input cInput id="input4-group1" name="input4-group1" placeholder="Take Profit Percent">
-                                <c-input-group-append>
-                                    <c-input-group-text>%</c-input-group-text>
-                                </c-input-group-append>
-                            </c-input-group>
-                        </c-col>
-                    </c-form-group>
-
-                    <c-form-group cRow>
-                        <label cLabel="col" cCol md="3" for="input5-group1">Max Dollar Amount</label>
-                        <c-col md="12">
-                            <c-input-group>
-                                <c-input-group-prepend>
-                                    <c-input-group-text>
-                                        <c-icon name="cil-dollar"></c-icon>
-                                    </c-input-group-text>
-                                </c-input-group-prepend>
-                                <input cInput id="input5-group1" name="input5-group1" placeholder="Max Dollar Amount">
-                            </c-input-group>
-                        </c-col>
+                        <c-form-group cCol>
+                            <label cLabel="col" cCol md="3">Is Only Bullish?</label>
+                            <c-col md="9" col="form-label">
+                                <c-form-check variant="checkbox">
+                                    <input cInput type="checkbox" value="option1" id="isOnlyBullish">
+                                </c-form-check>
+                            </c-col>
+                        </c-form-group>
+<!--                        IS ONLY BEARISH-->
+                        <c-form-group cCol>
+                            <label cLabel="col" cCol md="3">Is Only Bearish?</label>
+                            <c-col md="9" col="form-label">
+                                <c-form-check variant="checkbox">
+                                    <input cInput type="checkbox" value="option1" id="isOnlyBearish">
+                                </c-form-check>
+                            </c-col>
+                        </c-form-group>
                     </c-form-group>
 
                     <hr class="mt-0">
 
-                    <c-form-group cRow>
-                        <label cLabel="col" cCol md="3">Is Active?</label>
-                        <c-col md="9" col="form-label">
-                            <c-form-check variant="checkbox">
-                                <input cInput type="checkbox" value="option1" id="isActive">
-                            </c-form-check>
-                        </c-col>
-                    </c-form-group>
-
-                    <hr class="mt-0">
-
-                    <c-form-group cRow>
-                        <label cLabel="col" cCol md="3">Is Only Bullish?</label>
-                        <c-col md="9" col="form-label">
-                            <c-form-check variant="checkbox">
-                                <input cInput type="checkbox" value="option1" id="isOnlyBullish">
-                            </c-form-check>
-                        </c-col>
-                    </c-form-group>
-
-                    <c-form-group cRow>
-                        <label cLabel="col" cCol md="3">Is Only Bearish?</label>
-                        <c-col md="9" col="form-label">
-                            <c-form-check variant="checkbox">
-                                <input cInput type="checkbox" value="option1" id="isOnlyBearish">
-                            </c-form-check>
-                        </c-col>
-                    </c-form-group>
-
-                    <hr class="mt-0">
-
-                    <c-form-group cRow>
-                        <label cLabel="col" cCol md="3">Condition 1</label>
-                        <c-col md="9" col="form-label">
-                            <c-form-check variant="checkbox">
+                    <c-row>
+<!--                        CONDITION 1 CHECKBOX-->
+                        <c-form-group cCol sm="1">
+                            <label for="condition1">Condition 1</label>
+                            <c-form-check variant="checkbox" class="checkbox-condition">
                                 <input cInput type="checkbox" value="option1" id="condition1">
                             </c-form-check>
-                        </c-col>
-                    </c-form-group>
-
-                    <c-form-group cRow>
-                        <label cLabel="col" cCol md="3" for="input1-group3">Condition 1 Note</label>
-                        <c-col md="12">
+                        </c-form-group>
+<!--                        CONDITION 1 NOTE-->
+                        <c-form-group cCol sm="5">
+                            <label for="conditionNote1">Condition 1 Note</label>
                             <c-input-group>
                                 <c-input-group-prepend>
                                     <c-input-group-text>
                                         <c-icon name="cil-notes"></c-icon>
                                     </c-input-group-text>
                                 </c-input-group-prepend>
-                                <input cInput id="input1-group4" name="input1-group3" placeholder="Condition 1 Label">
+                                <input cInput id="conditionNote1" name="conditionNote1" placeholder="Condition 1 Note">
                             </c-input-group>
-                        </c-col>
-                    </c-form-group>
-
-                    <hr class="mt-0">
-
-                    <c-form-group cRow>
-                        <label cLabel="col" cCol md="3">Condition 2</label>
-                        <c-col md="9" col="form-label">
+                        </c-form-group>
+<!--                        CONDITION 2 CHECKBOX-->
+                        <c-form-group cCol sm="1">
+                            <label for="condition2">Condition 2</label>
                             <c-form-check variant="checkbox">
                                 <input cInput type="checkbox" value="option1" id="condition2">
                             </c-form-check>
-                        </c-col>
-                    </c-form-group>
-
-                    <c-form-group cRow>
-                        <label cLabel="col" cCol md="3" for="input1-group3">Condition 2 Note</label>
-                        <c-col md="12">
+                        </c-form-group>
+<!--                        CONDITION 2 NOTE-->
+                        <c-form-group cCol sm="5">
+                            <label for="conditionNote2">Condition 2 Note</label>
                             <c-input-group>
                                 <c-input-group-prepend>
                                     <c-input-group-text>
                                         <c-icon name="cil-notes"></c-icon>
                                     </c-input-group-text>
                                 </c-input-group-prepend>
-                                <input cInput id="input1-group3" name="input1-group3" placeholder="Condition 2 Label">
+                                <input cInput id="conditionNote2" name="conditionNote2" placeholder="Condition 2 Note">
                             </c-input-group>
-                        </c-col>
-                    </c-form-group>
+                        </c-form-group>
+                    </c-row>
 
                     <hr class="mt-0">
 
-                    <c-form-group cRow>
-                        <label cLabel="col" cCol md="3">Condition 3</label>
-                        <c-col md="9" col="form-label">
+                    <c-row>
+<!--                        CONDITION 3 CHECKBOX-->
+                        <c-form-group cCol sm="1">
+                            <label for="condition1">Condition 3</label>
                             <c-form-check variant="checkbox">
                                 <input cInput type="checkbox" value="option1" id="condition3">
                             </c-form-check>
-                        </c-col>
-                    </c-form-group>
-
-                    <c-form-group cRow>
-                        <label cLabel="col" cCol md="3" for="input3-group3">Condition 3 Note</label>
-                        <c-col md="12">
+                        </c-form-group>
+<!--                        CONDITION 3 NOTE-->
+                        <c-form-group cCol sm="5">
+                            <label for="conditionNote3">Condition 3 Note</label>
                             <c-input-group>
                                 <c-input-group-prepend>
                                     <c-input-group-text>
                                         <c-icon name="cil-notes"></c-icon>
                                     </c-input-group-text>
                                 </c-input-group-prepend>
-                                <input cInput id="input3-group3" name="input3-group3" placeholder="Condition 3 Label">
+                                <input cInput id="conditionNote3" name="conditionNote3" placeholder="Condition 3 Note">
                             </c-input-group>
-                        </c-col>
-                    </c-form-group>
-
-                    <hr class="mt-0">
-
-                    <c-form-group cRow>
-                        <label cLabel="col" cCol md="3">Condition 4</label>
-                        <c-col md="9" col="form-label">
+                        </c-form-group>
+<!--                        CONDITION 4 CHECKBOX-->
+                        <c-form-group cCol sm="1">
+                            <label for="condition4">Condition 4</label>
                             <c-form-check variant="checkbox">
                                 <input cInput type="checkbox" value="option1" id="condition4">
                             </c-form-check>
-                        </c-col>
-                    </c-form-group>
-
-                    <c-form-group cRow>
-                        <label cLabel="col" cCol md="3" for="input4-group3">Condition 4 Note</label>
-                        <c-col md="12">
+                        </c-form-group>
+<!--                        CONDITION 4 NOTE-->
+                        <c-form-group cCol sm="5">
+                            <label for="conditionNote4">Condition 4 Note</label>
                             <c-input-group>
                                 <c-input-group-prepend>
                                     <c-input-group-text>
                                         <c-icon name="cil-notes"></c-icon>
                                     </c-input-group-text>
                                 </c-input-group-prepend>
-                                <input cInput id="input4-group3" name="input4-group3" placeholder="Condition 4 Label">
+                                <input cInput id="conditionNote4" name="conditionNote4" placeholder="Condition 4 Note">
                             </c-input-group>
-                        </c-col>
-                    </c-form-group>
+                        </c-form-group>
+                    </c-row>
 
                     <hr class="mt-0">
 
-                    <c-form-group cRow>
-                        <label cLabel="col" cCol md="3">Condition 5</label>
-                        <c-col md="9" col="form-label">
+                    <c-row>
+<!--                        CONDITION 5 CHECKBOX-->
+                        <c-form-group cCol sm="1">
+                            <label for="condition5">Condition 5</label>
                             <c-form-check variant="checkbox">
-                                <input cInput type="checkbox" value="option1" id="condition5">
+                                <input cInput type="checkbox" value="option5" id="condition5">
                             </c-form-check>
-                        </c-col>
-                    </c-form-group>
-
-                    <c-form-group cRow>
-                        <label cLabel="col" cCol md="3" for="input5-group3">Condition 5 Note</label>
-                        <c-col md="12">
+                        </c-form-group>
+<!--                        CONDITION 5 NOTE-->
+                        <c-form-group cCol sm="5">
+                            <label for="conditionNote5">Condition 5 Note</label>
                             <c-input-group>
                                 <c-input-group-prepend>
                                     <c-input-group-text>
                                         <c-icon name="cil-notes"></c-icon>
                                     </c-input-group-text>
                                 </c-input-group-prepend>
-                                <input cInput id="input5-group3" name="input5-group3" placeholder="Condition 5 Label">
+                                <input cInput id="conditionNote5" name="conditionNote5" placeholder="Condition 5 Note">
                             </c-input-group>
-                        </c-col>
-                    </c-form-group>
+                        </c-form-group>
+                    </c-row>
+
+
+<!--                    <hr class="mt-0">-->
+
                 </form>
             </c-card-body>
             <c-card-footer>
