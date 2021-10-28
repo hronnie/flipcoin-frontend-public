@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
-// import { ChartsModule } from 'ng2-charts';
 import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
 import {ButtonsModule} from 'ngx-bootstrap/buttons';
 
@@ -23,7 +22,6 @@ import {CommonModule} from "@angular/common";
 import {PricePipe} from "../../pipes/price.pipe";
 import {SharedModule} from "../../core/auth/shared/shared.module";
 import {StrategiesRoutingModule} from "./strategies-routing.module";
-import {StrategiesDetailsComponent} from './strategies-details/strategies-details.component';
 import {StrategiesFormComponent} from './strategies-form/strategies-form.component';
 import {StrategiesComponent} from "./strategies.component";
 
@@ -50,7 +48,6 @@ import {StrategiesComponent} from "./strategies.component";
     ],
     declarations: [
         StrategiesComponent,
-        StrategiesDetailsComponent,
         StrategiesFormComponent],
     providers: [
         PricePipe

@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
-import {StrategiesDetailsComponent} from "./strategies-details/strategies-details.component";
 import {StrategiesComponent} from "./strategies.component";
 import {StrategiesFormComponent} from "./strategies-form/strategies-form.component";
 
@@ -11,13 +10,6 @@ const routes: Routes = [
         component: StrategiesComponent,
         data: {
             title: 'Strategies',
-        },
-    },
-    {
-        path: 'details/:strategyId',
-        component: StrategiesDetailsComponent,
-        data: {
-            title: 'Strategy details',
         },
     },
     {
