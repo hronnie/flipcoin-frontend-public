@@ -36,12 +36,36 @@ export class StrategiesFormComponent implements OnInit {
 
     reloadStrategy(): void {
         this.strategyService.getStrategy(this.strategyId).subscribe(strategyResult => {
+            this.strategyForm.patchValue({
+                strategyId: strategyResult.strategyId,
+                stopLossPerc: strategyResult.stopLossPerc,
+                trailingStopPerc: strategyResult.trailingStopPerc,
+                takeProfitPerc: strategyResult.takeProfitPerc,
+                maxDollarAmount: strategyResult.maxDollarAmount,
+                isActive: strategyResult.isActive,
+                isOnlyBullish: strategyResult.isOnlyBullish,
+                isOnlyBearish: strategyResult.isOnlyBearish,
+                condition1: strategyResult.condition1,
+                condition2: strategyResult.condition2,
+                condition3: strategyResult.condition3,
+                condition4: strategyResult.condition4,
+                condition5: strategyResult.condition5,
+                conditionLabel1: strategyResult.conditionLabel1,
+                conditionLabel2: strategyResult.conditionLabel2,
+                conditionLabel3: strategyResult.conditionLabel3,
+                conditionLabel4: strategyResult.conditionLabel4,
+                conditionLabel5: strategyResult.conditionLabel5,
+            });
             this.strategy = strategyResult;
-
         });
     }
 
     onSubmit(value: any) {
+        this.strategyService.createStrategy(new Strategy(value)).subscribe(
+            result => {
+
+            }
+        )
         console.log(value);
     }
 

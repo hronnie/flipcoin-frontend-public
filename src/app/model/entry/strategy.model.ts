@@ -31,7 +31,7 @@ export class Strategy {
 
     constructor(obj?: any) {
 
-        this.strategyId = obj && obj?.openOrders || '';
+        this.strategyId = obj && obj?.strategyId || '';
 
         this.stopLossPerc = obj && obj?.stopLossPerc || 0;
         this.trailingStopPerc = obj && obj?.trailingStopPerc || 0;

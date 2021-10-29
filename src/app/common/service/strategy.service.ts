@@ -17,5 +17,10 @@ export class StrategyService {
         return this.http.get<any>(`${baseUrl}/binance/frontendapi/strategy/${strategyId}`);
     }
 
+    createStrategy(strategy: Strategy): Observable<Strategy> {
+        const baseUrl = environment.apiUrl;
+        return this.http.post<any>(`${baseUrl}/binance/frontendapi/strategy/`, strategy);
+    }
+
 
 }

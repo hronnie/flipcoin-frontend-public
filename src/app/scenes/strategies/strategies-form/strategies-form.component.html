@@ -1,11 +1,12 @@
+                <form [formGroup]="strategyForm" #strategyFormRef (ngSubmit)="onSubmit(strategyForm.value)" class="form-horizontal" method="post">
 <c-row>
     <c-col sm="12">
         <c-card>
             <c-card-header>
-                <strong>Create/Update Strategy</strong> <small></small>
+                <strong *ngIf="isEdit">Update Strategy</strong>
+                <strong *ngIf="!isEdit">Create Strategy</strong>
             </c-card-header>
             <c-card-body>
-                <form [formGroup]="strategyForm" #strategyFormRef (ngSubmit)="onSubmit(strategyForm.value)" class="form-horizontal" method="post">
 <!--                    STRATEGY ID-->
                     <c-form-group cRow>
                         <c-form-group cCol>
@@ -219,7 +220,6 @@
                     </c-row>
 
 
-                </form>
             </c-card-body>
             <c-card-footer>
                 <button cButton class="mfe-1" color="success" size="sm" type="submit"><i class="cil-check-circle"></i>
@@ -230,3 +230,4 @@
         </c-card>
     </c-col>
 </c-row>
+                </form>
