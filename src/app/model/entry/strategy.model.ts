@@ -6,6 +6,7 @@ import {TakeProfitInput} from "../tradingview/takeProfitInput.model";
  */
 export class Strategy {
     strategyId: string;
+    strategyDesc: string;
     stopLossPerc: number;
     trailingStopPerc: number;
     takeProfitPerc: number;
@@ -32,6 +33,7 @@ export class Strategy {
     constructor(obj?: any) {
 
         this.strategyId = obj && obj?.strategyId || '';
+        this.strategyDesc = obj && obj?.strategyDesc || '';
 
         this.stopLossPerc = obj && obj?.stopLossPerc || 0;
         this.trailingStopPerc = obj && obj?.trailingStopPerc || 0;

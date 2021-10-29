@@ -7,48 +7,66 @@
                 <strong *ngIf="!isEdit">Create Strategy</strong>
             </c-card-header>
             <c-card-body>
-<!--                    STRATEGY ID-->
-                    <c-form-group cRow>
-                        <c-form-group cCol>
-                            <label cLabel="col" cCol md="3" for="input1-group1">Strategy Id</label>
-                            <c-col md="12">
-                                <c-input-group>
-                                    <c-input-group-prepend>
-                                        <c-input-group-text>
-                                            <c-icon name="cil-lightbulb"></c-icon>
-                                        </c-input-group-text>
-                                    </c-input-group-prepend>
-                                    <input cInput id="input1-group1" name="input1-group1" placeholder="Strategy Id" formControlName="strategyId">
-                                </c-input-group>
-                            </c-col>
-                        </c-form-group>
+                <c-row>
+                    <!--                        Is Active CHECKBOX-->
+                    <c-form-group cCol sm="1">
+                        <label for="condition2">Is Active?</label>
+                        <c-form-check variant="checkbox">
+                            <input cInput type="checkbox" value="option1" id="isActive" formControlName="isActive">
+                        </c-form-check>
+                    </c-form-group>
+
+<!--                    <c-form-group cCol sm="1">-->
+<!--                        <label cLabel="col" cCol md="2">Is Active?</label>-->
+<!--                        <c-form-check variant="checkbox" class="checkbox-condition">-->
+<!--                            <input cInput type="checkbox" value="option1" id="isActive" formControlName="isActive">-->
+<!--                        </c-form-check>-->
+<!--                    </c-form-group>-->
+                    <!--                        STRATEGY ID-->
+                    <c-form-group cCol sm="5">
+                        <label cLabel="col" cCol md="4" for="input1-group1">Strategy Id</label>
+                        <c-input-group>
+                            <c-input-group-prepend>
+                                <c-input-group-text>
+                                    <c-icon name="cil-lightbulb"></c-icon>
+                                </c-input-group-text>
+                            </c-input-group-prepend>
+                            <input cInput id="input1-group1" name="input1-group1" placeholder="Strategy Id" formControlName="strategyId">
+                        </c-input-group>
+                    </c-form-group>
+
+                    <!--                        STRATEGY DESCRIPTION-->
+                    <c-form-group cCol sm="6">
+                        <label for="conditionNote2">Strategy Description</label>
+                        <c-input-group>
+                            <c-input-group-prepend>
+                                <c-input-group-text>
+                                    <c-icon name="cil-description"></c-icon>
+                                </c-input-group-text>
+                            </c-input-group-prepend>
+                            <textarea cTextarea id="strategyDescription"
+                                      name="strategyDescription" rows="7"
+                                      placeholder="Strategy Description"
+                                      formControlName="strategyDesc">
+
+                                    </textarea>
+                        </c-input-group>
+                    </c-form-group>
+                </c-row>
 <!--                        STOP LOSS PERCENT-->
+                    <c-form-group cRow>
                         <c-form-group cCol>
                             <label cLabel="col" cCol md="3" for="input2-group1">Stop Loss Percent</label>
                             <c-col md="12">
                                 <c-input-group>
-                                    <input cInput id="input2-group1" name="input2-group1" placeholder="Stop Loss Percent" formControlName="stopLossPerc">
+                                    <input cInput id="input2-group1" name="input2-group1" placeholder="Stop Loss Percent" formControlName="stopLossPerc" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/"  >
                                     <c-input-group-append>
                                         <c-input-group-text>%</c-input-group-text>
                                     </c-input-group-append>
                                 </c-input-group>
                             </c-col>
                         </c-form-group>
-                    </c-form-group>
-<!--                    TRAILING STOP LOSS PERCENT-->
-                    <c-form-group cRow>
-                        <c-form-group cCol>
-                            <label cLabel="col" cCol md="3" for="input3-group1">Trailing Stop Loss Percent</label>
-                            <c-col md="12">
-                                <c-input-group>
-                                    <input cInput id="input3-group1" name="input3-group1" placeholder="Trailing Stop Loss Percent" formControlName="trailingStopPerc">
-                                    <c-input-group-append>
-                                        <c-input-group-text>%</c-input-group-text>
-                                    </c-input-group-append>
-                                </c-input-group>
-                            </c-col>
-                        </c-form-group>
-<!--                        TAKE PROFIT PERCENT-->
+                        <!--                        TAKE PROFIT PERCENT-->
                         <c-form-group cCol>
                             <label cLabel="col" cCol md="3" for="input4-group1">Take Profit Percent</label>
                             <c-col md="12">
@@ -60,9 +78,24 @@
                                 </c-input-group>
                             </c-col>
                         </c-form-group>
-                    </c-form-group>
+<!--                    </c-form-group>-->
+<!--                    TRAILING STOP LOSS PERCENT-->
+<!--                    <c-form-group cRow>-->
+                        <c-form-group cCol>
+                            <label cLabel="col" cCol md="3" for="input3-group1">Trailing Stop Loss Percent</label>
+                            <c-col md="12">
+                                <c-input-group>
+                                    <input cInput id="input3-group1" name="input3-group1" placeholder="Trailing Stop Loss Percent" formControlName="trailingStopPerc">
+                                    <c-input-group-append>
+                                        <c-input-group-text>%</c-input-group-text>
+                                    </c-input-group-append>
+                                </c-input-group>
+                            </c-col>
+                        </c-form-group>
+
+<!--                    </c-form-group>-->
 <!--                    MAX DOLLAR AMOUNT -->
-                    <c-form-group cRow>
+<!--                    <c-form-group cRow>-->
                         <c-form-group cCol>
                             <label cLabel="col" cCol md="3" for="input5-group1">Max Dollar Amount</label>
                             <c-col md="12">
@@ -76,15 +109,7 @@
                                 </c-input-group>
                             </c-col>
                         </c-form-group>
-<!--                        IS ACTIVE-->
-                        <c-form-group cCol>
-                            <label cLabel="col" cCol md="3">Is Active?</label>
-                            <c-col md="9" col="form-label">
-                                <c-form-check variant="checkbox">
-                                    <input cInput type="checkbox" value="option1" id="isActive" formControlName="isActive">
-                                </c-form-check>
-                            </c-col>
-                        </c-form-group>
+
                     </c-form-group>
 
                     <hr class="mt-0">
