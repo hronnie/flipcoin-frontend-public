@@ -30,7 +30,7 @@
                                        placeholder="Strategy Id"
                                        formControlName="strategyId"
                                        max="30"
-                                        [ngClass]="{ 'is-invalid':  (submitted || ctrls.strategyId.touched) && ctrls.strategyId.invalid, 'is-valid': ctrls.strategyId.touched && ctrls.strategyId.valid }">
+                                       [ngClass]="{ 'is-invalid':  (submitted || ctrls.strategyId.touched) && ctrls.strategyId.invalid, 'is-valid': ctrls.strategyId.touched && ctrls.strategyId.valid }">
                             </c-input-group>
                             <div *ngIf="strategyForm.get('strategyId').errors?.required && !strategyForm.get('strategyId').pristine" class="alert alert-danger">
                                 Strategy Id is required
@@ -58,9 +58,13 @@
                                 <textarea cTextarea id="strategyDescription"
                                           name="strategyDescription" rows="7"
                                           placeholder="Strategy Description"
-                                          formControlName="strategyDesc">
+                                          formControlName="strategyDesc"
+                                          [ngClass]="{ 'is-invalid':  (submitted || ctrls.strategyId.touched) && ctrls.strategyDesc.invalid, 'is-valid': ctrls.strategyDesc.touched && ctrls.strategyDesc.valid }">
 
                                         </textarea>
+                                <div *ngIf="strategyForm.get('strategyDesc').errors?.required && !strategyForm.get('strategyDesc').pristine" class="alert alert-danger">
+                                    Strategy Description is required
+                                </div>
                             </c-input-group>
                         </c-form-group>
                     </c-row>
@@ -74,11 +78,16 @@
                                                name="input2-group1"
                                                placeholder="Stop Loss Percent"
                                                formControlName="stopLossPerc"
-                                               [patterns]="customPatterns" mask="00.00">
+                                               type="number"
+                                               step="1"
+                                               [ngClass]="{ 'is-invalid':  (submitted || ctrls.stopLossPerc.touched) && ctrls.stopLossPerc.invalid, 'is-valid': ctrls.stopLossPerc.touched && ctrls.stopLossPerc.valid }">
                                         <c-input-group-append>
                                             <c-input-group-text>%</c-input-group-text>
                                         </c-input-group-append>
                                     </c-input-group>
+                                    <div *ngIf="strategyForm.get('stopLossPerc').errors?.required && !strategyForm.get('stopLossPerc').pristine" class="alert alert-danger">
+                                        Stop Loss Percent is required
+                                    </div>
                                 </c-col>
                             </c-form-group>
                             <!--                        TAKE PROFIT PERCENT-->
@@ -91,11 +100,16 @@
                                                name="input4-group1"
                                                placeholder="Take Profit Percent"
                                                formControlName="takeProfitPerc"
-                                               [patterns]="customPatterns" mask="00.00">
+                                               type="number"
+                                               step="1"
+                                               [ngClass]="{ 'is-invalid':  (submitted || ctrls.takeProfitPerc.touched) && ctrls.takeProfitPerc.invalid, 'is-valid': ctrls.takeProfitPerc.touched && ctrls.takeProfitPerc.valid }">
                                         <c-input-group-append>
                                             <c-input-group-text>%</c-input-group-text>
                                         </c-input-group-append>
                                     </c-input-group>
+                                    <div *ngIf="strategyForm.get('takeProfitPerc').errors?.required && !strategyForm.get('takeProfitPerc').pristine" class="alert alert-danger">
+                                        Take Profit Percent is required
+                                    </div>
                                 </c-col>
                             </c-form-group>
     <!--                    TRAILING STOP LOSS PERCENT-->
@@ -107,7 +121,8 @@
                                                name="input3-group1"
                                                placeholder="Trailing Stop Loss Percent"
                                                formControlName="trailingStopPerc"
-                                               [patterns]="customPatterns" mask="00.00">
+                                               type="number"
+                                               step="1">
                                         <c-input-group-append>
                                             <c-input-group-text>%</c-input-group-text>
                                         </c-input-group-append>
@@ -129,8 +144,12 @@
                                                name="input5-group1"
                                                placeholder="Max Dollar Amount"
                                                formControlName="maxDollarAmount"
-                                               [patterns]="customPatterns" mask="0000000000000000000">
+                                                type="number"
+                                                step="100"[ngClass]="{ 'is-invalid':  (submitted || ctrls.maxDollarAmount.touched) && ctrls.maxDollarAmount.invalid, 'is-valid': ctrls.maxDollarAmount.touched && ctrls.maxDollarAmount.valid }">
                                     </c-input-group>
+                                    <div *ngIf="strategyForm.get('maxDollarAmount').errors?.required && !strategyForm.get('maxDollarAmount').pristine" class="alert alert-danger">
+                                        Max Dollar Amount is required
+                                    </div>
                                 </c-col>
                             </c-form-group>
 
@@ -183,31 +202,37 @@
                             <c-row [formGroup]="bullishConditionItem">
                                 <!--                       BULLISH CONDITION STATUS;-->
                                 <c-form-group cCol sm="1">
-                                    <label for="condition1">Status</label>
+                                    <label for="condition">Status</label>
                                     <c-form-check variant="checkbox" class="checkbox-condition">
-                                        <input cInput type="checkbox" value="option1" id="condition1" formControlName="status">
+                                        <input cInput type="checkbox" value="option1" id="condition" formControlName="status">
                                     </c-form-check>
                                 </c-form-group>
                                 <!--                      BULLISH CONDITION NOTE -->
                                 <c-form-group cCol sm="5">
-                                    <label for="conditionNote1">Condition Note</label>
+                                    <label for="conditionNote">Condition Note</label>
                                     <c-input-group>
                                         <c-input-group-prepend>
                                             <c-input-group-text>
                                                 <c-icon name="cil-notes"></c-icon>
                                             </c-input-group-text>
                                         </c-input-group-prepend>
-                                        <input cInput id="conditionNote1" name="conditionNote1" placeholder="Condition 1 Note" formControlName="statusNote">
+                                        <input cInput id="conditionNote" name="conditionNote1" placeholder="Condition Note" formControlName="statusNote"
+                                               [ngClass]="{ 'is-invalid':  (submitted || bullishConditionStatusAt(i).touched) && bullishConditionStatusAt(i).invalid, 'is-valid': bullishConditionStatusAt(i).touched && bullishConditionStatusAt(i).valid }">
                                         <c-input-group-append>
-                                            <button cButton class="btn btn-secondary" (click)="deleteBullishCondition(i)">Delete</button>
+                                            <button cButton color="danger" shape="pill" (click)="deleteBullishCondition(i)">
+                                                <c-icon name="cil-delete"></c-icon>
+                                            </button>
                                         </c-input-group-append>
                                     </c-input-group>
+                                    <div *ngIf="bullishConditionStatusAt(i).touched && bullishConditionStatusAt(i).invalid" class="alert alert-danger">
+                                        Condition note is required
+                                    </div>
                                 </c-form-group>
                             </c-row>
                         </ng-container>
                     </ng-container>
 
-                    <c-col col="md" sm="4" class="mb-3 text-center">
+                    <c-col col="md" sm="4" class="mb-3">
                         <button cButton color="info" shape="pill" (click)="addBullishCondition()">
                             <c-icon name="cil-plus"></c-icon>
                             <span>&nbsp;Add</span>
@@ -243,17 +268,23 @@
                                                 <c-icon name="cil-notes"></c-icon>
                                             </c-input-group-text>
                                         </c-input-group-prepend>
-                                        <input cInput id="conditionNote1" name="conditionNote1" placeholder="Condition 1 Note" formControlName="statusNote">
+                                        <input cInput id="conditionNote1" name="conditionNote1" placeholder="Condition Note" formControlName="statusNote"
+                                               [ngClass]="{ 'is-invalid':  (submitted || bearishConditionStatusAt(i).touched) && bearishConditionStatusAt(i).invalid, 'is-valid': bearishConditionStatusAt(i).touched && bearishConditionStatusAt(i).valid }">
                                         <c-input-group-append>
-                                            <button cButton class="btn btn-secondary" (click)="deleteBearishCondition(i)">Delete</button>
+                                            <button cButton color="danger" shape="pill" (click)="deleteBearishCondition(i)">
+                                                <c-icon name="cil-delete"></c-icon>
+                                            </button>
                                         </c-input-group-append>
                                     </c-input-group>
+                                    <div *ngIf="bearishConditionStatusAt(i).touched && bearishConditionStatusAt(i).invalid" class="alert alert-danger">
+                                        Condition note is required
+                                    </div>
                                 </c-form-group>
                             </c-row>
                         </ng-container>
                     </ng-container>
 
-                    <c-col col="md" sm="4" class="mb-3 text-center">
+                    <c-col col="md" sm="4" class="mb-3">
                         <button cButton color="info" shape="pill" (click)="addBearishCondition()">
                             <c-icon name="cil-plus"></c-icon>
                             <span>&nbsp;Add</span>
@@ -280,7 +311,9 @@
                                                name="pricePercent"
                                                placeholder="Price Percent"
                                                formControlName="pricePercent"
-                                               [patterns]="customPatterns" mask="00.00">
+                                               type="number"
+                                               step="1"
+                                               [ngClass]="{ 'is-invalid':  (submitted || takeProfitPricePercentAt(i).touched) && takeProfitPricePercentAt(i).invalid, 'is-valid': takeProfitPricePercentAt(i).touched && takeProfitPricePercentAt(i).valid }">
                                         <c-input-group-append>
                                             <c-input-group-text>%</c-input-group-text>
                                         </c-input-group-append>
@@ -294,19 +327,25 @@
                                                name="quantityPercent"
                                                placeholder="Quantity Percent"
                                                formControlName="quantityPercent"
-                                               [patterns]="customPatterns" mask="00.00">
+                                               type="number"
+                                               step="1"
+                                               [ngClass]="{ 'is-invalid':  (submitted || takeProfitPricePercentAt(i).touched) && takeProfitPricePercentAt(i).invalid, 'is-valid': takeProfitPricePercentAt(i).touched && takeProfitPricePercentAt(i).valid }">
                                         <c-input-group-append>
                                             <c-input-group-text>%</c-input-group-text>
-                                            <button cButton class="btn btn-secondary" (click)="deleteTakeProfitInput(i)">Delete</button>
+                                            <button cButton color="danger" shape="pill" (click)="deleteTakeProfitInput(i)">
+                                                <c-icon name="cil-delete"></c-icon>
+                                            </button>
                                         </c-input-group-append>
                                     </c-input-group>
                                 </c-form-group>
-
+                                <div *ngIf="takeProfitPricePercentAt(i).touched && takeProfitPricePercentAt(i).invalid" class="alert alert-danger">
+                                    Price and Quantity Percents are required
+                                </div>
                             </c-row>
                         </ng-container>
                     </ng-container>
 
-                    <c-col col="md" sm="4" class="mb-3 text-center">
+                    <c-col col="md" sm="4" class="mb-3">
                         <button cButton color="info" shape="pill" (click)="addTakeProfitInput()">
                             <c-icon name="cil-plus"></c-icon>
                             <span>&nbsp;Add</span>
@@ -314,10 +353,10 @@
                     </c-col>
                 </c-card-body>
                 <c-card-footer>
-                    <button cButton class="mfe-1" color="success" size="sm" type="submit"><i class="cil-check-circle"></i>
+                    <button cButton class="mfe-1" color="success" size="sm" [disabled]="!strategyForm.valid" type="submit"><i class="cil-check-circle"></i>
                         Submit
                     </button>
-                    <button cButton color="danger" size="sm" type="reset"><i class="cil-ban"></i> Reset</button>
+                    <button cButton color="danger" size="sm" type="reset" (click)="strategyForm.reset()"><i class="cil-ban"></i> Reset</button>
                 </c-card-footer>
             </c-card>
         </c-col>

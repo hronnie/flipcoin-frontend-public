@@ -1,8 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {Strategy} from "../../../model/entry/strategy.model";
 import {StrategyService} from "../../../common/service/strategy.service";
-import {ActivatedRoute} from "@angular/router";
-import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {ActivatedRoute, Router} from "@angular/router";
+import {AbstractControl, FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {StrategyCondition} from "../../../model/entry/strategyCondition.model";
+import {TakeProfitInput} from "../../../model/tradingview/takeProfitInput.model";
+
 
 @Component({
     selector: 'app-strategies-form',
@@ -20,7 +23,8 @@ export class StrategiesFormComponent implements OnInit {
 
     constructor(private strategyService: StrategyService,
                 private route: ActivatedRoute,
-                private fb: FormBuilder) {
+                private fb: FormBuilder,
+                private router: Router) {
 
         this.strategyForm = fb.group(this.createForm(this.strategy));
     }
@@ -49,22 +53,58 @@ export class StrategiesFormComponent implements OnInit {
                 isOnlyBullish: strategyResult.isOnlyBullish,
                 isOnlyBearish: strategyResult.isOnlyBearish,
                 isBothWay: strategyResult.isBothWay,
-                bullishConditions: strategyResult.bullishConditions,
-                bearishConditions: strategyResult.bearishConditions,
-                takeProfitInputs: strategyResult.takeProfitInputs
+                bullishConditions: this.initBullishConditions(strategyResult.bullishConditions),
+                bearishConditions: this.initBearishConditions(strategyResult.bearishConditions),
+                takeProfitInputs: this.initTakeProfitInputs(strategyResult.takeProfitInputs)
             });
             this.strategy = strategyResult;
         });
     }
 
+    initBullishConditions(bullishConditions: StrategyCondition[]) {
+        for (const condition of bullishConditions) {
+            const bullishCondition = this.fb.group({
+                status: [condition.status, Validators.required],
+                statusNote: [condition.statusNote, Validators.required]
+            });
+            this.bullishConditions.push(bullishCondition);
+        }
+    }
+
+    initBearishConditions(bearishConditions: StrategyCondition[]) {
+        for (const condition of bearishConditions) {
+            const bearishCondition = this.fb.group({
+                status: [condition.status, Validators.required],
+                statusNote: [condition.statusNote, Validators.required]
+            });
+            this.bearishConditions.push(bearishCondition);
+        }
+    }
+
+    initTakeProfitInputs(takeProfitInputs: TakeProfitInput[]) {
+        for (const takeProfitInput of takeProfitInputs) {
+            const takeProfitInputObj = this.fb.group({
+                pricePercent: [takeProfitInput.pricePercent, Validators.required],
+                quantityPercent: [takeProfitInput.quantityPercent, Validators.required]
+            });
+            this.takeProfitInputs.push(takeProfitInputObj);
+        }
+    }
+
     onSubmit(value: any) {
         this.submitted = true;
+        if (this.isEdit === true) {
+            this.strategyService.updateStrategy(new Strategy(value)).subscribe(
+                result => {
+                    this.router.navigate(['/strategies']);
+                }
+            );
+        }
         this.strategyService.createStrategy(new Strategy(value)).subscribe(
             result => {
-
+                this.router.navigate(['/strategies']);
             }
-        )
-        console.log(value);
+        );
     }
 
     private createForm(strategy: Strategy): any {
@@ -92,6 +132,21 @@ export class StrategiesFormComponent implements OnInit {
 
     get bullishConditions() {
         return this.strategyForm.controls?.bullishConditions as FormArray;
+    }
+
+    bullishConditionStatusAt(index: number) {
+        const bullishFormArray = this.strategyForm.get('bullishConditions') as FormArray;
+        return bullishFormArray.at(index);
+    }
+
+    bearishConditionStatusAt(index: number) {
+        const bearishFormArray = this.strategyForm.get('bearishConditions') as FormArray;
+        return bearishFormArray.at(index);
+    }
+
+    takeProfitPricePercentAt(index: number) {
+        const takeProfitArray = this.strategyForm.get('takeProfitInputs') as FormArray;
+        return takeProfitArray.at(index);
     }
 
     get bearishConditions() {
@@ -164,4 +219,6 @@ export class StrategiesFormComponent implements OnInit {
             });
         }
     }
+
+
 }
