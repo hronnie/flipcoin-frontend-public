@@ -8,6 +8,7 @@ import {AuthService} from './services/auth/auth.service';
 import {UserProfileService} from './services/auth/userProfile.service';
 import {PricePipe} from "../../../pipes/price.pipe";
 import {PercentPipe} from "../../../pipes/percent.pipe";
+import {NgxMaskModule} from "ngx-mask";
 
 @NgModule({
     declarations: [
@@ -17,7 +18,8 @@ import {PercentPipe} from "../../../pipes/percent.pipe";
     ],
     imports: [
         CommonModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        NgxMaskModule.forRoot()
     ],
     exports: [
         AuthFormComponent,

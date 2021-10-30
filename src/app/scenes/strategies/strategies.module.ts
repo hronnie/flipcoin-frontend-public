@@ -24,6 +24,7 @@ import {SharedModule} from "../../core/auth/shared/shared.module";
 import {StrategiesRoutingModule} from "./strategies-routing.module";
 import {StrategiesFormComponent} from './strategies-form/strategies-form.component';
 import {StrategiesComponent} from "./strategies.component";
+import {NgxMaskModule} from "ngx-mask";
 
 @NgModule({
     imports: [
@@ -46,6 +47,7 @@ import {StrategiesComponent} from "./strategies.component";
         ModalModule,
         FormModule,
         ReactiveFormsModule,
+        NgxMaskModule,
     ],
     declarations: [
         StrategiesComponent,

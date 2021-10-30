@@ -1,258 +1,325 @@
-                <form [formGroup]="strategyForm" #strategyFormRef (ngSubmit)="onSubmit(strategyForm.value)" class="form-horizontal" method="post">
-<c-row>
-    <c-col sm="12">
-        <c-card>
-            <c-card-header>
-                <strong *ngIf="isEdit">Update Strategy</strong>
-                <strong *ngIf="!isEdit">Create Strategy</strong>
-            </c-card-header>
-            <c-card-body>
-                <c-row>
-                    <!--                        Is Active CHECKBOX-->
-                    <c-form-group cCol sm="1">
-                        <label for="condition2">Is Active?</label>
-                        <c-form-check variant="checkbox">
-                            <input cInput type="checkbox" value="option1" id="isActive" formControlName="isActive">
-                        </c-form-check>
-                    </c-form-group>
-
-<!--                    <c-form-group cCol sm="1">-->
-<!--                        <label cLabel="col" cCol md="2">Is Active?</label>-->
-<!--                        <c-form-check variant="checkbox" class="checkbox-condition">-->
-<!--                            <input cInput type="checkbox" value="option1" id="isActive" formControlName="isActive">-->
-<!--                        </c-form-check>-->
-<!--                    </c-form-group>-->
-                    <!--                        STRATEGY ID-->
-                    <c-form-group cCol sm="5">
-                        <label cLabel="col" cCol md="4" for="input1-group1">Strategy Id</label>
-                        <c-input-group>
-                            <c-input-group-prepend>
-                                <c-input-group-text>
-                                    <c-icon name="cil-lightbulb"></c-icon>
-                                </c-input-group-text>
-                            </c-input-group-prepend>
-                            <input cInput id="input1-group1" name="input1-group1" placeholder="Strategy Id" formControlName="strategyId">
-                        </c-input-group>
-                    </c-form-group>
-
-                    <!--                        STRATEGY DESCRIPTION-->
-                    <c-form-group cCol sm="6">
-                        <label for="conditionNote2">Strategy Description</label>
-                        <c-input-group>
-                            <c-input-group-prepend>
-                                <c-input-group-text>
-                                    <c-icon name="cil-description"></c-icon>
-                                </c-input-group-text>
-                            </c-input-group-prepend>
-                            <textarea cTextarea id="strategyDescription"
-                                      name="strategyDescription" rows="7"
-                                      placeholder="Strategy Description"
-                                      formControlName="strategyDesc">
-
-                                    </textarea>
-                        </c-input-group>
-                    </c-form-group>
-                </c-row>
-<!--                        STOP LOSS PERCENT-->
-                    <c-form-group cRow>
-                        <c-form-group cCol>
-                            <label cLabel="col" cCol md="3" for="input2-group1">Stop Loss Percent</label>
-                            <c-col md="12">
-                                <c-input-group>
-                                    <input cInput id="input2-group1" name="input2-group1" placeholder="Stop Loss Percent" formControlName="stopLossPerc" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/"  >
-                                    <c-input-group-append>
-                                        <c-input-group-text>%</c-input-group-text>
-                                    </c-input-group-append>
-                                </c-input-group>
-                            </c-col>
-                        </c-form-group>
-                        <!--                        TAKE PROFIT PERCENT-->
-                        <c-form-group cCol>
-                            <label cLabel="col" cCol md="3" for="input4-group1">Take Profit Percent</label>
-                            <c-col md="12">
-                                <c-input-group>
-                                    <input cInput id="input4-group1" name="input4-group1" placeholder="Take Profit Percent" formControlName="takeProfitPerc">
-                                    <c-input-group-append>
-                                        <c-input-group-text>%</c-input-group-text>
-                                    </c-input-group-append>
-                                </c-input-group>
-                            </c-col>
-                        </c-form-group>
-<!--                    </c-form-group>-->
-<!--                    TRAILING STOP LOSS PERCENT-->
-<!--                    <c-form-group cRow>-->
-                        <c-form-group cCol>
-                            <label cLabel="col" cCol md="3" for="input3-group1">Trailing Stop Loss Percent</label>
-                            <c-col md="12">
-                                <c-input-group>
-                                    <input cInput id="input3-group1" name="input3-group1" placeholder="Trailing Stop Loss Percent" formControlName="trailingStopPerc">
-                                    <c-input-group-append>
-                                        <c-input-group-text>%</c-input-group-text>
-                                    </c-input-group-append>
-                                </c-input-group>
-                            </c-col>
-                        </c-form-group>
-
-<!--                    </c-form-group>-->
-<!--                    MAX DOLLAR AMOUNT -->
-<!--                    <c-form-group cRow>-->
-                        <c-form-group cCol>
-                            <label cLabel="col" cCol md="3" for="input5-group1">Max Dollar Amount</label>
-                            <c-col md="12">
-                                <c-input-group>
-                                    <c-input-group-prepend>
-                                        <c-input-group-text>
-                                            <c-icon name="cil-dollar"></c-icon>
-                                        </c-input-group-text>
-                                    </c-input-group-prepend>
-                                    <input cInput id="input5-group1" name="input5-group1" placeholder="Max Dollar Amount" formControlName="maxDollarAmount">
-                                </c-input-group>
-                            </c-col>
-                        </c-form-group>
-
-                    </c-form-group>
-
-                    <hr class="mt-0">
-<!--                    IS ONLY BULLISH-->
-                    <c-form-group cRow>
-                        <c-form-group cCol>
-                            <label cLabel="col" cCol md="3">Is Only Bullish?</label>
-                            <c-col md="9" col="form-label">
-                                <c-form-check variant="checkbox">
-                                    <input cInput type="checkbox" value="option1" id="isOnlyBullish" formControlName="isOnlyBullish">
-                                </c-form-check>
-                            </c-col>
-                        </c-form-group>
-<!--                        IS ONLY BEARISH-->
-                        <c-form-group cCol>
-                            <label cLabel="col" cCol md="3">Is Only Bearish?</label>
-                            <c-col md="9" col="form-label">
-                                <c-form-check variant="checkbox">
-                                    <input cInput type="checkbox" value="option1" id="isOnlyBearish" formControlName="isOnlyBearish">
-                                </c-form-check>
-                            </c-col>
-                        </c-form-group>
-                    </c-form-group>
-
-                    <hr class="mt-0">
-
+<form [formGroup]="strategyForm" #strategyFormRef (ngSubmit)="onSubmit(strategyForm.value)" class="form-horizontal" method="post">
+    <c-row>
+        <c-col sm="12">
+            <c-card>
+                <c-card-header>
+                    <strong *ngIf="isEdit">Update Strategy</strong>
+                    <strong *ngIf="!isEdit">Create Strategy</strong>
+                </c-card-header>
+                <c-card-body>
                     <c-row>
-<!--                        CONDITION 1 CHECKBOX-->
+                        <!--                        Is Active CHECKBOX-->
                         <c-form-group cCol sm="1">
-                            <label for="condition1">Condition 1</label>
-                            <c-form-check variant="checkbox" class="checkbox-condition">
-                                <input cInput type="checkbox" value="option1" id="condition1" formControlName="condition1">
-                            </c-form-check>
-                        </c-form-group>
-<!--                        CONDITION 1 NOTE-->
-                        <c-form-group cCol sm="5">
-                            <label for="conditionNote1">Condition 1 Note</label>
-                            <c-input-group>
-                                <c-input-group-prepend>
-                                    <c-input-group-text>
-                                        <c-icon name="cil-notes"></c-icon>
-                                    </c-input-group-text>
-                                </c-input-group-prepend>
-                                <input cInput id="conditionNote1" name="conditionNote1" placeholder="Condition 1 Note" formControlName="conditionLabel1">
-                            </c-input-group>
-                        </c-form-group>
-<!--                        CONDITION 2 CHECKBOX-->
-                        <c-form-group cCol sm="1">
-                            <label for="condition2">Condition 2</label>
+                            <label for="isActive">Is Active?</label>
                             <c-form-check variant="checkbox">
-                                <input cInput type="checkbox" value="option1" id="condition2" formControlName="condition2">
+                                <input cInput type="checkbox" value="option1" id="isActive" formControlName="isActive">
                             </c-form-check>
                         </c-form-group>
-<!--                        CONDITION 2 NOTE-->
+
+                        <!--                        STRATEGY ID-->
                         <c-form-group cCol sm="5">
-                            <label for="conditionNote2">Condition 2 Note</label>
+                            <label cLabel="col" cCol md="4" for="input1-group1">Strategy Id</label>
                             <c-input-group>
                                 <c-input-group-prepend>
                                     <c-input-group-text>
-                                        <c-icon name="cil-notes"></c-icon>
+                                        <c-icon name="cil-lightbulb"></c-icon>
                                     </c-input-group-text>
                                 </c-input-group-prepend>
-                                <input cInput id="conditionNote2" name="conditionNote2" placeholder="Condition 2 Note" formControlName="conditionLabel2">
+                                <input cInput id="input1-group1"
+                                       name="input1-group1"
+                                       placeholder="Strategy Id"
+                                       formControlName="strategyId"
+                                       max="30"
+                                        [ngClass]="{ 'is-invalid':  (submitted || ctrls.strategyId.touched) && ctrls.strategyId.invalid, 'is-valid': ctrls.strategyId.touched && ctrls.strategyId.valid }">
+                            </c-input-group>
+                            <div *ngIf="strategyForm.get('strategyId').errors?.required && !strategyForm.get('strategyId').pristine" class="alert alert-danger">
+                                Strategy Id is required
+                            </div>
+                            <div *ngIf="strategyForm.get('strategyId').errors?.pattern && !strategyForm.get('strategyId').pristine" class="alert alert-danger">
+                                Strategy Id can contain only numbers, letters, - and _ characters.
+                            </div>
+                            <div *ngIf="strategyForm.get('strategyId').errors?.minlength && !strategyForm.get('strategyId').pristine" class="alert alert-danger">
+                                Strategy Id must be at least 3 characters.
+                            </div>
+                            <div *ngIf="strategyForm.get('strategyId').errors?.maxlength && !strategyForm.get('strategyId').pristine" class="alert alert-danger">
+                                Strategy Id must be maximum 30 characters.
+                            </div>
+                        </c-form-group>
+
+                        <!--                        STRATEGY DESCRIPTION-->
+                        <c-form-group cCol sm="6">
+                            <label for="strategyDescription">Strategy Description</label>
+                            <c-input-group>
+                                <c-input-group-prepend>
+                                    <c-input-group-text>
+                                        <c-icon name="cil-description"></c-icon>
+                                    </c-input-group-text>
+                                </c-input-group-prepend>
+                                <textarea cTextarea id="strategyDescription"
+                                          name="strategyDescription" rows="7"
+                                          placeholder="Strategy Description"
+                                          formControlName="strategyDesc">
+
+                                        </textarea>
                             </c-input-group>
                         </c-form-group>
                     </c-row>
+    <!--                        STOP LOSS PERCENT-->
+                        <c-form-group cRow>
+                            <c-form-group cCol>
+                                <label cLabel="col" cCol md="3" for="input2-group1">Stop Loss Percent</label>
+                                <c-col md="12">
+                                    <c-input-group>
+                                        <input cInput id="input2-group1"
+                                               name="input2-group1"
+                                               placeholder="Stop Loss Percent"
+                                               formControlName="stopLossPerc"
+                                               [patterns]="customPatterns" mask="00.00">
+                                        <c-input-group-append>
+                                            <c-input-group-text>%</c-input-group-text>
+                                        </c-input-group-append>
+                                    </c-input-group>
+                                </c-col>
+                            </c-form-group>
+                            <!--                        TAKE PROFIT PERCENT-->
+                            <c-form-group cCol>
+                                <label cLabel="col" cCol md="3" for="input4-group1">Take Profit Percent</label>
+                                <c-col md="12">
+                                    <c-input-group>
+                                        <input cInput
+                                               id="input4-group1"
+                                               name="input4-group1"
+                                               placeholder="Take Profit Percent"
+                                               formControlName="takeProfitPerc"
+                                               [patterns]="customPatterns" mask="00.00">
+                                        <c-input-group-append>
+                                            <c-input-group-text>%</c-input-group-text>
+                                        </c-input-group-append>
+                                    </c-input-group>
+                                </c-col>
+                            </c-form-group>
+    <!--                    TRAILING STOP LOSS PERCENT-->
+                            <c-form-group cCol>
+                                <label cLabel="col" cCol md="3" for="input3-group1">Trailing Stop Loss Percent</label>
+                                <c-col md="12">
+                                    <c-input-group>
+                                        <input cInput id="input3-group1"
+                                               name="input3-group1"
+                                               placeholder="Trailing Stop Loss Percent"
+                                               formControlName="trailingStopPerc"
+                                               [patterns]="customPatterns" mask="00.00">
+                                        <c-input-group-append>
+                                            <c-input-group-text>%</c-input-group-text>
+                                        </c-input-group-append>
+                                    </c-input-group>
+                                </c-col>
+                            </c-form-group>
 
-                    <hr class="mt-0">
+    <!--                    MAX DOLLAR AMOUNT -->
+                            <c-form-group cCol>
+                                <label cLabel="col" cCol md="3" for="input5-group1">Max Dollar Amount</label>
+                                <c-col md="12">
+                                    <c-input-group>
+                                        <c-input-group-prepend>
+                                            <c-input-group-text>
+                                                <c-icon name="cil-dollar"></c-icon>
+                                            </c-input-group-text>
+                                        </c-input-group-prepend>
+                                        <input cInput id="input5-group1"
+                                               name="input5-group1"
+                                               placeholder="Max Dollar Amount"
+                                               formControlName="maxDollarAmount"
+                                               [patterns]="customPatterns" mask="0000000000000000000">
+                                    </c-input-group>
+                                </c-col>
+                            </c-form-group>
 
-                    <c-row>
-<!--                        CONDITION 3 CHECKBOX-->
-                        <c-form-group cCol sm="1">
-                            <label for="condition1">Condition 3</label>
-                            <c-form-check variant="checkbox">
-                                <input cInput type="checkbox" value="option1" id="condition3" formControlName="condition3">
-                            </c-form-check>
                         </c-form-group>
-<!--                        CONDITION 3 NOTE-->
-                        <c-form-group cCol sm="5">
-                            <label for="conditionNote3">Condition 3 Note</label>
-                            <c-input-group>
-                                <c-input-group-prepend>
-                                    <c-input-group-text>
-                                        <c-icon name="cil-notes"></c-icon>
-                                    </c-input-group-text>
-                                </c-input-group-prepend>
-                                <input cInput id="conditionNote3" name="conditionNote3" placeholder="Condition 3 Note" formControlName="conditionLabel3">
-                            </c-input-group>
-                        </c-form-group>
-<!--                        CONDITION 4 CHECKBOX-->
-                        <c-form-group cCol sm="1">
-                            <label for="condition4">Condition 4</label>
-                            <c-form-check variant="checkbox">
-                                <input cInput type="checkbox" value="option1" id="condition4" formControlName="condition4">
-                            </c-form-check>
-                        </c-form-group>
-<!--                        CONDITION 4 NOTE-->
-                        <c-form-group cCol sm="5">
-                            <label for="conditionNote4">Condition 4 Note</label>
-                            <c-input-group>
-                                <c-input-group-prepend>
-                                    <c-input-group-text>
-                                        <c-icon name="cil-notes"></c-icon>
-                                    </c-input-group-text>
-                                </c-input-group-prepend>
-                                <input cInput id="conditionNote4" name="conditionNote4" placeholder="Condition 4 Note" formControlName="conditionLabel4">
-                            </c-input-group>
-                        </c-form-group>
-                    </c-row>
 
-                    <hr class="mt-0">
-
-                    <c-row>
-<!--                        CONDITION 5 CHECKBOX-->
-                        <c-form-group cCol sm="1">
-                            <label for="condition5">Condition 5</label>
-                            <c-form-check variant="checkbox">
-                                <input cInput type="checkbox" value="option5" id="condition5" formControlName="condition5">
-                            </c-form-check>
+                        <hr class="mt-0">
+    <!--                    IS ONLY BULLISH-->
+                        <c-form-group cRow>
+                            <c-form-group cCol>
+                                <label cLabel="col" cCol md="3">Is Only Bullish?</label>
+                                <c-col md="9" col="form-label">
+                                    <c-form-check variant="checkbox">
+                                        <input cInput type="checkbox" value="option1" id="isOnlyBullish" formControlName="isOnlyBullish" (click)="isBullishClicked($event)">
+                                    </c-form-check>
+                                </c-col>
+                            </c-form-group>
+    <!--                        IS ONLY BEARISH-->
+                            <c-form-group cCol>
+                                <label cLabel="col" cCol md="3">Is Only Bearish?</label>
+                                <c-col md="9" col="form-label">
+                                    <c-form-check variant="checkbox">
+                                        <input cInput type="checkbox" value="option1" id="isOnlyBearish" formControlName="isOnlyBearish" (click)="isBearishClicked($event)">
+                                    </c-form-check>
+                                </c-col>
+                            </c-form-group>
+    <!--                        IS ONLY BEARISH-->
+                            <c-form-group cCol>
+                                <label cLabel="col" cCol md="3">Is Both Way?</label>
+                                <c-col md="9" col="form-label">
+                                    <c-form-check variant="checkbox">
+                                        <input cInput type="checkbox" value="option1" id="isBothWay" formControlName="isBothWay" (click)="isBothClicked($event)">
+                                    </c-form-check>
+                                </c-col>
+                            </c-form-group>
                         </c-form-group>
-<!--                        CONDITION 5 NOTE-->
-                        <c-form-group cCol sm="5">
-                            <label for="conditionNote5">Condition 5 Note</label>
-                            <c-input-group>
-                                <c-input-group-prepend>
-                                    <c-input-group-text>
-                                        <c-icon name="cil-notes"></c-icon>
-                                    </c-input-group-text>
-                                </c-input-group-prepend>
-                                <input cInput id="conditionNote5" name="conditionNote5" placeholder="Condition 5 Note" formControlName="conditionLabel5">
-                            </c-input-group>
-                        </c-form-group>
-                    </c-row>
 
+                </c-card-body>
+            </c-card>
+        </c-col>
+    </c-row>
+    <c-row>
+        <c-col sm="12">
+            <c-card>
+                <c-card-header>
+                    <strong>Bullish conditions</strong>
+                </c-card-header>
+                <c-card-body>
+                    <ng-container formArrayName="bullishConditions">
+                        <ng-container *ngFor="let bullishConditionItem of bullishConditions.controls; let i = index">
+                            <c-row [formGroup]="bullishConditionItem">
+                                <!--                       BULLISH CONDITION STATUS;-->
+                                <c-form-group cCol sm="1">
+                                    <label for="condition1">Status</label>
+                                    <c-form-check variant="checkbox" class="checkbox-condition">
+                                        <input cInput type="checkbox" value="option1" id="condition1" formControlName="status">
+                                    </c-form-check>
+                                </c-form-group>
+                                <!--                      BULLISH CONDITION NOTE -->
+                                <c-form-group cCol sm="5">
+                                    <label for="conditionNote1">Condition Note</label>
+                                    <c-input-group>
+                                        <c-input-group-prepend>
+                                            <c-input-group-text>
+                                                <c-icon name="cil-notes"></c-icon>
+                                            </c-input-group-text>
+                                        </c-input-group-prepend>
+                                        <input cInput id="conditionNote1" name="conditionNote1" placeholder="Condition 1 Note" formControlName="statusNote">
+                                        <c-input-group-append>
+                                            <button cButton class="btn btn-secondary" (click)="deleteBullishCondition(i)">Delete</button>
+                                        </c-input-group-append>
+                                    </c-input-group>
+                                </c-form-group>
+                            </c-row>
+                        </ng-container>
+                    </ng-container>
 
-            </c-card-body>
-            <c-card-footer>
-                <button cButton class="mfe-1" color="success" size="sm" type="submit"><i class="cil-check-circle"></i>
-                    Submit
-                </button>
-                <button cButton color="danger" size="sm" type="reset"><i class="cil-ban"></i> Reset</button>
-            </c-card-footer>
-        </c-card>
-    </c-col>
-</c-row>
-                </form>
+                    <c-col col="md" sm="4" class="mb-3 text-center">
+                        <button cButton color="info" shape="pill" (click)="addBullishCondition()">
+                            <c-icon name="cil-plus"></c-icon>
+                            <span>&nbsp;Add</span>
+                        </button>
+                    </c-col>
+                </c-card-body>
+            </c-card>
+        </c-col>
+    </c-row>
+    <c-row>
+        <c-col sm="12">
+            <c-card>
+                <c-card-header>
+                    <strong>Bearish conditions</strong>
+                </c-card-header>
+                <c-card-body>
+                    <ng-container formArrayName="bearishConditions">
+                        <ng-container *ngFor="let bearishConditionItem of bearishConditions.controls; let i = index">
+                            <c-row [formGroup]="bearishConditionItem">
+                                <!--                       BEARISH CONDITION STATUS;-->
+                                <c-form-group cCol sm="1">
+                                    <label for="condition1">Status</label>
+                                    <c-form-check variant="checkbox" class="checkbox-condition">
+                                        <input cInput type="checkbox" value="option1" id="condition1" formControlName="status">
+                                    </c-form-check>
+                                </c-form-group>
+                                <!--                      BEARISH CONDITION NOTE -->
+                                <c-form-group cCol sm="5">
+                                    <label for="conditionNote1">Condition Note</label>
+                                    <c-input-group>
+                                        <c-input-group-prepend>
+                                            <c-input-group-text>
+                                                <c-icon name="cil-notes"></c-icon>
+                                            </c-input-group-text>
+                                        </c-input-group-prepend>
+                                        <input cInput id="conditionNote1" name="conditionNote1" placeholder="Condition 1 Note" formControlName="statusNote">
+                                        <c-input-group-append>
+                                            <button cButton class="btn btn-secondary" (click)="deleteBearishCondition(i)">Delete</button>
+                                        </c-input-group-append>
+                                    </c-input-group>
+                                </c-form-group>
+                            </c-row>
+                        </ng-container>
+                    </ng-container>
+
+                    <c-col col="md" sm="4" class="mb-3 text-center">
+                        <button cButton color="info" shape="pill" (click)="addBearishCondition()">
+                            <c-icon name="cil-plus"></c-icon>
+                            <span>&nbsp;Add</span>
+                        </button>
+                    </c-col>
+                </c-card-body>
+            </c-card>
+        </c-col>
+    </c-row>
+    <c-row>
+        <c-col sm="12">
+            <c-card>
+                <c-card-header>
+                    <strong>Take Profit Inputs</strong>
+                </c-card-header>
+                <c-card-body>
+                    <ng-container formArrayName="takeProfitInputs">
+                        <ng-container *ngFor="let takeProfitInputItem of takeProfitInputs.controls; let i = index">
+                            <c-row [formGroup]="takeProfitInputItem">
+                                <c-form-group cCol sm="3">
+                                    <label for="condition1">Price Percent</label>
+                                    <c-input-group>
+                                        <input cInput id="pricePercent"
+                                               name="pricePercent"
+                                               placeholder="Price Percent"
+                                               formControlName="pricePercent"
+                                               [patterns]="customPatterns" mask="00.00">
+                                        <c-input-group-append>
+                                            <c-input-group-text>%</c-input-group-text>
+                                        </c-input-group-append>
+                                    </c-input-group>
+                                </c-form-group>
+
+                                <c-form-group cCol sm="3">
+                                    <label for="condition1">Quantity Percent</label>
+                                    <c-input-group>
+                                        <input cInput id="quantityPercent"
+                                               name="quantityPercent"
+                                               placeholder="Quantity Percent"
+                                               formControlName="quantityPercent"
+                                               [patterns]="customPatterns" mask="00.00">
+                                        <c-input-group-append>
+                                            <c-input-group-text>%</c-input-group-text>
+                                            <button cButton class="btn btn-secondary" (click)="deleteTakeProfitInput(i)">Delete</button>
+                                        </c-input-group-append>
+                                    </c-input-group>
+                                </c-form-group>
+
+                            </c-row>
+                        </ng-container>
+                    </ng-container>
+
+                    <c-col col="md" sm="4" class="mb-3 text-center">
+                        <button cButton color="info" shape="pill" (click)="addTakeProfitInput()">
+                            <c-icon name="cil-plus"></c-icon>
+                            <span>&nbsp;Add</span>
+                        </button>
+                    </c-col>
+                </c-card-body>
+                <c-card-footer>
+                    <button cButton class="mfe-1" color="success" size="sm" type="submit"><i class="cil-check-circle"></i>
+                        Submit
+                    </button>
+                    <button cButton color="danger" size="sm" type="reset"><i class="cil-ban"></i> Reset</button>
+                </c-card-footer>
+            </c-card>
+        </c-col>
+    </c-row>
+</form>
