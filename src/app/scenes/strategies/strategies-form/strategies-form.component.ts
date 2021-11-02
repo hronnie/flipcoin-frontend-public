@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Strategy} from "../../../model/entry/strategy.model";
 import {StrategyService} from "../../../common/service/strategy.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {AbstractControl, FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {StrategyCondition} from "../../../model/entry/strategyCondition.model";
 import {TakeProfitInput} from "../../../model/tradingview/takeProfitInput.model";
 import {StrategyValidators} from "../../../common/validators/strategy.validator";
@@ -20,7 +20,7 @@ export class StrategiesFormComponent implements OnInit {
     strategyForm: FormGroup;
     isEdit = false;
     submitted = false;
-    public customPatterns = { '0': { pattern: new RegExp('\[0-9\]')} };
+    public customPatterns = {'0': {pattern: new RegExp('\[0-9\]')}};
     private originalStrategyId: string;
 
     constructor(private strategyService: StrategyService,
@@ -39,6 +39,22 @@ export class StrategiesFormComponent implements OnInit {
             });
         this.strategyForm = this.fb.group(this.createForm(this.strategy));
 
+    }
+
+    get ctrls() {
+        return this.strategyForm.controls;
+    }
+
+    get bullishConditions() {
+        return this.strategyForm.controls?.bullishConditions as FormArray;
+    }
+
+    get bearishConditions() {
+        return this.strategyForm.controls?.bearishConditions as FormArray;
+    }
+
+    get takeProfitInputs() {
+        return this.strategyForm.controls?.takeProfitInputs as FormArray;
     }
 
     ngOnInit(): void {
@@ -114,33 +130,6 @@ export class StrategiesFormComponent implements OnInit {
         }
     }
 
-    private createForm(strategy: Strategy): any {
-        return {
-            strategyId: [strategy.strategyId, [Validators.required, Validators.max(30), Validators.min(3),
-                Validators.pattern('^[a-zA-Z0-9_-]*$')], this.strategyValidator.strategyIdValidator(this.isEdit)],
-            strategyDesc: [strategy.strategyDesc, [Validators.required]],
-            stopLossPerc: [strategy.stopLossPerc, [Validators.required]],
-            trailingStopPerc: [strategy.trailingStopPerc, []],
-            takeProfitPerc: [strategy.takeProfitPerc, [Validators.required]],
-            maxDollarAmount: [strategy.maxDollarAmount, [Validators.required]],
-            isActive: [strategy.isActive, []],
-            isOnlyBullish: [strategy.isOnlyBullish, []],
-            isOnlyBearish: [strategy.isOnlyBearish, []],
-            isBothWay: [strategy.isBothWay, []],
-            bullishConditions: this.fb.array([]),
-            bearishConditions: this.fb.array([]),
-            takeProfitInputs: this.fb.array([])
-        };
-    }
-
-    get ctrls() {
-        return this.strategyForm.controls;
-    }
-
-    get bullishConditions() {
-        return this.strategyForm.controls?.bullishConditions as FormArray;
-    }
-
     bullishConditionStatusAt(index: number) {
         const bullishFormArray = this.strategyForm.get('bullishConditions') as FormArray;
         return bullishFormArray.at(index);
@@ -156,18 +145,10 @@ export class StrategiesFormComponent implements OnInit {
         return takeProfitArray.at(index);
     }
 
-    get bearishConditions() {
-        return this.strategyForm.controls?.bearishConditions as FormArray;
-    }
-
-    get takeProfitInputs() {
-        return this.strategyForm.controls?.takeProfitInputs as FormArray;
-    }
-
     addBullishCondition() {
         const bullishCondition = this.fb.group({
-           status: [false, Validators.required],
-           statusNote: ['', Validators.required]
+            status: [false, Validators.required],
+            statusNote: ['', Validators.required]
         });
         this.bullishConditions.push(bullishCondition);
     }
@@ -178,8 +159,8 @@ export class StrategiesFormComponent implements OnInit {
 
     addBearishCondition() {
         const bearishCondition = this.fb.group({
-           status: [false, Validators.required],
-           statusNote: ['', Validators.required]
+            status: [false, Validators.required],
+            statusNote: ['', Validators.required]
         });
         this.bearishConditions.push(bearishCondition);
     }
@@ -234,5 +215,24 @@ export class StrategiesFormComponent implements OnInit {
         this.strategyForm.patchValue({
             strategyId: this.originalStrategyId
         });
+    }
+
+    private createForm(strategy: Strategy): any {
+        return {
+            strategyId: [strategy.strategyId, [Validators.required, Validators.max(30), Validators.min(3),
+                Validators.pattern('^[a-zA-Z0-9_-]*$')], this.strategyValidator.strategyIdValidator(this.isEdit)],
+            strategyDesc: [strategy.strategyDesc, [Validators.required]],
+            stopLossPerc: [strategy.stopLossPerc, [Validators.required]],
+            trailingStopPerc: [strategy.trailingStopPerc, []],
+            takeProfitPerc: [strategy.takeProfitPerc, [Validators.required]],
+            maxDollarAmount: [strategy.maxDollarAmount, [Validators.required]],
+            isActive: [strategy.isActive, []],
+            isOnlyBullish: [strategy.isOnlyBullish, []],
+            isOnlyBearish: [strategy.isOnlyBearish, []],
+            isBothWay: [strategy.isBothWay, []],
+            bullishConditions: this.fb.array([]),
+            bearishConditions: this.fb.array([]),
+            takeProfitInputs: this.fb.array([])
+        };
     }
 }

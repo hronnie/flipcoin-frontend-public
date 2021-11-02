@@ -6,21 +6,21 @@
                 <select (change)="onPageSizeChanged()" id="page-size">
                     <option value="20">20</option>
                     <option value="40">40</option>
-                    <option value="100" selected="100">100</option>
+                    <option selected="100" value="100">100</option>
                     <option value="1000">1000</option>
                 </select>
             </div>
             <ng-container *ngIf="!isLoading">
                 <ag-grid-angular
-                        style="max-width: 2000px; height: 800px;"
-                        class="ag-theme-alpine"
-                        [pagination]="true"
-                        [defaultColDef]="defaultColDef"
-                        [rowData]="rowData"
-                        [columnDefs]="columnDefs"
-                        [frameworkComponents]="frameworkComponents"
-                        [enableCellTextSelection]="true"
                         (gridReady)="onGridReady($event)"
+                        [columnDefs]="columnDefs"
+                        [defaultColDef]="defaultColDef"
+                        [enableCellTextSelection]="true"
+                        [frameworkComponents]="frameworkComponents"
+                        [pagination]="true"
+                        [rowData]="rowData"
+                        class="ag-theme-alpine"
+                        style="max-width: 2000px; height: 800px;"
                 >
                 </ag-grid-angular>
             </ng-container>

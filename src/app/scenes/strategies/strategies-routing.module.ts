@@ -3,6 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 
 import {StrategiesComponent} from "./strategies.component";
 import {StrategiesFormComponent} from "./strategies-form/strategies-form.component";
+import {StrategiesDetailsComponent} from "./strategies-details/strategies-details.component";
 
 const routes: Routes = [
     {
@@ -17,6 +18,13 @@ const routes: Routes = [
         component: StrategiesFormComponent,
         data: {
             title: 'Strategy edit',
+        },
+    },
+    {
+        path: 'details/:strategyId',
+        component: StrategiesDetailsComponent,
+        data: {
+            title: 'Strategy details',
         },
     },
     {

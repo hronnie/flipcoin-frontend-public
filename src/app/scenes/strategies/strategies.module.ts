@@ -9,7 +9,8 @@ import {
     CalloutModule,
     CardModule,
     ChartModule,
-    DropdownModule, FormModule,
+    DropdownModule,
+    FormModule,
     GridModule,
     ModalModule,
     ProgressModule,
@@ -25,6 +26,7 @@ import {StrategiesRoutingModule} from "./strategies-routing.module";
 import {StrategiesFormComponent} from './strategies-form/strategies-form.component';
 import {StrategiesComponent} from "./strategies.component";
 import {NgxMaskModule} from "ngx-mask";
+import {StrategiesDetailsComponent} from './strategies-details/strategies-details.component';
 
 @NgModule({
     imports: [
@@ -51,7 +53,8 @@ import {NgxMaskModule} from "ngx-mask";
     ],
     declarations: [
         StrategiesComponent,
-        StrategiesFormComponent],
+        StrategiesFormComponent,
+        StrategiesDetailsComponent],
     providers: [
         PricePipe
     ]
