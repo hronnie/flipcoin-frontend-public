@@ -3,8 +3,8 @@
         <c-col sm="12">
             <c-card>
                 <c-card-header>
-                    <strong *ngIf="isEdit">Update Strategy</strong>
-                    <strong *ngIf="!isEdit">Create Strategy</strong>
+<!--                    <strong *ngIf="isEdit">Update Strategy</strong>-->
+<!--                    <strong *ngIf="!isEdit">Create Strategy</strong>-->
                 </c-card-header>
                 <c-card-body>
                     <c-row>
@@ -30,9 +30,8 @@
                                        placeholder="Strategy Id (Cannot be changed after creation)"
                                        formControlName="strategyId"
                                        max="30"
-                                       [attr.disabled]="isEdit"
                                        (change)="restoreStrategyId()"
-                                       [ngClass]="{ 'is-invalid':  (submitted || ctrls.strategyId.touched) && ctrls.strategyId.invalid, 'is-valid': ctrls.strategyId.touched && ctrls.strategyId.valid }">
+                                       [ngClass]="{ 'is-invalid':  (submitted || ctrls?.strategyId.touched) && ctrls?.strategyId.invalid, 'is-valid': ctrls?.strategyId.touched && ctrls?.strategyId.valid }">
                             </c-input-group>
                             <div *ngIf="strategyForm.get('strategyId').errors?.required && !strategyForm.get('strategyId').pristine" class="alert alert-danger">
                                 Strategy Id is required
@@ -64,7 +63,7 @@
                                           name="strategyDescription" rows="7"
                                           placeholder="Strategy Description"
                                           formControlName="strategyDesc"
-                                          [ngClass]="{ 'is-invalid':  (submitted || ctrls.strategyId.touched) && ctrls.strategyDesc.invalid, 'is-valid': ctrls.strategyDesc.touched && ctrls.strategyDesc.valid }">
+                                          [ngClass]="{ 'is-invalid':  (submitted || ctrls?.strategyId.touched) && ctrls?.strategyDesc.invalid, 'is-valid': ctrls?.strategyDesc.touched && ctrls?.strategyDesc.valid }">
 
                                         </textarea>
                                 <div *ngIf="strategyForm.get('strategyDesc').errors?.required && !strategyForm.get('strategyDesc').pristine" class="alert alert-danger">
@@ -85,7 +84,7 @@
                                                formControlName="stopLossPerc"
                                                type="number"
                                                step="1"
-                                               [ngClass]="{ 'is-invalid':  (submitted || ctrls.stopLossPerc.touched) && ctrls.stopLossPerc.invalid, 'is-valid': ctrls.stopLossPerc.touched && ctrls.stopLossPerc.valid }">
+                                               [ngClass]="{ 'is-invalid':  (submitted || ctrls?.stopLossPerc.touched) && ctrls?.stopLossPerc.invalid, 'is-valid': ctrls?.stopLossPerc.touched && ctrls?.stopLossPerc.valid }">
                                         <c-input-group-append>
                                             <c-input-group-text>%</c-input-group-text>
                                         </c-input-group-append>
@@ -107,7 +106,7 @@
                                                formControlName="takeProfitPerc"
                                                type="number"
                                                step="1"
-                                               [ngClass]="{ 'is-invalid':  (submitted || ctrls.takeProfitPerc.touched) && ctrls.takeProfitPerc.invalid, 'is-valid': ctrls.takeProfitPerc.touched && ctrls.takeProfitPerc.valid }">
+                                               [ngClass]="{ 'is-invalid':  (submitted || ctrls?.takeProfitPerc.touched) && ctrls?.takeProfitPerc.invalid, 'is-valid': ctrls?.takeProfitPerc.touched && ctrls?.takeProfitPerc.valid }">
                                         <c-input-group-append>
                                             <c-input-group-text>%</c-input-group-text>
                                         </c-input-group-append>
@@ -150,7 +149,7 @@
                                                placeholder="Max Dollar Amount"
                                                formControlName="maxDollarAmount"
                                                 type="number"
-                                                step="100"[ngClass]="{ 'is-invalid':  (submitted || ctrls.maxDollarAmount.touched) && ctrls.maxDollarAmount.invalid, 'is-valid': ctrls.maxDollarAmount.touched && ctrls.maxDollarAmount.valid }">
+                                                step="100"[ngClass]="{ 'is-invalid':  (submitted || ctrls?.maxDollarAmount.touched) && ctrls?.maxDollarAmount.invalid, 'is-valid': ctrls?.maxDollarAmount.touched && ctrls?.maxDollarAmount.valid }">
                                     </c-input-group>
                                     <div *ngIf="strategyForm.get('maxDollarAmount').errors?.required && !strategyForm.get('maxDollarAmount').pristine" class="alert alert-danger">
                                         Max Dollar Amount is required
@@ -203,7 +202,7 @@
                 </c-card-header>
                 <c-card-body>
                     <ng-container formArrayName="bullishConditions">
-                        <ng-container *ngFor="let bullishConditionItem of bullishConditions.controls; let i = index">
+                        <ng-container *ngFor="let bullishConditionItem of bullishConditions?.controls; let i = index">
                             <c-row [formGroup]="bullishConditionItem">
                                 <!--                       BULLISH CONDITION STATUS;-->
                                 <c-form-group cCol sm="1">
@@ -255,7 +254,7 @@
                 </c-card-header>
                 <c-card-body>
                     <ng-container formArrayName="bearishConditions">
-                        <ng-container *ngFor="let bearishConditionItem of bearishConditions.controls; let i = index">
+                        <ng-container *ngFor="let bearishConditionItem of bearishConditions?.controls; let i = index">
                             <c-row [formGroup]="bearishConditionItem">
                                 <!--                       BEARISH CONDITION STATUS;-->
                                 <c-form-group cCol sm="1">
@@ -307,7 +306,7 @@
                 </c-card-header>
                 <c-card-body>
                     <ng-container formArrayName="takeProfitInputs">
-                        <ng-container *ngFor="let takeProfitInputItem of takeProfitInputs.controls; let i = index">
+                        <ng-container *ngFor="let takeProfitInputItem of takeProfitInputs?.controls; let i = index">
                             <c-row [formGroup]="takeProfitInputItem">
                                 <c-form-group cCol sm="3">
                                     <label for="condition1">Price Percent</label>

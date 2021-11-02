@@ -28,21 +28,21 @@ export class StrategiesFormComponent implements OnInit {
                 private fb: FormBuilder,
                 private router: Router,
                 private strategyValidator: StrategyValidators) {
-
-
-    }
-
-    ngOnInit(): void {
         this.route.params.subscribe(
             (params) => {
                 this.strategyId = params.strategyId;
                 if (this.strategyId) {
                     this.isEdit = true;
                     this.originalStrategyId = params.strategyId;
-                    this.strategyForm = this.fb.group(this.createForm(this.strategy));
                     this.reloadStrategy();
                 }
             });
+        this.strategyForm = this.fb.group(this.createForm(this.strategy));
+
+    }
+
+    ngOnInit(): void {
+
     }
 
     reloadStrategy(): void {
@@ -228,6 +228,9 @@ export class StrategiesFormComponent implements OnInit {
     }
 
     restoreStrategyId() {
+        if (this.isEdit !== true) {
+            return;
+        }
         this.strategyForm.patchValue({
             strategyId: this.originalStrategyId
         });
