@@ -32,5 +32,10 @@ export class StrategyService {
         return this.http.post<any>(`${baseUrl}/binance/frontendapi/strategy/delete`, strategy);
     }
 
+    getAllStrategy(): Observable<Strategy[]> {
+        const baseUrl = environment.apiUrl;
+        return this.http.get<any>(`${baseUrl}/binance/frontendapi/allstrategy`);
+    }
+
 
 }

@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {EntryService} from "../../common/service/entry.service";
 import {Entry} from "../../model/entry/entry.model";
-import {Observable} from "rxjs";
 import {ExchangeRendererComponent} from "../../common/renderer/exchange-renderer/exchange-renderer.component";
 import {DateRendererComponent} from "../../common/renderer/date-renderer/date-renderer.component";
 import {SideRendererComponent} from "../../common/renderer/side-renderer/side-renderer.component";

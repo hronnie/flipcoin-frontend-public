@@ -1,1 +1,38 @@
-<p>strategies works!</p>
+<div class="fade-in">
+    <c-card>
+        <c-card-body>
+            <div class="page-size-header">
+                Page Size:
+                <select (change)="onPageSizeChanged()" id="page-size">
+                    <option value="20">20</option>
+                    <option value="40">40</option>
+                    <option value="100" selected="100">100</option>
+                    <option value="1000">1000</option>
+                </select>
+            </div>
+            <ng-container *ngIf="!isLoading">
+                <ag-grid-angular
+                        style="max-width: 2000px; height: 800px;"
+                        class="ag-theme-alpine"
+                        [pagination]="true"
+                        [defaultColDef]="defaultColDef"
+                        [rowData]="rowData"
+                        [columnDefs]="columnDefs"
+                        [frameworkComponents]="frameworkComponents"
+                        [enableCellTextSelection]="true"
+                        (gridReady)="onGridReady($event)"
+                >
+                </ag-grid-angular>
+            </ng-container>
+            <ng-container *ngIf="isLoading">
+                <div class="text-center">
+                    <div class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+            </ng-container>
+        </c-card-body>
+        <c-card-footer>
+        </c-card-footer>
+    </c-card>
+</div>

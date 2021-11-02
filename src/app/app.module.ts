@@ -76,6 +76,8 @@ import { FeesRendererComponent } from './common/renderer/fees-renderer/fees-rend
 import {AgChartsAngularModule} from "ag-charts-angular";
 import {SharedModule} from "./core/auth/shared/shared.module";
 import { EntryDetailsRendererComponent } from './common/renderer/entry-details-renderer/entry-details-renderer.component';
+import { ConditionRendererComponent } from './common/renderer/condition-renderer/condition-renderer.component';
+import { StrategyActionsRendererComponent } from './common/renderer/strategy-actions-renderer/strategy-actions-renderer.component';
 
 
 @NgModule({
@@ -95,6 +97,8 @@ import { EntryDetailsRendererComponent } from './common/renderer/entry-details-r
         ProfitRendererComponent,
         FeesRendererComponent,
         EntryDetailsRendererComponent,
+        ConditionRendererComponent,
+        StrategyActionsRendererComponent,
     ],
     imports: [
         BrowserModule,
