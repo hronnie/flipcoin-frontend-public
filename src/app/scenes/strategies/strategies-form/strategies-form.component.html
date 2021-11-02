@@ -18,7 +18,7 @@
 
                         <!--                        STRATEGY ID-->
                         <c-form-group cCol sm="5">
-                            <label cLabel="col" cCol md="4" for="input1-group1">Strategy Id</label>
+                            <label cLabel="col" cCol md="4" for="input1-group1">Strategy Id </label>
                             <c-input-group>
                                 <c-input-group-prepend>
                                     <c-input-group-text>
@@ -27,9 +27,11 @@
                                 </c-input-group-prepend>
                                 <input cInput id="input1-group1"
                                        name="input1-group1"
-                                       placeholder="Strategy Id"
+                                       placeholder="Strategy Id (Cannot be changed after creation)"
                                        formControlName="strategyId"
                                        max="30"
+                                       [attr.disabled]="isEdit"
+                                       (change)="restoreStrategyId()"
                                        [ngClass]="{ 'is-invalid':  (submitted || ctrls.strategyId.touched) && ctrls.strategyId.invalid, 'is-valid': ctrls.strategyId.touched && ctrls.strategyId.valid }">
                             </c-input-group>
                             <div *ngIf="strategyForm.get('strategyId').errors?.required && !strategyForm.get('strategyId').pristine" class="alert alert-danger">
@@ -43,6 +45,9 @@
                             </div>
                             <div *ngIf="strategyForm.get('strategyId').errors?.maxlength && !strategyForm.get('strategyId').pristine" class="alert alert-danger">
                                 Strategy Id must be maximum 30 characters.
+                            </div>
+                            <div *ngIf="strategyForm.get('strategyId').errors?.srategyIdExists && !strategyForm.get('strategyId').pristine" class="alert alert-danger">
+                                Strategy Id must be unique
                             </div>
                         </c-form-group>
 
@@ -356,6 +361,7 @@
                     <button cButton class="mfe-1" color="success" size="sm" [disabled]="!strategyForm.valid" type="submit"><i class="cil-check-circle"></i>
                         Submit
                     </button>
+                    {{strategyForm.errors}}
                     <button cButton color="danger" size="sm" type="reset" (click)="strategyForm.reset()"><i class="cil-ban"></i> Reset</button>
                 </c-card-footer>
             </c-card>

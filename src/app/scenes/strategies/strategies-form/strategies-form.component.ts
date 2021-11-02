@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {AbstractControl, FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {StrategyCondition} from "../../../model/entry/strategyCondition.model";
 import {TakeProfitInput} from "../../../model/tradingview/takeProfitInput.model";
+import {StrategyValidators} from "../../../common/validators/strategy.validator";
 
 
 @Component({
@@ -20,13 +21,15 @@ export class StrategiesFormComponent implements OnInit {
     isEdit = false;
     submitted = false;
     public customPatterns = { '0': { pattern: new RegExp('\[0-9\]')} };
+    private originalStrategyId: string;
 
     constructor(private strategyService: StrategyService,
                 private route: ActivatedRoute,
                 private fb: FormBuilder,
-                private router: Router) {
+                private router: Router,
+                private strategyValidator: StrategyValidators) {
 
-        this.strategyForm = fb.group(this.createForm(this.strategy));
+
     }
 
     ngOnInit(): void {
@@ -35,6 +38,8 @@ export class StrategiesFormComponent implements OnInit {
                 this.strategyId = params.strategyId;
                 if (this.strategyId) {
                     this.isEdit = true;
+                    this.originalStrategyId = params.strategyId;
+                    this.strategyForm = this.fb.group(this.createForm(this.strategy));
                     this.reloadStrategy();
                 }
             });
@@ -99,18 +104,20 @@ export class StrategiesFormComponent implements OnInit {
                     this.router.navigate(['/strategies']);
                 }
             );
+        } else {
+            this.strategyService.createStrategy(new Strategy(value)).subscribe(
+                result => {
+                    this.router.navigate(['/strategies']);
+                }
+            );
+
         }
-        this.strategyService.createStrategy(new Strategy(value)).subscribe(
-            result => {
-                this.router.navigate(['/strategies']);
-            }
-        );
     }
 
     private createForm(strategy: Strategy): any {
         return {
             strategyId: [strategy.strategyId, [Validators.required, Validators.max(30), Validators.min(3),
-                Validators.pattern('^[a-zA-Z0-9_-]*$')]],
+                Validators.pattern('^[a-zA-Z0-9_-]*$')], this.strategyValidator.strategyIdValidator(this.isEdit)],
             strategyDesc: [strategy.strategyDesc, [Validators.required]],
             stopLossPerc: [strategy.stopLossPerc, [Validators.required]],
             trailingStopPerc: [strategy.trailingStopPerc, []],
@@ -220,5 +227,9 @@ export class StrategiesFormComponent implements OnInit {
         }
     }
 
-
+    restoreStrategyId() {
+        this.strategyForm.patchValue({
+            strategyId: this.originalStrategyId
+        });
+    }
 }
