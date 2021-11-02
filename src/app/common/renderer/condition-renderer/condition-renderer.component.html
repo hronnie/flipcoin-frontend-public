@@ -1,1 +1,28 @@
-<span>{{params.value}}</span>
+<c-icon
+        name="cil-chevron-circle-down-alt"
+        size="lg"
+        title="Bear conditions"
+        class="bear-not-satisfied"></c-icon>:
+<ng-container *ngFor="let bearCondItem of bearishConditions">
+    <span [title]="bearCondItem.statusNote">
+        <c-icon
+                name="cil-lightbulb"
+                size="lg"
+                [ngClass]="{'bear-satisfied': bearCondItem.status === true, 'bear-not-satisfied': bearCondItem.status === false}"></c-icon>
+    </span>
+</ng-container>
+<span class="divider">|</span>
+<c-icon
+        name="cil-chevron-circle-up-alt"
+        size="lg"
+        title="Bear conditions"
+        class="bull-not-satisfied"></c-icon>:
+<ng-container *ngFor="let bullCondItem of bullishConditions">
+    <span [title]="bullCondItem.statusNote">
+        <c-icon
+                name="cil-lightbulb"
+                size="lg"
+                [ngClass]="{'bull-satisfied': bullCondItem.status === true, 'bull-not-satisfied': bullCondItem.status === false}"></c-icon>
+    </span>
+</ng-container>
+

@@ -1,5 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, SecurityContext} from '@angular/core';
 import {ICellRendererParams} from "ag-grid-community";
+import {StrategyCondition} from "../../../model/entry/strategyCondition.model";
+import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
     selector: 'app-condition-renderer',
@@ -9,9 +11,13 @@ import {ICellRendererParams} from "ag-grid-community";
 export class ConditionRendererComponent {
 
     params: ICellRendererParams;
+    bearishConditions: StrategyCondition[];
+    bullishConditions: StrategyCondition[];
 
     agInit(params: ICellRendererParams): void {
         this.params = params;
+        this.bearishConditions = this.params.data.bearishConditions;
+        this.bullishConditions = this.params.data.bullishConditions;
     }
 
 }
