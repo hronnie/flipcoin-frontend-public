@@ -5,6 +5,7 @@ import {YesNoRendererComponent} from "../../common/renderer/yes-no-renderer/yes-
 import {ConditionRendererComponent} from "../../common/renderer/condition-renderer/condition-renderer.component";
 import {StrategyActionsRendererComponent} from "../../common/renderer/strategy-actions-renderer/strategy-actions-renderer.component";
 import {TypeRendererComponent} from "../../common/renderer/type-renderer/type-renderer.component";
+import {GridOptions} from "ag-grid-community";
 
 @Component({
     selector: 'app-strategies',
@@ -37,8 +38,14 @@ export class StrategiesComponent implements OnInit {
     frameworkComponents: {};
     gridApi;
     isLoading = false;
+    private gridOptions: GridOptions;
 
     constructor(private strategyService: StrategyService) {
+        this.gridOptions = {
+            context: {
+                componentParent: this
+            }
+        } as GridOptions;
         this.frameworkComponents = {
             yesNoRenderer: YesNoRendererComponent,
             conditionRenderer: ConditionRendererComponent,
@@ -66,7 +73,6 @@ export class StrategiesComponent implements OnInit {
     }
 
     refreshStrategyGrid() {
-        debugger;
         this.isLoading = true
         this.strategyService.getAllStrategy().subscribe(result => {
             this.rowData = result;

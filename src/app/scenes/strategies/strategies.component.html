@@ -9,7 +9,10 @@
             </a>
         </c-card-header>
         <c-card-body>
-            <div class="page-size-header">
+            <div *ngIf="!rowData || rowData?.length === 0">
+                There are now strategies...
+            </div>
+            <div class="page-size-header" *ngIf="rowData?.length > 0">
                 Page Size:
                 <select (change)="onPageSizeChanged()" id="page-size">
                     <option value="20">20</option>
@@ -18,7 +21,7 @@
                     <option value="1000">1000</option>
                 </select>
             </div>
-            <ng-container *ngIf="!isLoading">
+            <ng-container *ngIf="!isLoading && rowData?.length > 0">
                 <ag-grid-angular
                         (gridReady)="onGridReady($event)"
                         [columnDefs]="columnDefs"
@@ -26,6 +29,7 @@
                         [enableCellTextSelection]="true"
                         [frameworkComponents]="frameworkComponents"
                         [pagination]="true"
+                        [gridOptions]="gridOptions"
                         [rowData]="rowData"
                         class="ag-theme-alpine"
                         style="max-width: 2000px; height: 800px;"
