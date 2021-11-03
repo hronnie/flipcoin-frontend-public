@@ -1,1 +1,195 @@
-<p>strategies-details works!</p>
+<c-row class="back-icon">
+    <a [routerLink]="['/strategies']"> <i class="cil-arrow-thick-to-left fa-2x"></i></a>
+</c-row>
+<!--    BASIC STRATEGY CORE DETAILS-->
+<c-row>
+    <c-col md="12">
+        <c-card>
+            <c-card-header>
+                Strategy Details
+            </c-card-header>
+            <c-card-body>
+                <c-row>
+                    <c-col sm="12">
+                        <c-row>
+                            <c-col sm="3">
+                                <c-callout [color]="'info'">
+                                    <small class="text-muted">Strategy Id</small>
+                                    <br>
+                                    <strong class="h4">{{strategy?.strategyId}}</strong>
+                                </c-callout>
+                            </c-col>
+                            <c-col sm="3">
+                                <c-callout [color]="'info'">
+                                    <small class="text-muted">Strategy Description</small>
+                                    <br>
+                                    <strong class="h4">{{strategy?.strategyDesc}}</strong>
+                                </c-callout>
+                            </c-col>
+                            <c-col sm="3">
+                                <c-callout [color]="'info'">
+                                    <small class="text-muted">Is Active</small>
+                                    <br>
+                                    <strong class="h4">
+                                        <ng-container *ngIf="strategy?.isActive === true">
+                                            Yes
+                                        </ng-container>
+                                        <ng-container *ngIf="strategy?.isActive === false">
+                                            No
+                                        </ng-container>
+                                    </strong>
+                                </c-callout>
+                            </c-col>
+                            <c-col sm="3">
+                                <c-callout [color]="'info'">
+                                    <small class="text-muted">Type</small>
+                                    <br>
+                                    <strong class="h4">
+                                        <ng-container *ngIf="strategy?.isOnlyBullish === true">
+                                            Only Bullish
+                                        </ng-container>
+                                        <ng-container *ngIf="strategy?.isOnlyBearish === true">
+                                            Only Bearish
+                                        </ng-container>
+                                        <ng-container *ngIf="strategy?.isBothWay === true">
+                                            Both Way
+                                        </ng-container>
+                                    </strong>
+                                </c-callout>
+                            </c-col>
+                        </c-row>
+                    </c-col>
+                </c-row>
+                <c-row>
+                    <c-col sm="12">
+                        <c-row>
+                            <c-col sm="3">
+                                <c-callout [color]="'info'">
+                                    <small class="text-muted">Stop Loss Percent</small>
+                                    <br>
+                                    <strong class="h4">{{strategy?.stopLossPerc}}%</strong>
+                                </c-callout>
+                            </c-col>
+                            <c-col sm="3">
+                                <c-callout color="info">
+                                    <small class="text-muted">Trailing Stop Percent</small>
+                                    <br>
+                                    <strong class="h4">{{strategy?.trailingStopPerc}}%</strong>
+                                </c-callout>
+                            </c-col>
+                            <c-col sm="3">
+                                <c-callout color="info">
+                                    <small class="text-muted">Take Profit Percent</small>
+                                    <br>
+                                    <strong class="h4">{{strategy?.takeProfitPerc}}%</strong>
+                                </c-callout>
+                            </c-col>
+                            <c-col sm="3">
+                                <c-callout color="info">
+                                    <small class="text-muted">Max Dollar Amount</small>
+                                    <br>
+                                    <strong class="h4">{{strategy?.maxDollarAmount}}$</strong>
+                                </c-callout>
+                            </c-col>
+                        </c-row>
+                    </c-col>
+                </c-row>
+                <br>
+            </c-card-body>
+        </c-card>
+    </c-col>
+</c-row>
+<!--        BEARISH AND BULLISH CONDITIONS-->
+<c-row>
+    <c-col md="12">
+        <c-card>
+            <c-card-header>
+                Bullish and Bearish conditions
+            </c-card-header>
+            <c-card-body>
+                <c-row>
+                    <c-col sm="12">
+                        <c-row>
+                            <c-col sm="4">
+                                <strong>Bearish Conditions: </strong>
+                            </c-col>
+                            <c-col sm="8">
+                                <c-icon
+                                        name="cil-chevron-circle-down-alt"
+                                        size="lg"
+                                        title="Bear conditions"
+                                        class="bear-not-satisfied"></c-icon>:
+                                <ng-container *ngFor="let bearCondItem of strategy?.bearishConditions">
+                                    <span [title]="bearCondItem.statusNote">
+                                        <c-icon
+                                                name="cil-lightbulb"
+                                                size="lg"
+                                                [ngClass]="{'bear-satisfied': bearCondItem.status === true, 'bear-not-satisfied': bearCondItem.status === false}"></c-icon>
+                                    </span>
+                                </ng-container>
+                            </c-col>
+                        </c-row>
+                    </c-col>
+                </c-row>
+                <c-row>
+                    <c-col sm="12">
+                        <c-row>
+                            <c-col sm="4">
+                                <strong>Bullish Conditions: </strong>
+                            </c-col>
+                            <c-col sm="8">
+                                <c-icon
+                                        name="cil-chevron-circle-up-alt"
+                                        size="lg"
+                                        title="Bear conditions"
+                                        class="bull-not-satisfied"></c-icon>:
+                                <ng-container *ngFor="let bullCondItem of strategy?.bullishConditions">
+                                    <span [title]="bullCondItem.statusNote">
+                                        <c-icon
+                                                name="cil-lightbulb"
+                                                size="lg"
+                                                [ngClass]="{'bull-satisfied': bullCondItem.status === true, 'bull-not-satisfied': bullCondItem.status === false}"></c-icon>
+                                    </span>
+                                </ng-container>
+                            </c-col>
+                        </c-row>
+                    </c-col>
+                </c-row>
+                <br>
+            </c-card-body>
+        </c-card>
+    </c-col>
+</c-row>
+<!--        TAKE PROFIT INPUTS-->
+<c-row>
+    <c-col md="12">
+        <c-card>
+            <c-card-header>
+                Take Profit Inputs
+            </c-card-header>
+            <c-card-body>
+                <ng-container *ngFor="let takeProfitInputItem of strategy?.takeProfitInputs">
+                    <c-row>
+                        <c-col sm="6">
+                            <c-row>
+                                <c-col sm="6">
+                                    <strong>Price Percent: </strong> {{takeProfitInputItem?.pricePercent}}
+                                </c-col>
+                            </c-row>
+                        </c-col>
+                        <c-col sm="6">
+                            <c-row>
+                                <c-col sm="6">
+                                    <strong>Quantity %: </strong> {{takeProfitInputItem?.quantityPercent}}
+                                </c-col>
+                            </c-row>
+                        </c-col>
+                    </c-row>
+                    <hr class="mt-0">
+                </ng-container>
+                <br>
+            </c-card-body>
+        </c-card>
+    </c-col>
+</c-row>
+

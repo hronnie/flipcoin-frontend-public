@@ -1,4 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import {StrategyService} from "../../../common/service/strategy.service";
+import {ActivatedRoute} from "@angular/router";
+import {Strategy} from "../../../model/entry/strategy.model";
 
 @Component({
     selector: 'app-strategies-details',
@@ -7,10 +10,21 @@ import {Component, OnInit} from '@angular/core';
 })
 export class StrategiesDetailsComponent implements OnInit {
 
-    constructor() {
+    strategyId: string;
+    strategy: Strategy;
+
+    constructor(private strategyService: StrategyService,
+                private route: ActivatedRoute) {
+        this.route.params.subscribe(
+            (params) => {
+                this.strategyId = params.strategyId;
+            });
     }
 
     ngOnInit(): void {
+        this.strategyService.getStrategy(this.strategyId).subscribe(strategyResult => {
+            this.strategy = strategyResult;
+        });
     }
 
 }

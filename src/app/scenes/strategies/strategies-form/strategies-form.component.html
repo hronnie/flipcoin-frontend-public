@@ -1,5 +1,8 @@
 <form #strategyFormRef (ngSubmit)="onSubmit(strategyForm.value)" [formGroup]="strategyForm" class="form-horizontal"
       method="post">
+    <c-row class="back-icon">
+        <a [routerLink]="['/strategies']"> <i class="cil-arrow-thick-to-left fa-2x"></i></a>
+    </c-row>
     <c-row>
         <c-col sm="12">
             <c-card>

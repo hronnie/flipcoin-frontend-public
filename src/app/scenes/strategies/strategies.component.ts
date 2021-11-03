@@ -60,11 +60,7 @@ export class StrategiesComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.isLoading = true
-        this.strategyService.getAllStrategy().subscribe(result => {
-            this.rowData = result;
-            this.isLoading = false;
-        })
+        this.refreshStrategyGrid();
     }
 
     onPageSizeChanged(newPageSize = 100) {
