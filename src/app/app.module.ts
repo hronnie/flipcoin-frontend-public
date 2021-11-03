@@ -45,7 +45,7 @@ import {
     SidebarModule,
     SwitchModule,
     TabsetModule,
-    TogglerModule,
+    TogglerModule, ModalModule,
 } from '@coreui/angular';
 
 import { IconModule, IconSetModule, IconSetService } from '@coreui/icons-angular';
@@ -78,6 +78,7 @@ import {SharedModule} from "./core/auth/shared/shared.module";
 import { EntryDetailsRendererComponent } from './common/renderer/entry-details-renderer/entry-details-renderer.component';
 import { ConditionRendererComponent } from './common/renderer/condition-renderer/condition-renderer.component';
 import { StrategyActionsRendererComponent } from './common/renderer/strategy-actions-renderer/strategy-actions-renderer.component';
+import { TypeRendererComponent } from './common/renderer/type-renderer/type-renderer.component';
 
 
 @NgModule({
@@ -99,6 +100,7 @@ import { StrategyActionsRendererComponent } from './common/renderer/strategy-act
         EntryDetailsRendererComponent,
         ConditionRendererComponent,
         StrategyActionsRendererComponent,
+        TypeRendererComponent,
     ],
     imports: [
         BrowserModule,
@@ -133,7 +135,8 @@ import { StrategyActionsRendererComponent } from './common/renderer/strategy-act
         FormModule,
         AgGridModule.withComponents([]),
         AgChartsAngularModule,
-        SharedModule
+        SharedModule,
+        ModalModule
     ],
     exports: [SharedModule],
     providers: [

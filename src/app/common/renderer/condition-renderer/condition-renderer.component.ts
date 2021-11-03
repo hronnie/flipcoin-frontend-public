@@ -1,7 +1,6 @@
 import {Component, SecurityContext} from '@angular/core';
 import {ICellRendererParams} from "ag-grid-community";
 import {StrategyCondition} from "../../../model/entry/strategyCondition.model";
-import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
     selector: 'app-condition-renderer',

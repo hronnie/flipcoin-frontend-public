@@ -4,6 +4,7 @@ import {StrategyService} from "../../common/service/strategy.service";
 import {YesNoRendererComponent} from "../../common/renderer/yes-no-renderer/yes-no-renderer.component";
 import {ConditionRendererComponent} from "../../common/renderer/condition-renderer/condition-renderer.component";
 import {StrategyActionsRendererComponent} from "../../common/renderer/strategy-actions-renderer/strategy-actions-renderer.component";
+import {TypeRendererComponent} from "../../common/renderer/type-renderer/type-renderer.component";
 
 @Component({
     selector: 'app-strategies',
@@ -13,10 +14,10 @@ import {StrategyActionsRendererComponent} from "../../common/renderer/strategy-a
 export class StrategiesComponent implements OnInit {
 
     columnDefs = [
-        {field: 'strategyId', headerName: 'Strategy Id'},
-        {field: 'isActive', headerName: 'Is Active', cellRenderer: 'yesNoRenderer', width: 90, sort: 'desc'},
-        {field: 'isOnlyBullish', headerName: 'Type', cellRenderer: 'yesNoRenderer', width: 90, sort: 'desc'},
-        {field: 'bullishConditions', headerName: 'Conditions', cellRenderer: 'conditionRenderer', width: 250},
+        {field: 'strategyId', headerName: 'Strategy Id', sort: 'asc', minWidth: 150},
+        {field: 'isActive', headerName: 'Is Active', cellRenderer: 'yesNoRenderer', width: 90},
+        {field: 'isOnlyBullish', headerName: 'Type', cellRenderer: 'typeRenderer', width: 90},
+        {field: 'bullishConditions', headerName: 'Conditions', cellRenderer: 'conditionRenderer', minWidth: 350},
         {field: 'bullishConditions', headerName: 'Actions', cellRenderer: 'strategyActionsRenderer', width: 80},
     ];
 
@@ -41,7 +42,8 @@ export class StrategiesComponent implements OnInit {
         this.frameworkComponents = {
             yesNoRenderer: YesNoRendererComponent,
             conditionRenderer: ConditionRendererComponent,
-            strategyActionsRenderer: StrategyActionsRendererComponent
+            strategyActionsRenderer: StrategyActionsRendererComponent,
+            typeRenderer: TypeRendererComponent
         }
     }
 
@@ -61,6 +63,15 @@ export class StrategiesComponent implements OnInit {
     onPageSizeChanged(newPageSize = 100) {
         const value = (document.getElementById('page-size') as HTMLInputElement).value;
         this.gridApi.paginationSetPageSize(Number(value));
+    }
+
+    refreshStrategyGrid() {
+        debugger;
+        this.isLoading = true
+        this.strategyService.getAllStrategy().subscribe(result => {
+            this.rowData = result;
+            this.isLoading = false;
+        })
     }
 
 }
