@@ -76,7 +76,8 @@ export class StrategiesFormComponent implements OnInit {
                 isBothWay: strategyResult.isBothWay,
                 bullishConditions: this.initBullishConditions(strategyResult.bullishConditions),
                 bearishConditions: this.initBearishConditions(strategyResult.bearishConditions),
-                takeProfitInputs: this.initTakeProfitInputs(strategyResult.takeProfitInputs)
+                takeProfitInputs: this.initTakeProfitInputs(strategyResult.takeProfitInputs),
+                leverage: strategyResult.leverage
             });
             this.strategy = strategyResult;
         });
@@ -227,6 +228,7 @@ export class StrategiesFormComponent implements OnInit {
             takeProfitPerc: [strategy.takeProfitPerc, [Validators.required]],
             maxDollarAmount: [strategy.maxDollarAmount, [Validators.required]],
             isActive: [strategy.isActive, []],
+            leverage: [strategy.leverage, [Validators.required]],
             isOnlyBullish: [strategy.isOnlyBullish, []],
             isOnlyBearish: [strategy.isOnlyBearish, []],
             isBothWay: [strategy.isBothWay, []],

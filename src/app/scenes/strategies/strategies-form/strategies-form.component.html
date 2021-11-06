@@ -172,6 +172,30 @@
                         </c-form-group>
 
                     </c-form-group>
+                    <!--                        LEVERAGE -->
+                    <c-form-group cRow>
+                        <c-form-group cCol>
+                            <label cCol cLabel="col" for="input2-group1" md="3">Leverage</label>
+                            <c-col md="3">
+                                <c-input-group>
+                                    <input [ngClass]="{ 'is-invalid':  (submitted || ctrls?.leverage.touched) && ctrls?.leverage.invalid, 'is-valid': ctrls?.leverage.touched && ctrls?.leverage.valid }" cInput
+                                           formControlName="leverage"
+                                           id="leverage"
+                                           name="input2-group1"
+                                           placeholder="Leverage"
+                                           step="1"
+                                           type="number">
+                                    <c-input-group-append>
+                                        <c-input-group-text>X</c-input-group-text>
+                                    </c-input-group-append>
+                                </c-input-group>
+                                <div *ngIf="strategyForm.get('leverage').errors?.required && !strategyForm.get('leverage').pristine"
+                                     class="alert alert-danger">
+                                    Leverage is required
+                                </div>
+                            </c-col>
+                        </c-form-group>
+                    </c-form-group>
 
                     <hr class="mt-0">
                     <!--                    IS ONLY BULLISH-->

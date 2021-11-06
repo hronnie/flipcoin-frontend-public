@@ -24,6 +24,8 @@ export class Strategy {
 
     takeProfitInputs: TakeProfitInput[];
 
+    leverage: number;
+
     constructor(obj?: any) {
 
         this.strategyId = obj && obj?.strategyId || '';
@@ -57,6 +59,7 @@ export class Strategy {
         this.bullishConditions = obj && obj?.bullishConditions || [];
         this.bearishConditions = obj && obj?.bearishConditions || [];
         this.takeProfitInputs = obj && obj?.takeProfitInputs || [];
+        this.leverage = obj && obj?.leverage || 1;
     }
 
     toString() {
