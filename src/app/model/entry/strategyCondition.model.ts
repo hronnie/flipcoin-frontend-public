@@ -5,11 +5,12 @@ import {objToString} from "../../utils/helperMethods";
  */
 export class StrategyCondition {
 
+    index: number;
     status: boolean;
     statusNote: string;
 
     constructor(obj?: any) {
-
+        this.index = obj && obj?.index;
         this.statusNote = obj && obj?.statusNote || '';
         if (obj && obj.status !== undefined) {
             this.status = obj.status;

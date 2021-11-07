@@ -133,6 +133,7 @@
                                         title="Bear conditions"
                                         class="bear-not-satisfied"></c-icon>:
                                 <ng-container *ngFor="let bearCondItem of strategy?.bearishConditions">
+                                    ({{bearCondItem.index}})
                                     <span [title]="bearCondItem.statusNote">
                                         <c-icon
                                                 name="cil-lightbulb"
@@ -157,6 +158,7 @@
                                         title="Bear conditions"
                                         class="bull-not-satisfied"></c-icon>:
                                 <ng-container *ngFor="let bullCondItem of strategy?.bullishConditions">
+                                    ({{bullCondItem.index}})
                                     <span [title]="bullCondItem.statusNote">
                                         <c-icon
                                                 name="cil-lightbulb"

@@ -116,19 +116,50 @@ export class StrategiesFormComponent implements OnInit {
     onSubmit(value: any) {
         this.submitted = true;
         if (this.isEdit === true) {
-            this.strategyService.updateStrategy(new Strategy(value)).subscribe(
+            const submitStrategy = new Strategy(value);
+            submitStrategy.bearishConditions = this.updateStrategyIndexes(submitStrategy.bearishConditions);
+            submitStrategy.bullishConditions = this.updateStrategyIndexes(submitStrategy.bullishConditions);
+            this.strategyService.updateStrategy(submitStrategy).subscribe(
                 result => {
                     this.router.navigate(['/strategies']);
                 }
             );
         } else {
-            this.strategyService.createStrategy(new Strategy(value)).subscribe(
+            const submitStrategy = new Strategy(value);
+            submitStrategy.bearishConditions = this.updateStrategyIndexes(submitStrategy.bearishConditions);
+            submitStrategy.bullishConditions = this.updateStrategyIndexes(submitStrategy.bullishConditions);
+            this.strategyService.createStrategy(submitStrategy).subscribe(
                 result => {
                     this.router.navigate(['/strategies']);
                 }
             );
-
         }
+    }
+
+    private updateStrategyIndexes(conditions: StrategyCondition[]): StrategyCondition[] {
+        const result: StrategyCondition[] = [];
+        const indexes: number[] = [];
+        for (const condition of conditions) {
+            if (Number.isInteger(condition.index)) {
+                indexes.push(condition.index);
+            }
+        }
+        let nextIndex;
+        if (indexes.length === 0) {
+            nextIndex = 0;
+        } else {
+            nextIndex = Math.max(...indexes) + 1;
+        }
+        for (const condition of conditions) {
+            if (Number.isInteger(condition.index)) {
+                result.push(condition);
+            } else {
+                condition.index = nextIndex;
+                nextIndex += 1;
+                result.push(condition);
+            }
+        }
+        return result;
     }
 
     bullishConditionStatusAt(index: number) {
