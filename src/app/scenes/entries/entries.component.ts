@@ -10,6 +10,7 @@ import {ProfitRendererComponent} from "../../common/renderer/profit-renderer/pro
 import {DurationRendererComponent} from "../../common/renderer/duration-renderer/duration-renderer.component";
 import {FeesRendererComponent} from "../../common/renderer/fees-renderer/fees-renderer.component";
 import {EntryDetailsRendererComponent} from "../../common/renderer/entry-details-renderer/entry-details-renderer.component";
+import {GridOptions} from "ag-grid-community";
 
 
 @Component({
@@ -59,6 +60,7 @@ export class EntriesComponent implements OnInit {
     frameworkComponents: {};
     gridApi;
     isLoading = false;
+    private gridOptions: GridOptions;
 
     constructor(private entryService: EntryService) {
         this.frameworkComponents = {
@@ -72,6 +74,11 @@ export class EntriesComponent implements OnInit {
             feesRenderer: FeesRendererComponent,
             entryDetailsRenderer: EntryDetailsRendererComponent
         }
+        this.gridOptions = {
+            context: {
+                componentParent: this
+            }
+        } as GridOptions;
     }
 
     onGridReady(params) {
@@ -80,6 +87,10 @@ export class EntriesComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.refreshEntriesGrid();
+    }
+
+    refreshEntriesGrid() {
         this.isLoading = true
         this.entryService.getAllEntriesWithReports().subscribe(result => {
             this.rowData = result;

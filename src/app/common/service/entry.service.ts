@@ -49,4 +49,9 @@ export class EntryService {
         const baseUrl = environment.apiUrl;
         return this.http.delete<any>(`${baseUrl}/${exchange}/frontendapi/entry/close/${entryId}`);
     }
+
+    deleteEntry(entryId: string) {
+        const baseUrl = environment.apiUrl;
+        return this.http.delete<any>(`${baseUrl}/binance/frontendapi/entry/delete/${entryId}`);
+    }
 }

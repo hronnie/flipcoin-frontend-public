@@ -1,5 +1,11 @@
 <a [routerLink]="['details/' + params.data.id ]">
     <span style="font-size: 2em; color: #f8cb00;">
-    <i class="fa fa-eye action-link" title="Entry Details"></i>
+        <i class="fa fa-eye action-link" title="Entry Details"></i>
     </span>
 </a>
+<ng-container *ngIf="params?.data?.isActive === false">
+    <span style="font-size: 2em; color: #f86c6b;" (click)="deleteEntry(params.data.id)">
+        <i class="fa fa-trash-alt action-link button-divider" title="Delete Entry"></i>
+    </span>
+</ng-container>
+
