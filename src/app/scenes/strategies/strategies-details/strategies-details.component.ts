@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {StrategyService} from "../../../common/service/strategy.service";
 import {ActivatedRoute} from "@angular/router";
 import {Strategy} from "../../../model/entry/strategy.model";
+import {environment} from "../../../../environments/environment";
 
 @Component({
     selector: 'app-strategies-details',
@@ -12,6 +13,8 @@ export class StrategiesDetailsComponent implements OnInit {
 
     strategyId: string;
     strategy: Strategy;
+    apiUrl: string;
+    symbol: string;
 
     constructor(private strategyService: StrategyService,
                 private route: ActivatedRoute) {
@@ -19,6 +22,7 @@ export class StrategiesDetailsComponent implements OnInit {
             (params) => {
                 this.strategyId = params.strategyId;
             });
+        this.apiUrl = environment.apiUrl;
     }
 
     ngOnInit(): void {
