@@ -48,6 +48,13 @@ const routes: Routes = [
                     ), canActivate: [AuthGuard]
             },
             {
+                path: 'strategies',
+                loadChildren: () =>
+                    import('./scenes/strategies/strategies.module').then(
+                        (m) => m.StrategiesModule,
+                    ), canActivate: [AuthGuard]
+            },
+            {
                 path: 'settings',
                 loadChildren: () =>
                     import('./scenes/settings/settings.module').then(

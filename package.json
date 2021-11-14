@@ -65,6 +65,8 @@
     "ng2-dragula": "^2.1.1",
     "ngx-ace-editor-wrapper": "^9.1.12",
     "ngx-bootstrap": "^6.2.0",
+    "ngx-clipboard": "^14.0.1",
+    "ngx-mask": "^12.0.0",
     "ngx-perfect-scrollbar": "^10.0.1",
     "ngx-quill": "^12.0.1",
     "ngx-tippy-wrapper": "^2.0.3",

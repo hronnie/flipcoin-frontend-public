@@ -1,3 +1,9 @@
-<span *ngIf="params?.value === 'binance'"><img class="binance-img" src="/assets/img/app/binance-logo.jpg"/></span>
-<span *ngIf="params?.value === 'ftx'"><img class="binance-img" src="/assets/img/app/ftx-log.jpg"/></span>
+<a [routerLink]="['details/' + params.data.id ]">
+    <span *ngIf="params?.value === 'binance'"><img class="binance-img" src="/assets/img/app/binance-logo.jpg"/></span>
+</a>
+
+<a [routerLink]="['details/' + params.data.id ]">
+    <span *ngIf="params?.value === 'ftx'"><img class="binance-img" src="/assets/img/app/ftx-log.jpg"/></span>
+</a>
+
 

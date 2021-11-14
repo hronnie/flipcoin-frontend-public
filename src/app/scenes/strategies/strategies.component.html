@@ -1,27 +1,38 @@
 <div class="fade-in">
     <c-card>
+        <c-card-header>
+            <a [routerLink]="['create' ]">
+                <button cButton color="success" variant="ghost">
+                    <c-icon name="cil-plus"></c-icon>
+                    <span>&nbsp;Add Strategy</span>
+                </button>
+            </a>
+        </c-card-header>
         <c-card-body>
-            <div class="page-size-header">
+            <div *ngIf="!rowData || rowData?.length === 0">
+                There are now strategies...
+            </div>
+            <div class="page-size-header" *ngIf="rowData?.length > 0">
                 Page Size:
                 <select (change)="onPageSizeChanged()" id="page-size">
                     <option value="20">20</option>
                     <option value="40">40</option>
-                    <option value="100" selected="100">100</option>
+                    <option selected="100" value="100">100</option>
                     <option value="1000">1000</option>
                 </select>
             </div>
-            <ng-container *ngIf="!isLoading">
+            <ng-container *ngIf="!isLoading && rowData?.length > 0">
                 <ag-grid-angular
-                        style="max-width: 2000px; height: 800px;"
-                        class="ag-theme-alpine"
-                        [pagination]="true"
-                        [defaultColDef]="defaultColDef"
-                        [rowData]="rowData"
-                        [columnDefs]="columnDefs"
-                        [frameworkComponents]="frameworkComponents"
-                        [gridOptions]="gridOptions"
-                        [enableCellTextSelection]="true"
                         (gridReady)="onGridReady($event)"
+                        [columnDefs]="columnDefs"
+                        [defaultColDef]="defaultColDef"
+                        [enableCellTextSelection]="true"
+                        [frameworkComponents]="frameworkComponents"
+                        [pagination]="true"
+                        [gridOptions]="gridOptions"
+                        [rowData]="rowData"
+                        class="ag-theme-alpine"
+                        style="max-width: 2000px; height: 800px;"
                 >
                 </ag-grid-angular>
             </ng-container>

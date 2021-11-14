@@ -1,0 +1,15 @@
+<a [routerLink]="['details/' + params.data.strategyId ]">
+    <span style="font-size: 2em; color: #f8cb00;">
+    <i class="fa fa-eye action-link" title="Strategy Details"></i>
+    </span>
+</a>
+<a [routerLink]="['edit/' + params.data.strategyId ]">
+    <span style="font-size: 2em; color: #4dbd74;">
+        <i class="fa fa-edit action-link button-divider" title="Edit Strategy"></i>
+    </span>
+</a>
+
+<span style="font-size: 2em; color: #f86c6b;" (click)="deleteStrategy(params.data.strategyId)">
+    <i class="fa fa-trash-alt action-link button-divider" title="Delete Strategy"></i>
+</span>
+

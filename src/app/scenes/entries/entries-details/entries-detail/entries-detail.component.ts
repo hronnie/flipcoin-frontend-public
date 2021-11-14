@@ -79,7 +79,6 @@ export class EntriesDetailComponent implements OnInit {
     closeEntry() {
         this.isLoading = true;
         this.entryService.closePosition(this.entry.id, this.entry.exchange).subscribe(result => {
-            debugger;
             this.refreshPage();
         })
     }

@@ -45,7 +45,7 @@ import {
     SidebarModule,
     SwitchModule,
     TabsetModule,
-    TogglerModule,
+    TogglerModule, ModalModule,
 } from '@coreui/angular';
 
 import { IconModule, IconSetModule, IconSetService } from '@coreui/icons-angular';
@@ -76,6 +76,10 @@ import { FeesRendererComponent } from './common/renderer/fees-renderer/fees-rend
 import {AgChartsAngularModule} from "ag-charts-angular";
 import {SharedModule} from "./core/auth/shared/shared.module";
 import { EntryDetailsRendererComponent } from './common/renderer/entry-details-renderer/entry-details-renderer.component';
+import { ConditionRendererComponent } from './common/renderer/condition-renderer/condition-renderer.component';
+import { StrategyActionsRendererComponent } from './common/renderer/strategy-actions-renderer/strategy-actions-renderer.component';
+import { TypeRendererComponent } from './common/renderer/type-renderer/type-renderer.component';
+import {ClipboardModule} from "ngx-clipboard";
 
 
 @NgModule({
@@ -95,6 +99,9 @@ import { EntryDetailsRendererComponent } from './common/renderer/entry-details-r
         ProfitRendererComponent,
         FeesRendererComponent,
         EntryDetailsRendererComponent,
+        ConditionRendererComponent,
+        StrategyActionsRendererComponent,
+        TypeRendererComponent,
     ],
     imports: [
         BrowserModule,
@@ -129,7 +136,9 @@ import { EntryDetailsRendererComponent } from './common/renderer/entry-details-r
         FormModule,
         AgGridModule.withComponents([]),
         AgChartsAngularModule,
-        SharedModule
+        SharedModule,
+        ModalModule,
+        ClipboardModule
     ],
     exports: [SharedModule],
     providers: [

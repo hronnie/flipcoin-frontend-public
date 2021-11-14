@@ -1,0 +1,459 @@
+<c-row class="back-icon">
+    <a [routerLink]="['/strategies']"> <i class="cil-arrow-thick-to-left fa-2x"></i></a>
+</c-row>
+<!--    BASIC STRATEGY CORE DETAILS-->
+<c-row>
+    <c-col md="12">
+        <c-card>
+            <c-card-header>
+                Strategy Details
+            </c-card-header>
+            <c-card-body>
+                <c-row>
+                    <c-col sm="12">
+                        <c-row>
+                            <c-col sm="3">
+                                <c-callout [color]="'info'">
+                                    <small class="text-muted">Strategy Id</small>
+                                    <br>
+                                    <strong class="h4">{{strategy?.strategyId}}</strong>
+                                </c-callout>
+                            </c-col>
+                            <c-col sm="3">
+                                <c-callout [color]="'info'">
+                                    <small class="text-muted">Strategy Description</small>
+                                    <br>
+                                    <strong class="h4">{{strategy?.strategyDesc}}</strong>
+                                </c-callout>
+                            </c-col>
+                            <c-col sm="3">
+                                <c-callout [color]="'info'">
+                                    <small class="text-muted">Is Active</small>
+                                    <br>
+                                    <strong class="h4">
+                                        <ng-container *ngIf="strategy?.isActive === true">
+                                            Yes
+                                        </ng-container>
+                                        <ng-container *ngIf="strategy?.isActive === false">
+                                            No
+                                        </ng-container>
+                                    </strong>
+                                </c-callout>
+                            </c-col>
+                            <c-col sm="3">
+                                <c-callout [color]="'info'">
+                                    <small class="text-muted">Type</small>
+                                    <br>
+                                    <strong class="h4">
+                                        <ng-container *ngIf="strategy?.isOnlyBullish === true">
+                                            Only Bullish
+                                        </ng-container>
+                                        <ng-container *ngIf="strategy?.isOnlyBearish === true">
+                                            Only Bearish
+                                        </ng-container>
+                                        <ng-container *ngIf="strategy?.isBothWay === true">
+                                            Both Way
+                                        </ng-container>
+                                    </strong>
+                                </c-callout>
+                            </c-col>
+                        </c-row>
+                    </c-col>
+                </c-row>
+                <c-row>
+                    <c-col sm="12">
+                        <c-row>
+                            <c-col sm="3">
+                                <c-callout [color]="'info'">
+                                    <small class="text-muted">Stop Loss Percent</small>
+                                    <br>
+                                    <strong class="h4">{{strategy?.stopLossPerc}}%</strong>
+                                </c-callout>
+                            </c-col>
+                            <c-col sm="3">
+                                <c-callout color="info">
+                                    <small class="text-muted">Trailing Stop Percent</small>
+                                    <br>
+                                    <strong class="h4">{{strategy?.trailingStopPerc}}%</strong>
+                                </c-callout>
+                            </c-col>
+                            <c-col sm="3">
+                                <c-callout color="info">
+                                    <small class="text-muted">Take Profit Percent</small>
+                                    <br>
+                                    <strong class="h4">{{strategy?.takeProfitPerc}}%</strong>
+                                </c-callout>
+                            </c-col>
+                            <c-col sm="3">
+                                <c-callout color="info">
+                                    <small class="text-muted">Max Dollar Amount</small>
+                                    <br>
+                                    <strong class="h4">{{strategy?.maxDollarAmount}}$</strong>
+                                </c-callout>
+                            </c-col>
+                        </c-row>
+                    </c-col>
+                </c-row>
+                <c-row>
+                    <c-col sm="12">
+                        <c-row>
+                            <c-col sm="3">
+                                <c-callout color="info">
+                                    <small class="text-muted">Leverage</small>
+                                    <br>
+                                    <strong class="h4">{{strategy?.leverage}}X</strong>
+                                </c-callout>
+                            </c-col>
+                        </c-row>
+                    </c-col>
+                </c-row>
+                <br>
+            </c-card-body>
+        </c-card>
+    </c-col>
+</c-row>
+<!--        BEARISH AND BULLISH CONDITIONS-->
+<c-row>
+    <c-col md="12">
+        <c-card>
+            <c-card-header>
+                Bullish and Bearish conditions
+            </c-card-header>
+            <c-card-body>
+                <c-row>
+                    <c-col sm="12">
+                        <c-row>
+                            <c-col sm="4">
+                                <strong>Bearish Conditions: </strong>
+                            </c-col>
+                            <c-col sm="8">
+                                <c-icon
+                                        name="cil-chevron-circle-down-alt"
+                                        size="lg"
+                                        title="Bear conditions"
+                                        class="bear-not-satisfied"></c-icon>:
+                                <ng-container *ngFor="let bearCondItem of strategy?.bearishConditions">
+                                    ({{bearCondItem.index}})
+                                    <span [title]="bearCondItem.statusNote">
+                                        <c-icon
+                                                name="cil-lightbulb"
+                                                size="lg"
+                                                [ngClass]="{'bear-satisfied': bearCondItem.status === true, 'bear-not-satisfied': bearCondItem.status === false}"></c-icon>
+                                    </span>
+                                </ng-container>
+                            </c-col>
+                        </c-row>
+                    </c-col>
+                </c-row>
+                <c-row>
+                    <c-col sm="12">
+                        <c-row>
+                            <c-col sm="4">
+                                <strong>Bullish Conditions: </strong>
+                            </c-col>
+                            <c-col sm="8">
+                                <c-icon
+                                        name="cil-chevron-circle-up-alt"
+                                        size="lg"
+                                        title="Bear conditions"
+                                        class="bull-not-satisfied"></c-icon>:
+                                <ng-container *ngFor="let bullCondItem of strategy?.bullishConditions">
+                                    ({{bullCondItem.index}})
+                                    <span [title]="bullCondItem.statusNote">
+                                        <c-icon
+                                                name="cil-lightbulb"
+                                                size="lg"
+                                                [ngClass]="{'bull-satisfied': bullCondItem.status === true, 'bull-not-satisfied': bullCondItem.status === false}"></c-icon>
+                                    </span>
+                                </ng-container>
+                            </c-col>
+                        </c-row>
+                    </c-col>
+                </c-row>
+                <br>
+            </c-card-body>
+        </c-card>
+    </c-col>
+</c-row>
+<!--        TAKE PROFIT INPUTS-->
+<c-row>
+    <c-col md="12">
+        <c-card>
+            <c-card-header>
+                Take Profit Inputs
+            </c-card-header>
+            <c-card-body>
+                <ng-container *ngFor="let takeProfitInputItem of strategy?.takeProfitInputs">
+                    <c-row>
+                        <c-col sm="6">
+                            <c-row>
+                                <c-col sm="6">
+                                    <strong>Price Percent: </strong> {{takeProfitInputItem?.pricePercent}}
+                                </c-col>
+                            </c-row>
+                        </c-col>
+                        <c-col sm="6">
+                            <c-row>
+                                <c-col sm="6">
+                                    <strong>Quantity %: </strong> {{takeProfitInputItem?.quantityPercent}}
+                                </c-col>
+                            </c-row>
+                        </c-col>
+                    </c-row>
+                    <hr class="mt-0">
+                </ng-container>
+                <br>
+            </c-card-body>
+        </c-card>
+    </c-col>
+</c-row>
+<!--        ALERTS FOR TRADINGVIEW -->
+<c-row>
+    <c-col md="12">
+        <c-card>
+            <c-card-header>
+                Alerts for Tradingview
+            </c-card-header>
+            <c-card-body>
+                <c-row>
+                    <c-col sm="12 divider">
+                        <c-row>
+                            <c-col sm="4">
+                                <h3>Entry/Exit triggers for the following symbol: </h3>
+                            </c-col>
+                            <c-col sm="4">
+                                <input class="symbol-input"
+                                       cInput
+                                       max="10"
+                                       placeholder="Symbol for alerts"
+                                       [(ngModel)]="symbol">
+
+                            </c-col>
+                        </c-row>
+                        <c-row>
+                            <c-col sm="12">
+                                <dt>Bullish entry</dt> <mark>{{apiUrl}}/tv/both/bull/{{strategyId}}/{{symbol}}&nbsp;</mark>
+                                <span #container>
+                                    <button ngxClipboard cButton color="success" variant="ghost"
+                                            cbContent="{{apiUrl}}/both/bull/{{strategyId}}/{{symbol}}"
+                                            [container]="container">
+                                        <c-icon name="cil-copy"></c-icon>
+                                        <span>&nbsp;Copy</span>
+                                    </button>
+                                </span>
+                                <br>
+                                <dt>Bearish entry</dt> <mark>{{apiUrl}}/tv/both/bear/{{strategyId}}/{{symbol}}&nbsp;</mark>
+                                <span #container>
+                                    <button ngxClipboard cButton color="success" variant="ghost"
+                                            cbContent="{{apiUrl}}/both/bear/{{strategyId}}/{{symbol}}"
+                                            [container]="container">
+                                        <c-icon name="cil-copy"></c-icon>
+                                        <span>&nbsp;Copy</span>
+                                    </button>
+                                </span>
+                                <br>
+                                <dt>Single Short Entry</dt> <mark>{{apiUrl}}/tv/single/short/entry/{{strategyId}}/{{symbol}}&nbsp;</mark>
+                                <span #container>
+                                    <button ngxClipboard cButton color="success" variant="ghost"
+                                            cbContent="{{apiUrl}}/single/short/entry/{{strategyId}}/{{symbol}}"
+                                            [container]="container">
+                                        <c-icon name="cil-copy"></c-icon>
+                                        <span>&nbsp;Copy</span>
+                                    </button>
+                                </span>
+                                <br>
+                                <dt>Single Short Exit</dt> <mark>{{apiUrl}}/tv/single/short/exit/{{strategyId}}/{{symbol}}&nbsp;</mark>
+                                <span #container>
+                                    <button ngxClipboard cButton color="success" variant="ghost"
+                                            cbContent="{{apiUrl}}/single/short/exit/{{strategyId}}/{{symbol}}"
+                                            [container]="container">
+                                        <c-icon name="cil-copy"></c-icon>
+                                        <span>&nbsp;Copy</span>
+                                    </button>
+                                </span>
+                                <br>
+                                <dt>Single Long Entry</dt> <mark>{{apiUrl}}/tv/single/long/entry/{{strategyId}}/{{symbol}}&nbsp;</mark>
+                                <span #container>
+                                    <button ngxClipboard cButton color="success" variant="ghost"
+                                            cbContent="{{apiUrl}}/single/long/entry/{{strategyId}}/{{symbol}}"
+                                            [container]="container">
+                                        <c-icon name="cil-copy"></c-icon>
+                                        <span>&nbsp;Copy</span>
+                                    </button>
+                                </span>
+                                <br>
+                                <dt>Single Long Exit</dt> <mark>{{apiUrl}}/tv/single/long/exit/{{strategyId}}/{{symbol}}&nbsp;</mark>
+                                <span #container>
+                                    <button ngxClipboard cButton color="success" variant="ghost"
+                                            cbContent="{{apiUrl}}/single/long/exit/{{strategyId}}/{{symbol}}"
+                                            [container]="container">
+                                        <c-icon name="cil-copy"></c-icon>
+                                        <span>&nbsp;Copy</span>
+                                    </button>
+                                </span>
+                                <br>
+                            </c-col>
+                        </c-row>
+                    </c-col>
+                </c-row>
+                <hr class="mt-0">
+                <c-row>
+                    <c-col sm="12">
+                        <c-row>
+                            <c-col sm="4">
+                                <h3>Bearish Conditions: </h3>
+                            </c-col>
+                        </c-row>
+                        <c-row>
+                            <c-col sm="12">
+                                <ng-container *ngFor="let bearCondItem of strategy?.bearishConditions">
+                                    <dt>Condition Satisfied:</dt> <mark>{{apiUrl}}/tv/strategy/condition/bear/{{strategyId}}/{{bearCondItem.index}}/true&nbsp;</mark>
+                                    <span #container>
+                                        <button ngxClipboard cButton color="success" variant="ghost"
+                                                cbContent="{{apiUrl}}/strategy/condition/bear/{{strategyId}}/{{bearCondItem.index}}/true"
+                                                [container]="container">
+                                            <c-icon name="cil-copy"></c-icon>
+                                            <span>&nbsp;Copy</span>
+                                        </button>
+                                    </span>
+                                    <br>
+                                    <dt>Condition NOT Satisfied:</dt> <mark>{{apiUrl}}/tv/strategy/condition/bear/{{strategyId}}/{{bearCondItem.index}}/false</mark>&nbsp;
+                                    <span #container>
+                                        <button ngxClipboard cButton color="success" variant="ghost"
+                                                cbContent="{{apiUrl}}/strategy/condition/bear/{{strategyId}}/{{bearCondItem.index}}/false"
+                                                [container]="container">
+                                            <c-icon name="cil-copy"></c-icon>
+                                            <span>&nbsp;Copy</span>
+                                        </button>
+                                    </span><br>
+                                </ng-container>
+                            </c-col>
+                        </c-row>
+                    </c-col>
+                </c-row>
+                <hr class="mt-0">
+                <c-row>
+                    <c-col sm="12">
+                        <c-row>
+                            <c-col sm="4">
+                                <h3>Bullish Conditions: </h3>
+                            </c-col>
+                        </c-row>
+                        <c-row>
+                            <c-col sm="12">
+                                <ng-container *ngFor="let bullCondItem of strategy?.bullishConditions">
+                                    <dt>Condition Satisfied:</dt> <mark>{{apiUrl}}/tv/strategy/condition/bull/{{strategyId}}/{{bullCondItem.index}}/true</mark>&nbsp;
+                                    <span #container>
+                                        <button ngxClipboard cButton color="success" variant="ghost"
+                                                cbContent="{{apiUrl}}/strategy/condition/bull/{{strategyId}}/{{bullCondItem.index}}/true"
+                                                [container]="container">
+                                            <c-icon name="cil-copy"></c-icon>
+                                            <span>&nbsp;Copy</span>
+                                        </button>
+                                    </span>
+                                    <br>
+                                    <dt>Condition NOT Satisfied:</dt> <mark>{{apiUrl}}/tv/strategy/condition/bull/{{strategyId}}/{{bullCondItem.index}}/false</mark>&nbsp;
+                                    <span #container>
+                                        <button ngxClipboard cButton color="success" variant="ghost"
+                                                cbContent="{{apiUrl}}/strategy/condition/bull/{{strategyId}}/{{bullCondItem.index}}/false"
+                                                [container]="container">
+                                            <c-icon name="cil-copy"></c-icon>
+                                            <span>&nbsp;Copy</span>
+                                        </button>
+                                    </span><br>
+                                </ng-container>
+                            </c-col>
+                        </c-row>
+                    </c-col>
+                </c-row>
+                <hr class="mt-0">
+                <c-row>
+                    <c-col sm="12">
+                        <c-row>
+                            <c-col sm="4">
+                                <h3>Set Strategy Status: </h3>
+                            </c-col>
+                        </c-row>
+                        <c-row>
+                            <c-col sm="12">
+                                <dt>Make strategy active: :</dt> <mark>{{apiUrl}}/tv/strategy/status/{{strategyId}}/true</mark>&nbsp;
+                                <span #container>
+                                        <button ngxClipboard cButton color="success" variant="ghost"
+                                                cbContent="{{apiUrl}}/strategy/status/{{strategyId}}/true"
+                                                [container]="container">
+                                            <c-icon name="cil-copy"></c-icon>
+                                            <span>&nbsp;Copy</span>
+                                        </button>
+                                    </span>
+                            </c-col>
+                        </c-row>
+                        <c-row>
+                            <c-col sm="12">
+                                <dt>Make strategy inactive: :</dt> <mark>{{apiUrl}}/tv/strategy/status/{{strategyId}}/false</mark>&nbsp;
+                                <span #container>
+                                        <button ngxClipboard cButton color="success" variant="ghost"
+                                                cbContent="{{apiUrl}}/strategy/status/{{strategyId}}/false"
+                                                [container]="container">
+                                            <c-icon name="cil-copy"></c-icon>
+                                            <span>&nbsp;Copy</span>
+                                        </button>
+                                    </span>
+                            </c-col>
+                        </c-row>
+                    </c-col>
+                </c-row>
+                <hr class="mt-0">
+                <c-row>
+                    <c-col sm="12">
+                        <c-row>
+                            <c-col sm="4">
+                                <h3>Set Strategy Type: </h3>
+                            </c-col>
+                        </c-row>
+                        <c-row>
+                            <c-col sm="12">
+                                <dt>Only Bullish:</dt> <mark>{{apiUrl}}/tv/strategy/type/{{strategyId}}/bull</mark>&nbsp;
+                                <span #container>
+                                        <button ngxClipboard cButton color="success" variant="ghost"
+                                                cbContent="{{apiUrl}}/strategy/type/{{strategyId}}/bull"
+                                                [container]="container">
+                                            <c-icon name="cil-copy"></c-icon>
+                                            <span>&nbsp;Copy</span>
+                                        </button>
+                                    </span>
+                            </c-col>
+                        </c-row>
+                        <c-row>
+                            <c-col sm="12">
+                                <dt>Only Bearish:</dt> <mark>{{apiUrl}}/tv/strategy/type/{{strategyId}}/bear</mark>&nbsp;
+                                <span #container>
+                                        <button ngxClipboard cButton color="success" variant="ghost"
+                                                cbContent="{{apiUrl}}/strategy/type/{{strategyId}}/bear"
+                                                [container]="container">
+                                            <c-icon name="cil-copy"></c-icon>
+                                            <span>&nbsp;Copy</span>
+                                        </button>
+                                    </span>
+                            </c-col>
+                        </c-row>
+                        <c-row>
+                            <c-col sm="12">
+                                <dt>Both way:</dt> <mark>{{apiUrl}}/tv/strategy/type/{{strategyId}}/both</mark>&nbsp;
+                                <span #container>
+                                        <button ngxClipboard cButton color="success" variant="ghost"
+                                                cbContent="{{apiUrl}}/strategy/type/{{strategyId}}/both"
+                                                [container]="container">
+                                            <c-icon name="cil-copy"></c-icon>
+                                            <span>&nbsp;Copy</span>
+                                        </button>
+                                    </span>
+                            </c-col>
+                        </c-row>
+                    </c-col>
+                </c-row>
+                <br>
+            </c-card-body>
+        </c-card>
+    </c-col>
+</c-row>
+
