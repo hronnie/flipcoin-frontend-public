@@ -14,7 +14,8 @@ export class StrategiesDetailsComponent implements OnInit {
     strategyId: string;
     strategy: Strategy;
     apiUrl: string;
-    symbol: string;
+    symbol = '';
+    exchange = "ftx";
 
     constructor(private strategyService: StrategyService,
                 private route: ActivatedRoute) {
