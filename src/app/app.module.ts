@@ -79,7 +79,6 @@ import { EntryDetailsRendererComponent } from './common/renderer/entry-details-r
 import { ConditionRendererComponent } from './common/renderer/condition-renderer/condition-renderer.component';
 import { StrategyActionsRendererComponent } from './common/renderer/strategy-actions-renderer/strategy-actions-renderer.component';
 import { TypeRendererComponent } from './common/renderer/type-renderer/type-renderer.component';
-import {ClipboardModule} from "ngx-clipboard";
 
 
 @NgModule({
@@ -138,7 +137,6 @@ import {ClipboardModule} from "ngx-clipboard";
         AgChartsAngularModule,
         SharedModule,
         ModalModule,
-        ClipboardModule
     ],
     exports: [SharedModule],
     providers: [
