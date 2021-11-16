@@ -3,7 +3,6 @@ import {StrategyService} from "../../../common/service/strategy.service";
 import {ActivatedRoute} from "@angular/router";
 import {Strategy} from "../../../model/entry/strategy.model";
 import {environment} from "../../../../environments/environment";
-import {Clipboard} from "@angular/cdk/clipboard";
 
 @Component({
     selector: 'app-strategies-details',
@@ -19,8 +18,7 @@ export class StrategiesDetailsComponent implements OnInit {
     exchange = "ftx";
 
     constructor(private strategyService: StrategyService,
-                private route: ActivatedRoute,
-                private clipboard: Clipboard) {
+                private route: ActivatedRoute) {
         this.route.params.subscribe(
             (params) => {
                 this.strategyId = params.strategyId;
@@ -32,26 +30,6 @@ export class StrategiesDetailsComponent implements OnInit {
         this.strategyService.getStrategy(this.strategyId).subscribe(strategyResult => {
             this.strategy = strategyResult;
         });
-    }
-
-    copyTextEntryExit(endpoint: string) {
-        const textToCopy = `${this.apiUrl}/${this.exchange}${endpoint}${(this.strategyId)}/${(this.symbol)}`;
-        this.clipboard.copy(textToCopy);
-    }
-
-    copyTextCondition(endpoint: string, index: any, condition: string) {
-        const textToCopy = `${this.apiUrl}/${this.exchange}${endpoint}${(this.strategyId)}/${(index)}/${condition}`;
-        this.clipboard.copy(textToCopy);
-    }
-
-    copyTextStatus(condition: string) {
-        const textToCopy = `${this.apiUrl}/${this.exchange}/tv/strategy/status/${(this.strategyId)}/${condition}`;
-        this.clipboard.copy(textToCopy);
-    }
-
-    copyTextType(type: string) {
-        const textToCopy = `${(this.apiUrl)}/${(this.exchange)}/tv/strategy/type/{{strategyId}}/${type}`;
-        this.clipboard.copy(textToCopy);
     }
 
 }
