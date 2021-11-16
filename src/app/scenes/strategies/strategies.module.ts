@@ -27,6 +27,7 @@ import {StrategiesFormComponent} from './strategies-form/strategies-form.compone
 import {StrategiesComponent} from "./strategies.component";
 import {NgxMaskModule} from "ngx-mask";
 import {StrategiesDetailsComponent} from './strategies-details/strategies-details.component';
+import {ClipboardModule} from "ngx-clipboard";
 
 @NgModule({
     imports: [
@@ -50,6 +51,7 @@ import {StrategiesDetailsComponent} from './strategies-details/strategies-detail
         FormModule,
         ReactiveFormsModule,
         NgxMaskModule,
+        ClipboardModule,
     ],
     declarations: [
         StrategiesComponent,
