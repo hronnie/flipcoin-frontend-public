@@ -276,7 +276,7 @@ export class DashboardComponent implements OnInit {
         const stratEntries = this.allEntries.filter(item => item.strategyId === strategy);
         let sumDollar = 0;
         stratEntries.forEach(item => {
-            const realCost: string = item.entryReport?.realCost.toString();
+            const realCost: string = item.entryReport?.realCost?.toString();
             const parsedRealCost = Number.isNaN(parseFloat(realCost)) ? 0 : parseFloat(realCost);
             sumDollar = sumDollar + parsedRealCost;
         })

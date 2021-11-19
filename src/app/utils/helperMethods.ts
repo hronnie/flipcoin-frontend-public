@@ -18,7 +18,7 @@ export function objToString(object: any) {
 export function toFixed(num: number, fixed: number): string {
     const power = Math.pow(10, fixed || 0);
     const converted =  Math.floor(num * power) / power;
-    return converted.toString();
+    return converted?.toString();
 }
 
 export function isStrMandatoryParamValid(param: string): boolean {
@@ -35,7 +35,7 @@ export function toHumanReadableFormat(num: any): string {
     const inputNum = parseFloat(num);
     const power = Math.pow(10, 2 || 0);
     const converted =  Math.floor(inputNum * power) / power;
-    return converted.toString();
+    return converted?.toString();
 }
 
 /**
@@ -47,7 +47,7 @@ export function toHumanReadablePercentFormat(percFrom: any, percBase: any): stri
     const percResult = (percFromNum / percBaseNum) * 100;
     const power = Math.pow(10, 2 || 0);
     const converted = Math.floor(percResult * power) / power;
-    return `${converted.toString()}%`;
+    return `${converted?.toString()}%`;
 }
 
 export function convertAnyDateFormatToLong(dateValue: any) {
