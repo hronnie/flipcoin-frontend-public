@@ -65,6 +65,7 @@ export class StrategiesFormComponent implements OnInit {
         this.strategyService.getStrategy(this.strategyId).subscribe(strategyResult => {
             this.strategyForm.patchValue({
                 strategyId: strategyResult.strategyId,
+                leverage: strategyResult.leverage,
                 strategyDesc: strategyResult.strategyDesc,
                 stopLossPerc: strategyResult.stopLossPerc,
                 trailingStopPerc: strategyResult.trailingStopPerc,
@@ -77,7 +78,6 @@ export class StrategiesFormComponent implements OnInit {
                 bullishConditions: this.initBullishConditions(strategyResult.bullishConditions),
                 bearishConditions: this.initBearishConditions(strategyResult.bearishConditions),
                 takeProfitInputs: this.initTakeProfitInputs(strategyResult.takeProfitInputs),
-                leverage: strategyResult.leverage
             });
             this.strategy = strategyResult;
         });
