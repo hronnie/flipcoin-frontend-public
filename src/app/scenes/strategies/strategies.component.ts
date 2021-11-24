@@ -14,7 +14,7 @@ import {GridOptions} from "ag-grid-community";
 })
 export class StrategiesComponent implements OnInit {
 
-    @ViewChild('dangerModal', { static: true }) deleteModal: ElementRef<any>;
+    @ViewChild('dangerModal', { static: true }) deleteModal: any;
     strategyIdFromModal: string;
 
     columnDefs = [

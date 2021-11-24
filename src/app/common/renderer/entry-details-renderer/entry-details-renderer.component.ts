@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {ICellRendererParams} from "ag-grid-community";
-import {EntryService} from "../../service/entry.service";
 
 @Component({
     selector: 'app-entry-details-renderer',
@@ -12,7 +11,7 @@ export class EntryDetailsRendererComponent {
     params: ICellRendererParams;
     private componentParent: any;
 
-    constructor(private entryService: EntryService) {
+    constructor() {
     }
 
     agInit(params: ICellRendererParams): void {
@@ -20,9 +19,7 @@ export class EntryDetailsRendererComponent {
         this.componentParent = this.params.context.componentParent;
     }
 
-    deleteEntry(id) {
-        this.entryService.deleteEntry(id).subscribe(result => {
-            this.componentParent.refreshEntriesGrid();
-        }) 
+    deleteEntry(entryId: string) {
+        this.componentParent.showDeleteModal(entryId);
     }
 }
