@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Strategy} from "../../model/entry/strategy.model";
 import {StrategyService} from "../../common/service/strategy.service";
 import {YesNoRendererComponent} from "../../common/renderer/yes-no-renderer/yes-no-renderer.component";
@@ -13,6 +13,9 @@ import {GridOptions} from "ag-grid-community";
     styleUrls: ['./strategies.component.scss']
 })
 export class StrategiesComponent implements OnInit {
+
+    @ViewChild('dangerModal', { static: true }) deleteModal: ElementRef<any>;
+    strategyIdFromModal: string;
 
     columnDefs = [
         {field: 'strategyId', headerName: 'Strategy Id', sort: 'asc', minWidth: 150},
@@ -74,6 +77,19 @@ export class StrategiesComponent implements OnInit {
             this.rowData = result;
             this.isLoading = false;
         })
+    }
+
+    showDeleteModal(strategyId: string) {
+        this.strategyIdFromModal = strategyId;
+        this.deleteModal.show();
+    }
+
+
+    deleteStrategy() {
+        this.strategyService.deleteStrategy(this.strategyIdFromModal).subscribe(result => {
+            this.strategyIdFromModal = undefined;
+            this.refreshStrategyGrid();
+        });
     }
 
 }

@@ -48,3 +48,17 @@
         </c-card-footer>
     </c-card>
 </div>
+
+<c-modal #dangerModal color="danger">
+    <ng-template #modalHeader>
+        <h4 class="c-modal-title">Confirm Strategy Delete</h4>
+    </ng-template>
+    <ng-template #modalBody>
+        <h3>Are you sure that you want to delete strategy?</h3>
+        <p>Strategy Id: {{strategyIdFromModal}}</p>
+    </ng-template>
+    <ng-template #modalFooter>
+        <button cButton color="secondary" (click)="dangerModal.hide()">Close</button>
+        <button cButton color="danger" (click)="deleteStrategy();dangerModal.hide()">Delete</button>
+    </ng-template>
+</c-modal>

@@ -10,7 +10,7 @@ import {StrategyService} from "../../service/strategy.service";
 export class StrategyActionsRendererComponent {
     componentParent: any;
 
-    constructor(private strategyService: StrategyService) {
+    constructor() {
     }
 
     params: ICellRendererParams;
@@ -18,11 +18,9 @@ export class StrategyActionsRendererComponent {
     agInit(params: ICellRendererParams): void {
         this.params = params;
         this.componentParent = this.params.context.componentParent;
-     }
+    }
 
     deleteStrategy(strategyId: string) {
-        this.strategyService.deleteStrategy(strategyId).subscribe(result => {
-            this.componentParent.refreshStrategyGrid();
-        })
+        this.componentParent.showDeleteModal(strategyId);
     }
 }
