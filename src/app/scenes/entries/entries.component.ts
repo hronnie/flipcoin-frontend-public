@@ -24,16 +24,8 @@ export class EntriesComponent implements OnInit {
 
     columnDefs = [
         {field: 'exchange', headerName: 'Exchange', cellRenderer: 'exchangeRenderer', minWidth: 140},
-        {field: 'strategyId', headerName: 'Strategy Id', cellStyle: params => {
-                if (params?.data?.isActive === true) {
-                    return {backgroundColor: '#b9ff47'}
-                }
-            }},
-        {field: 'symbol', headerName: 'Symbol', unSortIcon: true, cellStyle: params => {
-                if (params?.data?.isActive === true) {
-                    return {backgroundColor: '#b9ff47'}
-                }
-            }},
+        {field: 'strategyId', headerName: 'Strategy Id'},
+        {field: 'symbol', headerName: 'Symbol', unSortIcon: true},
         {field: 'side', headerName: 'Side', cellRenderer: 'sideRenderer', width: 90},
         {field: 'isActive', headerName: 'Is Active', cellRenderer: 'yesNoRenderer', width: 90, sort: 'desc'},
         {field: 'startDate', headerName: 'Start Date', cellRenderer: 'dateRenderer', minWidth: 200},
@@ -59,7 +51,9 @@ export class EntriesComponent implements OnInit {
     };
 
     rowData: Entry[];
-    rowClassRules;
+    rowClassRules = {
+        'active-entry': function (params) {console.log(params.data.isActive); return params.data.isActive === true}
+    }
     frameworkComponents: {};
     gridApi;
     isLoading = false;
