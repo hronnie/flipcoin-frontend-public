@@ -1,8 +1,13 @@
 <div class="fade-in">
     <c-row class="back-icon">
-        <a [routerLink]="['/entries']"> <i class="cil-arrow-thick-to-left fa-2x"></i></a>
+        <a [routerLink]="['/entries']">
+            <button cButton color="info" variant="ghost">
+                <c-icon name="cil-arrow-circle-left"></c-icon>
+                <span>&nbsp;Go Back</span>
+            </button>
+        </a>
     </c-row>
-    <c-row class="back-icon">
+    <c-row>
         <c-col md="12">
             <c-card>
                 <c-card-header>
