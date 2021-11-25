@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {EntryService} from "../../common/service/entry.service";
 import {Entry} from "../../model/entry/entry.model";
 import {ExchangeRendererComponent} from "../../common/renderer/exchange-renderer/exchange-renderer.component";
@@ -19,18 +19,13 @@ import {GridOptions} from "ag-grid-community";
     styleUrls: ['./entries.component.scss']
 })
 export class EntriesComponent implements OnInit {
+    entryIdForDeleteModel: string;
+    @ViewChild('dangerModal', { static: true }) deleteModal: any;
+
     columnDefs = [
         {field: 'exchange', headerName: 'Exchange', cellRenderer: 'exchangeRenderer', minWidth: 140},
-        {field: 'strategyId', headerName: 'Strategy Id', cellStyle: params => {
-                if (params?.data?.isActive === true) {
-                    return {backgroundColor: '#b9ff47'}
-                }
-            }},
-        {field: 'symbol', headerName: 'Symbol', unSortIcon: true, cellStyle: params => {
-                if (params?.data?.isActive === true) {
-                    return {backgroundColor: '#b9ff47'}
-                }
-            }},
+        {field: 'strategyId', headerName: 'Strategy Id'},
+        {field: 'symbol', headerName: 'Symbol', unSortIcon: true},
         {field: 'side', headerName: 'Side', cellRenderer: 'sideRenderer', width: 90},
         {field: 'isActive', headerName: 'Is Active', cellRenderer: 'yesNoRenderer', width: 90, sort: 'desc'},
         {field: 'startDate', headerName: 'Start Date', cellRenderer: 'dateRenderer', minWidth: 200},
@@ -56,7 +51,9 @@ export class EntriesComponent implements OnInit {
     };
 
     rowData: Entry[];
-    rowClassRules;
+    rowClassRules = {
+        'active-entry': function (params) {console.log(params.data.isActive); return params.data.isActive === true}
+    }
     frameworkComponents: {};
     gridApi;
     isLoading = false;
@@ -102,5 +99,18 @@ export class EntriesComponent implements OnInit {
         const value = (document.getElementById('page-size') as HTMLInputElement).value;
         this.gridApi.paginationSetPageSize(Number(value));
     }
+
+    deleteEntry() {
+        this.entryService.deleteEntry(this.entryIdForDeleteModel).subscribe(result => {
+            this.refreshEntriesGrid();
+            this.entryIdForDeleteModel = undefined;
+        });
+    }
+
+    showDeleteModal(entryId: string) {
+        this.entryIdForDeleteModel = entryId;
+        this.deleteModal.show();
+    }
+
 
 }

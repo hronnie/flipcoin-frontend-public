@@ -22,6 +22,7 @@
                         [gridOptions]="gridOptions"
                         [enableCellTextSelection]="true"
                         (gridReady)="onGridReady($event)"
+                        [rowClassRules]="rowClassRules"
                 >
                 </ag-grid-angular>
             </ng-container>
@@ -37,3 +38,17 @@
         </c-card-footer>
     </c-card>
 </div>
+
+<c-modal #dangerModal color="danger">
+    <ng-template #modalHeader>
+        <h4 class="c-modal-title">Confirm Entry Delete</h4>
+    </ng-template>
+    <ng-template #modalBody>
+        <h3>Are you sure that you want to delete entry?</h3>
+        <p>Entry Id: {{entryIdForDeleteModel}}</p>
+    </ng-template>
+    <ng-template #modalFooter>
+        <button cButton color="secondary" (click)="dangerModal.hide()">Close</button>
+        <button cButton color="danger" (click)="deleteEntry();dangerModal.hide()">Delete</button>
+    </ng-template>
+</c-modal>

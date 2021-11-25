@@ -268,4 +268,8 @@ export class StrategiesFormComponent implements OnInit {
             takeProfitInputs: this.fb.array([])
         };
     }
+
+    goBack() {
+        this.router.navigate(['/strategies']);
+    }
 }
