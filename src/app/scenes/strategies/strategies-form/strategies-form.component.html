@@ -8,18 +8,25 @@
                     <strong *ngIf="!isEdit">Create Strategy</strong>
                 </c-card-header>
                 <c-card-body>
+                    <!--                        Is Active CHECKBOX-->
                     <c-row>
-                        <!--                        Is Active CHECKBOX-->
-                        <c-form-group cCol sm="1">
-                            <label for="isActive">Is Active?</label>
+                        <c-form-group cCol sm="2">
+                            Is Active
+                        </c-form-group>
+
+                        <c-form-group cCol sm="3">
                             <c-form-check variant="checkbox">
                                 <input cInput formControlName="isActive" id="isActive" type="checkbox" value="option1">
                             </c-form-check>
                         </c-form-group>
+                    </c-row>
+                    <!--                        STRATEGY ID-->
+                    <c-row>
+                        <c-form-group cCol sm="2">
+                            Strategy Id
+                        </c-form-group>
 
-                        <!--                        STRATEGY ID-->
-                        <c-form-group cCol sm="5">
-                            <label cCol cLabel="col" for="input1-group1" md="4">Strategy Id </label>
+                        <c-form-group cCol sm="3">
                             <c-input-group>
                                 <c-input-group-prepend>
                                     <c-input-group-text>
@@ -55,10 +62,14 @@
                                 Strategy Id must be unique
                             </div>
                         </c-form-group>
+                    </c-row>
+                    <!--                        STRATEGY DESCRIPTION-->
+                    <c-row>
+                        <c-form-group cCol sm="2">
+                            Strategy Description
+                        </c-form-group>
 
-                        <!--                        STRATEGY DESCRIPTION-->
-                        <c-form-group cCol sm="6">
-                            <label for="strategyDescription">Strategy Description</label>
+                        <c-form-group cCol sm="3">
                             <c-input-group>
                                 <c-input-group-prepend>
                                     <c-input-group-text>
@@ -80,9 +91,12 @@
                         </c-form-group>
                     </c-row>
                     <!--                        STOP LOSS PERCENT-->
-                    <c-form-group cRow>
-                        <c-form-group cCol>
-                            <label cCol cLabel="col" for="input2-group1" md="3">Stop Loss Percent</label>
+                    <c-row>
+                        <c-form-group cCol sm="2">
+                            SL %
+                        </c-form-group>
+
+                        <c-form-group cCol sm="3">
                             <c-col md="12">
                                 <div class="center">
                                     <div class="input-group">
@@ -111,10 +125,16 @@
                                     Stop Loss Percent is required
                                 </div>
                             </c-col>
+
                         </c-form-group>
-                        <!--                        TAKE PROFIT PERCENT-->
-                        <c-form-group cCol>
-                            <label cCol cLabel="col" for="input4-group1" md="3">Take Profit Percent</label>
+                    </c-row>
+                    <!--                        TAKE PROFIT PERCENT-->
+                    <c-row>
+                        <c-form-group cCol sm="2">
+                            TP %
+                        </c-form-group>
+
+                        <c-form-group cCol sm="3">
                             <c-col md="12">
                                 <div class="center">
                                     <div class="input-group">
@@ -145,9 +165,14 @@
                                 </div>
                             </c-col>
                         </c-form-group>
-                        <!--                    TRAILING STOP LOSS PERCENT-->
-                        <c-form-group cCol>
-                            <label cCol cLabel="col" for="input3-group1" md="3">Trailing Stop Loss Percent</label>
+                    </c-row>
+                    <!--                    TRAILING STOP LOSS PERCENT-->
+                    <c-row>
+                        <c-form-group cCol sm="2">
+                            Trailing Stop %
+                        </c-form-group>
+
+                        <c-form-group cCol sm="3">
                             <c-col md="12">
                                 <div class="center">
                                     <div class="input-group">
@@ -173,10 +198,14 @@
 
                             </c-col>
                         </c-form-group>
+                    </c-row>
+                    <!--                    MAX DOLLAR AMOUNT -->
+                    <c-row>
+                        <c-form-group cCol sm="2">
+                            Max $
+                        </c-form-group>
 
-                        <!--                    MAX DOLLAR AMOUNT -->
-                        <c-form-group cCol>
-                            <label cCol cLabel="col" for="input5-group1" md="3">Max Dollar Amount</label>
+                        <c-form-group cCol sm="3">
                             <c-col md="12">
                                 <div class="center">
                                     <div class="input-group">
@@ -207,13 +236,16 @@
                                 </div>
                             </c-col>
                         </c-form-group>
-
-                    </c-form-group>
+                    </c-row>
                     <!--                        LEVERAGE -->
-                    <c-form-group cRow>
-                        <c-form-group cCol>
-                            <label cCol cLabel="col" for="input2-group1" md="3">Leverage</label>
-                            <c-col md="3">
+
+                    <c-row>
+                        <c-form-group cCol sm="2">
+                            Leverage
+                        </c-form-group>
+
+                        <c-form-group cCol sm="3">
+                            <c-col md="12">
                                 <div class="center">
                                     <div class="input-group">
                                         <span class="input-group-btn">
@@ -243,9 +275,9 @@
                                 </div>
                             </c-col>
                         </c-form-group>
-                    </c-form-group>
+                    </c-row>
 
-                    <hr class="mt-0">
+                    <hr class="mt-0" style="padding-top: 20px;">
                     <!--                    IS ONLY BULLISH-->
                     <c-form-group cRow>
                         <c-form-group cCol>
