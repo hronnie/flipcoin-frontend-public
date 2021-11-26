@@ -272,4 +272,45 @@ export class StrategiesFormComponent implements OnInit {
     goBack() {
         this.router.navigate(['/strategies']);
     }
+
+    decreaseNumberField(numberFieldName: string, step: number, perc: boolean) {
+        if (Number.isNaN(this.strategyForm.get(numberFieldName).value)) {
+            this.strategyForm.patchValue({
+                stopLossPerc: 1,
+            });
+            return;
+        }
+        const fieldValue: number = parseFloat(this.strategyForm.get(numberFieldName).value);
+        const newValue: number = fieldValue - step;
+        if (fieldValue === 0 || (newValue < 0 && perc === true)) {
+            return;
+        }
+
+        this.strategyForm.patchValue({
+            [numberFieldName]: newValue,
+        });
+    }
+
+    increaseNumberField(numberFieldName: string, step: number, perc: boolean) {
+        if (Number.isNaN(this.strategyForm.get(numberFieldName).value)) {
+            this.strategyForm.patchValue({
+                stopLossPerc: 1,
+            });
+            return;
+        }
+        if (Number.isNaN(this.strategyForm.get(numberFieldName).value)) {
+            this.strategyForm.patchValue({
+                stopLossPerc: 1,
+            });
+            return;
+        }
+        const fieldValue: number = parseFloat(this.strategyForm.get(numberFieldName).value);
+        const newValue: number = fieldValue + step;
+        if (fieldValue === 99 || (newValue > 100 && perc === true)) {
+            return;
+        }
+        this.strategyForm.patchValue({
+            [numberFieldName]: newValue,
+        });
+    }
 }

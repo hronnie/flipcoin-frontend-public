@@ -4,8 +4,8 @@
         <c-col sm="12">
             <c-card>
                 <c-card-header>
-                    <!--                    <strong *ngIf="isEdit">Update Strategy</strong>-->
-                    <!--                    <strong *ngIf="!isEdit">Create Strategy</strong>-->
+                    <strong *ngIf="isEdit">Update Strategy</strong>
+                    <strong *ngIf="!isEdit">Create Strategy</strong>
                 </c-card-header>
                 <c-card-body>
                     <c-row>
@@ -84,18 +84,28 @@
                         <c-form-group cCol>
                             <label cCol cLabel="col" for="input2-group1" md="3">Stop Loss Percent</label>
                             <c-col md="12">
-                                <c-input-group>
-                                    <input [ngClass]="{ 'is-invalid':  (submitted || ctrls?.stopLossPerc.touched) && ctrls?.stopLossPerc.invalid, 'is-valid': ctrls?.stopLossPerc.touched && ctrls?.stopLossPerc.valid }" cInput
-                                           formControlName="stopLossPerc"
-                                           id="input2-group1"
-                                           name="input2-group1"
-                                           placeholder="Stop Loss Percent"
-                                           step="1"
-                                           type="number">
-                                    <c-input-group-append>
-                                        <c-input-group-text>%</c-input-group-text>
-                                    </c-input-group-append>
-                                </c-input-group>
+                                <div class="center">
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-danger btn-number" (click)="decreaseNumberField('stopLossPerc', 1, true)" type="button">
+                                                <i class="fa fa-minus"></i>
+                                            </button>
+                                        </span>
+                                        <input [ngClass]="{ 'is-invalid':  (submitted || ctrls?.stopLossPerc.touched) && ctrls?.stopLossPerc.invalid, 'is-valid': ctrls?.stopLossPerc.touched && ctrls?.stopLossPerc.valid }"
+                                               formControlName="stopLossPerc"
+                                               id="input2-group1"
+                                               name="input2-group1"
+                                               placeholder="Stop Loss Percent"
+                                               step="1"
+                                               type="text"
+                                               class="number-input">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-success btn-number" (click)="increaseNumberField('stopLossPerc', 1, true)" type="button">
+                                                <i class="fa fa-plus"></i>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
                                 <div *ngIf="strategyForm.get('stopLossPerc').errors?.required && !strategyForm.get('stopLossPerc').pristine"
                                      class="alert alert-danger">
                                     Stop Loss Percent is required
@@ -106,19 +116,29 @@
                         <c-form-group cCol>
                             <label cCol cLabel="col" for="input4-group1" md="3">Take Profit Percent</label>
                             <c-col md="12">
-                                <c-input-group>
-                                    <input [ngClass]="{ 'is-invalid':  (submitted || ctrls?.takeProfitPerc.touched) && ctrls?.takeProfitPerc.invalid, 'is-valid': ctrls?.takeProfitPerc.touched && ctrls?.takeProfitPerc.valid }"
-                                           cInput
-                                           formControlName="takeProfitPerc"
-                                           id="input4-group1"
-                                           name="input4-group1"
-                                           placeholder="Take Profit Percent"
-                                           step="1"
-                                           type="number">
-                                    <c-input-group-append>
-                                        <c-input-group-text>%</c-input-group-text>
-                                    </c-input-group-append>
-                                </c-input-group>
+                                <div class="center">
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-danger btn-number" (click)="decreaseNumberField('takeProfitPerc', 1, true)" type="button">
+                                                <i class="fa fa-minus"></i>
+                                            </button>
+                                        </span>
+                                        <input [ngClass]="{ 'is-invalid':  (submitted || ctrls?.takeProfitPerc.touched) && ctrls?.takeProfitPerc.invalid, 'is-valid': ctrls?.takeProfitPerc.touched && ctrls?.takeProfitPerc.valid }"
+                                               formControlName="takeProfitPerc"
+                                               id="input4-group1"
+                                               name="input4-group1"
+                                               placeholder="Take Profit Percent"
+                                               step="1"
+                                               type="text"
+                                               class="number-input">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-success btn-number" (click)="increaseNumberField('takeProfitPerc', 1, true)" type="button">
+                                                <i class="fa fa-plus"></i>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+
                                 <div *ngIf="strategyForm.get('takeProfitPerc').errors?.required && !strategyForm.get('takeProfitPerc').pristine"
                                      class="alert alert-danger">
                                     Take Profit Percent is required
@@ -129,17 +149,28 @@
                         <c-form-group cCol>
                             <label cCol cLabel="col" for="input3-group1" md="3">Trailing Stop Loss Percent</label>
                             <c-col md="12">
-                                <c-input-group>
-                                    <input cInput formControlName="trailingStopPerc"
-                                           id="input3-group1"
-                                           name="input3-group1"
-                                           placeholder="Trailing Stop Loss Percent"
-                                           step="1"
-                                           type="number">
-                                    <c-input-group-append>
-                                        <c-input-group-text>%</c-input-group-text>
-                                    </c-input-group-append>
-                                </c-input-group>
+                                <div class="center">
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-danger btn-number" (click)="decreaseNumberField('trailingStopPerc', 1, true)" type="button">
+                                                <i class="fa fa-minus"></i>
+                                            </button>
+                                        </span>
+                                        <input formControlName="trailingStopPerc"
+                                               id="input3-group1"
+                                               name="input3-group1"
+                                               placeholder="Trailing Stop Loss Percent"
+                                               step="1"
+                                               type="text"
+                                               class="number-input">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-success btn-number" (click)="increaseNumberField('trailingStopPerc', 1, true)" type="button">
+                                                <i class="fa fa-plus"></i>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+
                             </c-col>
                         </c-form-group>
 
@@ -147,20 +178,29 @@
                         <c-form-group cCol>
                             <label cCol cLabel="col" for="input5-group1" md="3">Max Dollar Amount</label>
                             <c-col md="12">
-                                <c-input-group>
-                                    <c-input-group-prepend>
-                                        <c-input-group-text>
-                                            <c-icon name="cil-dollar"></c-icon>
-                                        </c-input-group-text>
-                                    </c-input-group-prepend>
-                                    <input [ngClass]="{ 'is-invalid':  (submitted || ctrls?.maxDollarAmount.touched) && ctrls?.maxDollarAmount.invalid, 'is-valid': ctrls?.maxDollarAmount.touched && ctrls?.maxDollarAmount.valid }" cInput
-                                           formControlName="maxDollarAmount"
-                                           id="input5-group1"
-                                           name="input5-group1"
-                                           placeholder="Max Dollar Amount"
-                                           step="100"
-                                           type="number">
-                                </c-input-group>
+                                <div class="center">
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-danger btn-number" (click)="decreaseNumberField('maxDollarAmount', 100, false)" type="button">
+                                                <i class="fa fa-minus"></i>
+                                            </button>
+                                        </span>
+                                        <input [ngClass]="{ 'is-invalid':  (submitted || ctrls?.maxDollarAmount.touched) && ctrls?.maxDollarAmount.invalid, 'is-valid': ctrls?.maxDollarAmount.touched && ctrls?.maxDollarAmount.valid }"
+                                               formControlName="maxDollarAmount"
+                                               id="input5-group1"
+                                               name="input5-group1"
+                                               placeholder="Max Dollar Amount"
+                                               step="100"
+                                               type="text"
+                                               class="number-input">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-success btn-number" (click)="increaseNumberField('maxDollarAmount', 100, false)" type="button">
+                                                <i class="fa fa-plus"></i>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+
                                 <div *ngIf="strategyForm.get('maxDollarAmount').errors?.required && !strategyForm.get('maxDollarAmount').pristine"
                                      class="alert alert-danger">
                                     Max Dollar Amount is required
@@ -174,18 +214,29 @@
                         <c-form-group cCol>
                             <label cCol cLabel="col" for="input2-group1" md="3">Leverage</label>
                             <c-col md="3">
-                                <c-input-group>
-                                    <input [ngClass]="{ 'is-invalid':  (submitted || ctrls?.leverage.touched) && ctrls?.leverage.invalid, 'is-valid': ctrls?.leverage.touched && ctrls?.leverage.valid }" cInput
-                                           formControlName="leverage"
-                                           id="leverage"
-                                           name="input2-group1"
-                                           placeholder="Leverage"
-                                           step="1"
-                                           type="number">
-                                    <c-input-group-append>
-                                        <c-input-group-text>X</c-input-group-text>
-                                    </c-input-group-append>
-                                </c-input-group>
+                                <div class="center">
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-danger btn-number" (click)="decreaseNumberField('leverage', 1, true)" type="button">
+                                                <i class="fa fa-minus"></i>
+                                            </button>
+                                        </span>
+                                        <input [ngClass]="{ 'is-invalid':  (submitted || ctrls?.leverage.touched) && ctrls?.leverage.invalid, 'is-valid': ctrls?.leverage.touched && ctrls?.leverage.valid }"
+                                               formControlName="leverage"
+                                               id="leverage"
+                                               name="input2-group1"
+                                               placeholder="Leverage"
+                                               step="1"
+                                               type="text"
+                                               class="number-input">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-success btn-number" (click)="increaseNumberField('leverage', 1, true)" type="button">
+                                                <i class="fa fa-plus"></i>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+
                                 <div *ngIf="strategyForm.get('leverage').errors?.required && !strategyForm.get('leverage').pristine"
                                      class="alert alert-danger">
                                     Leverage is required
