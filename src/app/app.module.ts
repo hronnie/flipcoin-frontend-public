@@ -80,6 +80,7 @@ import { ConditionRendererComponent } from './common/renderer/condition-renderer
 import { StrategyActionsRendererComponent } from './common/renderer/strategy-actions-renderer/strategy-actions-renderer.component';
 import { TypeRendererComponent } from './common/renderer/type-renderer/type-renderer.component';
 import {ClipboardModule} from "ngx-clipboard";
+import {ToastrModule} from "ngx-toastr";
 
 
 @NgModule({
@@ -131,7 +132,7 @@ import {ClipboardModule} from "ngx-clipboard";
         TogglerModule,
         PerfectScrollbarModule,
         BsDropdownModule.forRoot(),
-        // ToastrModule.forRoot(),
+        ToastrModule.forRoot(),
         // ToastContainerModule,
         FormModule,
         AgGridModule.withComponents([]),

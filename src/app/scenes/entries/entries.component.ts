@@ -11,6 +11,7 @@ import {DurationRendererComponent} from "../../common/renderer/duration-renderer
 import {FeesRendererComponent} from "../../common/renderer/fees-renderer/fees-renderer.component";
 import {EntryDetailsRendererComponent} from "../../common/renderer/entry-details-renderer/entry-details-renderer.component";
 import {GridOptions} from "ag-grid-community";
+import {ToastrService} from "ngx-toastr";
 
 
 @Component({
@@ -59,7 +60,8 @@ export class EntriesComponent implements OnInit {
     isLoading = false;
     private gridOptions: GridOptions;
 
-    constructor(private entryService: EntryService) {
+    constructor(private entryService: EntryService,
+                private toastr: ToastrService) {
         this.frameworkComponents = {
             exchangeRenderer: ExchangeRendererComponent,
             dateRenderer: DateRendererComponent,
@@ -104,6 +106,7 @@ export class EntriesComponent implements OnInit {
         this.entryService.deleteEntry(this.entryIdForDeleteModel).subscribe(result => {
             this.refreshEntriesGrid();
             this.entryIdForDeleteModel = undefined;
+            this.toastr.success("Delete Success");
         });
     }
 

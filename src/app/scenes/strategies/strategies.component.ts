@@ -6,6 +6,7 @@ import {ConditionRendererComponent} from "../../common/renderer/condition-render
 import {StrategyActionsRendererComponent} from "../../common/renderer/strategy-actions-renderer/strategy-actions-renderer.component";
 import {TypeRendererComponent} from "../../common/renderer/type-renderer/type-renderer.component";
 import {GridOptions} from "ag-grid-community";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
     selector: 'app-strategies',
@@ -43,7 +44,8 @@ export class StrategiesComponent implements OnInit {
     isLoading = false;
     private gridOptions: GridOptions;
 
-    constructor(private strategyService: StrategyService) {
+    constructor(private strategyService: StrategyService,
+                private toastr: ToastrService) {
         this.gridOptions = {
             context: {
                 componentParent: this
@@ -88,6 +90,7 @@ export class StrategiesComponent implements OnInit {
     deleteStrategy() {
         this.strategyService.deleteStrategy(this.strategyIdFromModal).subscribe(result => {
             this.strategyIdFromModal = undefined;
+            this.toastr.success("Delete Success");
             this.refreshStrategyGrid();
         });
     }

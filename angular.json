@@ -44,6 +44,7 @@
               "node_modules/@fortawesome/fontawesome-free/scss/brands.scss",
               "node_modules/animate.css/animate.css",
               "./node_modules/tippy.js/dist/tippy.css",
+              "node_modules/ngx-toastr/toastr.css",
               "src/scss/style.scss",
               "src/styles.scss"
             ],

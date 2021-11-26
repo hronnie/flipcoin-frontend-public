@@ -6,6 +6,7 @@ import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {StrategyCondition} from "../../../model/entry/strategyCondition.model";
 import {TakeProfitInput} from "../../../model/tradingview/takeProfitInput.model";
 import {StrategyValidators} from "../../../common/validators/strategy.validator";
+import {ToastrService} from "ngx-toastr";
 
 
 @Component({
@@ -27,7 +28,9 @@ export class StrategiesFormComponent implements OnInit {
                 private route: ActivatedRoute,
                 private fb: FormBuilder,
                 private router: Router,
-                private strategyValidator: StrategyValidators) {
+                private strategyValidator: StrategyValidators,
+                private toastr: ToastrService) {
+
         this.route.params.subscribe(
             (params) => {
                 this.strategyId = params.strategyId;
@@ -121,6 +124,7 @@ export class StrategiesFormComponent implements OnInit {
             submitStrategy.bullishConditions = this.updateStrategyIndexes(submitStrategy.bullishConditions);
             this.strategyService.updateStrategy(submitStrategy).subscribe(
                 result => {
+                    this.toastr.success("Edit Success");
                     this.router.navigate(['/strategies']);
                 }
             );
@@ -130,6 +134,7 @@ export class StrategiesFormComponent implements OnInit {
             submitStrategy.bullishConditions = this.updateStrategyIndexes(submitStrategy.bullishConditions);
             this.strategyService.createStrategy(submitStrategy).subscribe(
                 result => {
+                    this.toastr.success("Create Success");
                     this.router.navigate(['/strategies']);
                 }
             );
