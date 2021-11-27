@@ -32,4 +32,7 @@ export class StrategiesDetailsComponent implements OnInit {
         });
     }
 
+    setSymbol(symbol: string) {
+        this.symbol = symbol;
+    }
 }

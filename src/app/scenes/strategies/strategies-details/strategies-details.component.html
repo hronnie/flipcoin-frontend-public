@@ -224,22 +224,57 @@
                     <c-col sm="12 divider">
                         <c-row>
                             <c-col sm="4">
-                                <h3>Entry/Exit triggers for the following symbol: </h3>
+                                <h3 style="margin-bottom: 20px;">Entry/Exit and strategy setting alerts</h3>
                             </c-col>
-                            <c-col sm="4">
+                        </c-row>
+                        <c-row>
+                            <c-form-group cCol sm="2">
+                                Symbol:
+                            </c-form-group>
+
+                            <c-form-group cCol sm="3">
                                 <input class="symbol-input"
                                        cInput
                                        max="10"
                                        placeholder="Symbol for alerts"
                                        [(ngModel)]="symbol">
+                            </c-form-group>
+                        </c-row>
+                        <c-row>
+                            <c-form-group cCol sm="2">
+                                Exchange:
+                            </c-form-group>
 
-                            </c-col>
-                            <c-col sm="4">
+                            <c-form-group cCol sm="3">
                                 <select cSelect id="exchange" name="exchange" [(ngModel)]="exchange">
                                     <option value="ftx">FTX</option>
                                     <option value="binance">Binance</option>
                                 </select>
-                            </c-col>
+                            </c-form-group>
+                        </c-row>
+                        <c-row>
+                            <c-form-group cCol sm="2">
+                                Commonly used cryptos:
+                            </c-form-group>
+
+                            <c-form-group cCol sm="3">
+                                <button cButton color="info" (click)="setSymbol('BTC-PERP')" class="symbol-button">
+                                    <c-icon name="cil-indent-increase"></c-icon>
+                                    <span>&nbsp;BTC-PERP</span>
+                                </button>
+                                <button cButton color="info" (click)="setSymbol('BTC-USDT')" class="symbol-button">
+                                    <c-icon name="cil-indent-increase"></c-icon>
+                                    <span>&nbsp;BTC-USDT</span>
+                                </button>
+                                <button cButton color="info" (click)="setSymbol('ADA-PERP')" class="symbol-button">
+                                    <c-icon name="cil-indent-increase"></c-icon>
+                                    <span>&nbsp;ADA-PERP</span>
+                                </button>
+                                <button cButton color="info" (click)="setSymbol('MATIC-PERP')" class="symbol-button">
+                                    <c-icon name="cil-indent-increase"></c-icon>
+                                    <span>&nbsp;MATIC-PERP</span>
+                                </button>
+                            </c-form-group>
                         </c-row>
                         <c-row>
                             <c-col sm="12">
