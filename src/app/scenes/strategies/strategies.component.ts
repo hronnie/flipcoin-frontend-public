@@ -23,7 +23,7 @@ export class StrategiesComponent implements OnInit {
         {field: 'isActive', headerName: 'Is Active', cellRenderer: 'yesNoRenderer', width: 90},
         {field: 'isOnlyBullish', headerName: 'Type', cellRenderer: 'typeRenderer', width: 90},
         {field: 'bullishConditions', headerName: 'Conditions', cellRenderer: 'conditionRenderer', minWidth: 350},
-        {field: 'bullishConditions', headerName: 'Actions', cellRenderer: 'strategyActionsRenderer', width: 80},
+        {field: 'bullishConditions', headerName: 'Actions', cellRenderer: 'strategyActionsRenderer', minWidth: 150},
     ];
 
     defaultColDef = {
