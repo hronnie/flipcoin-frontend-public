@@ -545,6 +545,60 @@
                     </c-col>
                 </c-row>
                 <br>
+
+                <hr class="mt-0">
+                <c-row>
+                    <c-col sm="12">
+                        <c-row>
+                            <c-col sm="4">
+                                <h3>Pine script URL: </h3>
+                            </c-col>
+                        </c-row>
+                        <c-row>
+                            <c-col sm="12">
+                                <dt></dt> <mark>{{apiUrl}}/{{exchange}}/tv/pinecommand/{{strategyId}}/{{symbol}}</mark>&nbsp;
+                                <span #container *ngIf="symbol !== ''">
+                                        <button ngxClipboard cButton color="success" variant="ghost"
+                                                cbContent="{{apiUrl}}/{{exchange}}/tv/pinecommand/{{strategyId}}/{{symbol}}"
+                                                [container]="container">
+                                            <c-icon name="cil-copy"></c-icon>
+                                            <span>&nbsp;Copy</span>
+                                        </button>
+                                    </span>
+                                <ng-container *ngIf="symbol === ''">
+                                    Fill Symbol
+                                </ng-container>
+                                <div class="separator">
+                                    <dl class="row">
+                                        <dt class="col-sm-3">Long Entry</dt>
+                                        <dd class="col-sm-9">LONG_ENTRY</dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-3">Short Entry</dt>
+                                        <dd class="col-sm-9">SHORT_ENTRY</dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-3">Long Exit</dt>
+                                        <dd class="col-sm-9">LONG_EXIT</dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-3">Short Exit</dt>
+                                        <dd class="col-sm-9">SHORT_EXIT</dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-3">Bearish Entry/Exit</dt>
+                                        <dd class="col-sm-9">BEARISH</dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-3">Bullish Entry/Exit</dt>
+                                        <dd class="col-sm-9">BULLISH</dd>
+                                    </dl>
+                                </div>
+                            </c-col>
+                        </c-row>
+                    </c-col>
+                </c-row>
+                <br>
             </c-card-body>
         </c-card>
     </c-col>
